@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Disallow: /flag.txt
