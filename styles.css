@@ -1058,6 +1058,61 @@ footer {
     color: var(--text-tertiary);
 }
 
+.exclusive-perks {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 25px;
+    text-align: left;
+    width: 100%;
+}
+.exclusive-perks h4 {
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    font-family: 'Fira Code', monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.exclusive-perks p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+.exclusive-perks ul {
+    list-style: none;
+    padding: 0;
+}
+.exclusive-perks li {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    padding-left: 12px;
+    position: relative;
+    border-bottom: none;
+}
+.exclusive-perks li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--cyber-lime);
+}
+.pricing-featured .exclusive-perks li::before {
+    color: var(--cyber-cyan);
+}
+.pricing-premium .exclusive-perks li::before {
+    color: var(--cyber-purple);
+}
+.exclusive-perks li strong {
+    color: var(--text-primary);
+}
+.exclusive-perks li:last-child {
+    margin-bottom: 0;
+}
+
 .pricing-btn {
     width: 100%;
     justify-content: center;
