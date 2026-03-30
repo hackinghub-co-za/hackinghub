@@ -830,3 +830,254 @@ footer {
         font-size: 1rem;
     }
 }
+
+/* ===== VIDEO / INTERVIEWS SECTION ===== */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.video-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.video-card:hover {
+    border-color: rgba(14, 215, 181, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
+}
+
+.video-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.02);
+    letter-spacing: 0.1em;
+}
+
+/* Responsive 16:9 iframe */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== PRICING SECTION ===== */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: stretch;
+}
+
+.pricing-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 40px 30px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--border-color);
+    transition: background 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(204, 255, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.pricing-card:hover::before {
+    background: var(--cyber-lime);
+}
+
+/* Featured Card */
+.pricing-featured {
+    border-color: rgba(14, 215, 181, 0.4);
+    background: rgba(14, 215, 181, 0.05);
+    box-shadow: 0 0 30px rgba(14, 215, 181, 0.1);
+}
+
+.pricing-featured::before {
+    background: var(--cyber-cyan);
+}
+
+.pricing-featured:hover {
+    border-color: var(--cyber-cyan);
+    box-shadow: 0 10px 40px rgba(14, 215, 181, 0.2);
+}
+
+/* Premium Card */
+.pricing-premium {
+    border-color: rgba(112, 0, 255, 0.3);
+    background: rgba(112, 0, 255, 0.05);
+}
+
+.pricing-premium::before {
+    background: var(--cyber-purple);
+}
+
+.pricing-premium:hover {
+    border-color: var(--cyber-purple);
+    box-shadow: 0 10px 40px rgba(112, 0, 255, 0.2);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--cyber-cyan);
+    color: #000;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    letter-spacing: 0.1em;
+}
+
+.pricing-tier-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.15em;
+    margin-bottom: 20px;
+}
+
+.pricing-icon {
+    font-size: 2.5rem;
+    color: var(--cyber-lime);
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.pricing-featured .pricing-icon {
+    color: var(--cyber-cyan);
+}
+
+.pricing-premium .pricing-icon {
+    color: var(--cyber-purple);
+}
+
+.pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.price-amount {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.price-period {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+.pricing-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.pricing-features {
+    list-style: none;
+    width: 100%;
+    margin-bottom: 35px;
+    text-align: left;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-features .text-tertiary {
+    color: var(--text-tertiary);
+    opacity: 0.5;
+}
+
+.pricing-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: auto;
+}
+
+/* Purple Button */
+.btn-purple {
+    background: rgba(112, 0, 255, 0.2);
+    color: var(--cyber-purple);
+    border: 1px solid var(--cyber-purple);
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-purple:hover {
+    background: var(--cyber-purple);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(112, 0, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Mobile pricing */
+@media (max-width: 900px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
