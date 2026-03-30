@@ -1081,3 +1081,73 @@ footer {
         margin: 0 auto;
     }
 }
+
+/* ===== LINKEDIN CTA BANNER ===== */
+.linkedin-banner {
+    background: rgba(0, 119, 181, 0.08);
+    border-top: 1px solid rgba(0, 119, 181, 0.25);
+    border-bottom: 1px solid rgba(0, 119, 181, 0.25);
+    padding: 28px 0;
+}
+
+.linkedin-banner-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.linkedin-banner-text {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.linkedin-banner-text .fa-linkedin {
+    font-size: 1.8rem;
+    color: #0077b5;
+    flex-shrink: 0;
+}
+
+.linkedin-banner-text strong {
+    color: var(--text-primary);
+}
+
+.btn-linkedin {
+    background: rgba(0, 119, 181, 0.15);
+    color: #0077b5;
+    border: 1px solid #0077b5;
+    padding: 10px 24px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-linkedin:hover {
+    background: #0077b5;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0, 119, 181, 0.4);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .linkedin-banner-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .linkedin-banner-text {
+        flex-direction: column;
+        text-align: center;
+    }
+}
