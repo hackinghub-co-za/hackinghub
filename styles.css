@@ -297,13 +297,13 @@ body::after {
 }
 
 .btn-outline {
-    background: transparent;
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
     color: var(--text-primary);
 }
 
 .btn-outline:hover {
-    border-color: var(--cyber-lime);
+    background: rgba(204, 255, 0, 0.15);
     color: var(--cyber-lime);
 }
 
@@ -320,7 +320,7 @@ body::after {
 .btn-cyan {
     background: rgba(14, 215, 181, 0.2);
     color: var(--cyber-cyan);
-    border: 1px solid var(--cyber-cyan);
+    border: none;
 }
 
 .btn-cyan:hover {
@@ -1052,6 +1052,12 @@ footer {
     opacity: 0.5;
 }
 
+.pricing-features li.disabled {
+    opacity: 0.4;
+    text-decoration: line-through;
+    color: var(--text-tertiary);
+}
+
 .pricing-btn {
     width: 100%;
     justify-content: center;
@@ -1062,8 +1068,7 @@ footer {
 .btn-purple {
     background: rgba(112, 0, 255, 0.2);
     color: var(--cyber-purple);
-    border: 1px solid var(--cyber-purple);
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    border: none;
 }
 
 .btn-purple:hover {
