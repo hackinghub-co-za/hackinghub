@@ -891,8 +891,8 @@ footer {
 /* ===== PRICING SECTION ===== */
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
     margin: 0 auto;
     gap: 30px;
     align-items: stretch;
@@ -949,10 +949,11 @@ footer {
     box-shadow: 0 10px 40px rgba(14, 215, 181, 0.2);
 }
 
-/* Premium Card */
+/* Premium Card (Featured / Most Popular) */
 .pricing-premium {
-    border-color: rgba(112, 0, 255, 0.3);
+    border-color: rgba(112, 0, 255, 0.4);
     background: rgba(112, 0, 255, 0.05);
+    box-shadow: 0 0 30px rgba(112, 0, 255, 0.15);
 }
 
 .pricing-premium::before {
@@ -961,7 +962,42 @@ footer {
 
 .pricing-premium:hover {
     border-color: var(--cyber-purple);
-    box-shadow: 0 10px 40px rgba(112, 0, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(112, 0, 255, 0.35);
+}
+
+.pricing-premium .pricing-badge {
+    background: var(--cyber-purple);
+    color: #fff;
+}
+
+/* Cyan Card (Monthly) */
+.pricing-cyan {
+    border-color: rgba(14, 215, 181, 0.2);
+    background: rgba(14, 215, 181, 0.02);
+}
+
+.pricing-cyan::before {
+    background: var(--cyber-cyan);
+}
+
+.pricing-cyan:hover {
+    border-color: var(--cyber-cyan);
+    box-shadow: 0 10px 40px rgba(14, 215, 181, 0.15);
+}
+
+/* Basic Card */
+.pricing-basic {
+    border-color: rgba(204, 255, 0, 0.2);
+    background: rgba(204, 255, 0, 0.02);
+}
+
+.pricing-basic::before {
+    background: var(--cyber-lime);
+}
+
+.pricing-basic:hover {
+    border-color: var(--cyber-lime);
+    box-shadow: 0 10px 40px rgba(204, 255, 0, 0.15);
 }
 
 .pricing-badge {
@@ -1135,12 +1171,30 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Mobile pricing */
-@media (max-width: 900px) {
+/* Purple Solid Button (Featured) */
+.btn-purple-solid {
+    background: var(--cyber-purple);
+    color: #fff;
+    border: none;
+}
+
+.btn-purple-solid:hover {
+    background: #852dff;
+    box-shadow: 0 0 20px rgba(112, 0, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Mobile/Tablet pricing */
+@media (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+    }
+}
+@media (max-width: 768px) {
     .pricing-grid {
         grid-template-columns: 1fr;
         max-width: 480px;
-        margin: 0 auto;
     }
 }
 
