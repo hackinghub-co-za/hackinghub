@@ -6,7 +6,7 @@ Hacking Hub is a private community of ambitious individuals committed to buildin
 
 ## 🚀 Features
 
-- **8-Week Accountability Challenge**: A structured program to boost skills, visibility, and consistency.
+- **Accountability Challenges**: Structured programs to boost skills, visibility, and consistency.
 - **Daily Check-ins**: Members report progress between 6:00 PM and 11:00 PM to ensure consistent growth.
 - **Career Prep**: CV reviews, mock interviews, and personalized roadmaps to help members land their first roles.
 - **No Gatekeeping**: A supportive environment where knowledge is shared freely.
