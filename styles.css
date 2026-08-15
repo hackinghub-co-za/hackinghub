@@ -430,6 +430,22 @@ body::after {
     margin-bottom: 20px;
 }
 
+.card-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    object-position: center 25%;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.cyber-card:hover .card-img {
+    border-color: var(--cyber-cyan);
+    box-shadow: 0 0 15px rgba(14, 215, 181, 0.25);
+}
+
 .cyber-card h3 {
     margin-bottom: 15px;
     font-size: 1.4rem;
@@ -836,24 +852,51 @@ footer {
     }
 }
 
-/* ===== VIDEO / INTERVIEWS SECTION ===== */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+/* ===== VIDEO / INTERVIEWS CAROUSEL SECTION ===== */
+.videos-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.videos-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 30px;
+    padding: 20px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+}
+
+.videos-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.videos-carousel .video-card {
+    width: 460px;
+    max-width: 85vw;
+    min-width: 290px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
 }
 
 .video-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     transition: all 0.3s ease;
 }
 
 .video-card:hover {
-    border-color: rgba(14, 215, 181, 0.4);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--cyber-cyan);
+    box-shadow: 0 10px 40px rgba(14, 215, 181, 0.15);
     transform: translateY(-4px);
 }
 
@@ -888,8 +931,58 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .video-grid {
-        grid-template-columns: 1fr;
+    .videos-carousel-wrapper {
+        gap: 10px;
+    }
+
+    .videos-carousel .video-card {
+        width: 320px;
+    }
+}
+
+/* ===== IMPACT REPORT CAROUSEL ===== */
+.impact-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.impact-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 30px;
+    padding: 20px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+}
+
+.impact-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.impact-carousel .impact-card {
+    width: 360px;
+    max-width: 85vw;
+    min-width: 290px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .impact-carousel-wrapper {
+        gap: 10px;
+    }
+
+    .impact-carousel .impact-card {
+        width: 300px;
     }
 }
 
@@ -1369,4 +1462,208 @@ footer {
     line-height: 1.6;
     border-top: 1px dashed var(--border-color);
     padding-top: 15px;
+}
+
+/* ===== TAILORED ROLE ROADMAPS CAROUSEL SECTION ===== */
+.roadmap-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+}
+
+.roadmap-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 25px;
+    padding: 20px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+}
+
+.roadmap-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.roadmap-carousel .roadmap-card {
+    width: 360px;
+    max-width: 85vw;
+    min-width: 290px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+}
+
+.roadmap-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.roadmap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--border-color);
+    transition: background 0.3s, opacity 0.3s;
+}
+
+.roadmap-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.7);
+}
+
+.roadmap-card:hover::before {
+    background: var(--cyber-lime);
+}
+
+.roadmap-badge {
+    align-self: flex-start;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.badge-lime {
+    color: var(--cyber-lime);
+    background: rgba(204, 255, 0, 0.1);
+    border: 1px solid rgba(204, 255, 0, 0.3);
+}
+
+.badge-cyan {
+    color: var(--cyber-cyan);
+    background: rgba(14, 215, 181, 0.1);
+    border: 1px solid rgba(14, 215, 181, 0.3);
+}
+
+.badge-purple {
+    color: #a855f7;
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.badge-red {
+    color: var(--cyber-red);
+    background: rgba(255, 42, 95, 0.1);
+    border: 1px solid rgba(255, 42, 95, 0.3);
+}
+
+.roadmap-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.roadmap-icon {
+    font-size: 1.8rem;
+}
+
+.roadmap-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.roadmap-desc {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.roadmap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.roadmap-cert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    margin-top: auto;
+}
+
+.roadmap-banner {
+    background: linear-gradient(135deg, rgba(204, 255, 0, 0.05), rgba(14, 215, 181, 0.05));
+    border: 1px solid rgba(204, 255, 0, 0.2);
+    border-radius: 8px;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.roadmap-banner-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.roadmap-banner-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 700px;
+}
+
+@media (max-width: 768px) {
+    .roadmap-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .roadmap-banner-content h3 {
+        justify-content: center;
+    }
+
+    .roadmap-carousel-wrapper {
+        gap: 10px;
+    }
+
+    .roadmap-carousel .roadmap-card {
+        width: 300px;
+    }
 }

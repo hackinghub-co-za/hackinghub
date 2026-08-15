@@ -5,71 +5,73 @@ document.addEventListener('DOMContentLoaded', () => {
     initNetworkCanvas();
     initTypewriter();
     initScrollReveal();
-    initCarousel();
+    initCarousels();
 });
 
 /* -------------------------------------------------------------------------- */
-/*                               Reviews Carousel                             */
+/*                              Auto-Scroll Carousels                          */
 /* -------------------------------------------------------------------------- */
 
-function initCarousel() {
-    const carousel = document.getElementById('reviews-carousel');
-    const prevBtn = document.getElementById('prev-review');
-    const nextBtn = document.getElementById('next-review');
+function initCarousels() {
+    initAutoCarousel('reviews-carousel', 'prev-review', 'next-review', '.review-card');
+    initAutoCarousel('videos-carousel', 'prev-video', 'next-video', '.video-card');
+    initAutoCarousel('impact-carousel', 'prev-impact', 'next-impact', '.impact-card');
+    initAutoCarousel('roadmap-carousel', 'prev-roadmap', 'next-roadmap', '.roadmap-card');
+}
 
-    if (!carousel || !prevBtn || !nextBtn) return;
+function initAutoCarousel(carouselId, prevBtnId, nextBtnId, itemSelector) {
+    const carousel = document.getElementById(carouselId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
 
-    // Clone content for infinite scroll effect
-    // We clone the children once to ensure we have enough content to loop seamlessly
+    if (!carousel) return;
+
+    // Clone content once for infinite scroll effect
     const content = carousel.innerHTML;
     carousel.innerHTML += content;
 
     // SCROLL SETTINGS
     const scrollSpeed = 0.5; // Pixels per frame
     let isPaused = false;
-    let autoScrollId;
 
-    // Disable scroll snap for smooth auto-scrolling (optional, prevents fighting)
+    // Disable scroll snap for smooth auto-scrolling
     carousel.style.scrollSnapType = 'none';
-    carousel.style.scrollBehavior = 'auto'; // Disable CSS smooth scroll impacts on JS manual scroll
+    carousel.style.scrollBehavior = 'auto';
 
     // BUTTON LISTENERS
-    nextBtn.addEventListener('click', () => {
-        const card = carousel.querySelector('.review-card');
-        const scrollAmount = card ? card.offsetWidth + 30 : 400;
-        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const item = carousel.querySelector(itemSelector);
+            const scrollAmount = item ? item.offsetWidth + 30 : 400;
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('mouseenter', () => isPaused = true);
+        nextBtn.addEventListener('mouseleave', () => isPaused = false);
+    }
 
-    prevBtn.addEventListener('click', () => {
-        const card = carousel.querySelector('.review-card');
-        const scrollAmount = card ? card.offsetWidth + 30 : 400;
-        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const item = carousel.querySelector(itemSelector);
+            const scrollAmount = item ? item.offsetWidth + 30 : 400;
+            carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        prevBtn.addEventListener('mouseenter', () => isPaused = true);
+        prevBtn.addEventListener('mouseleave', () => isPaused = false);
+    }
 
     // PAUSE ON HOVER
     carousel.addEventListener('mouseenter', () => isPaused = true);
     carousel.addEventListener('mouseleave', () => isPaused = false);
 
-    // Also pause if buttons are hovered
-    prevBtn.addEventListener('mouseenter', () => isPaused = true);
-    prevBtn.addEventListener('mouseleave', () => isPaused = false);
-    nextBtn.addEventListener('mouseenter', () => isPaused = true);
-    nextBtn.addEventListener('mouseleave', () => isPaused = false);
-
     // ANIMATION LOOP
     function startAutoScroll() {
         if (!isPaused) {
-            // Move right (scrollLeft increases)
             carousel.scrollLeft += scrollSpeed;
-
-            // Check if we've scrolled past the first set of content
-            // The logic assumes the content was substantially duplicated.
-            // A more robust check: if scrollLeft >= scrollWidth / 2, reset to 0
             if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
                 carousel.scrollLeft = 0;
             }
         }
-        autoScrollId = requestAnimationFrame(startAutoScroll);
+        requestAnimationFrame(startAutoScroll);
     }
 
     startAutoScroll();
@@ -222,7 +224,7 @@ function initScrollReveal() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.cyber-card, .section-title, .split-layout').forEach(el => {
+    document.querySelectorAll('.cyber-card, .roadmap-card, .impact-card, .section-title, .split-layout').forEach(el => {
         el.style.opacity = 0;
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.6s ease-out';
