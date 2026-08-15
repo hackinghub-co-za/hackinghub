@@ -4,8 +4,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     initNetworkCanvas();
     initTypewriter();
-    initScrollReveal();
     initCarousels();
+    initScrollReveal();
 });
 
 /* -------------------------------------------------------------------------- */
@@ -21,14 +21,14 @@ function initCarousels() {
 
 function initAutoCarousel(carouselId, prevBtnId, nextBtnId, itemSelector) {
     const carousel = document.getElementById(carouselId);
-    const prevBtn = document.getElementById(prevBtnId);
-    const nextBtn = document.getElementById(nextBtnId);
-
     if (!carousel) return;
 
-    // Clone content once for infinite scroll effect
-    const content = carousel.innerHTML;
-    carousel.innerHTML += content;
+    // Clone original children DOM nodes cleanly for infinite loop
+    const originalCards = Array.from(carousel.children);
+    originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        carousel.appendChild(clone);
+    });
 
     // SCROLL SETTINGS
     const scrollSpeed = 0.5; // Pixels per frame
@@ -37,6 +37,9 @@ function initAutoCarousel(carouselId, prevBtnId, nextBtnId, itemSelector) {
     // Disable scroll snap for smooth auto-scrolling
     carousel.style.scrollSnapType = 'none';
     carousel.style.scrollBehavior = 'auto';
+
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
 
     // BUTTON LISTENERS
     if (nextBtn) {
@@ -172,10 +175,7 @@ function initTypewriter() {
 
     elements.forEach(el => {
         const text = el.getAttribute('data-text');
-        // Simple glitch effect already handled by CSS, 
-        // but we could add random character cycling here if requested.
 
-        // Let's add a random "decryption" effect on load
         let iteration = 0;
         const interval = setInterval(() => {
             el.innerText = text
@@ -190,15 +190,7 @@ function initTypewriter() {
 
             if (iteration >= text.length) {
                 clearInterval(interval);
-                // Retrigger HTML parsing for nested spans (like color spans)
-                // This is a simplified "hacker" effect, might need refinement if HTML tags are involved in data-text
-                // Since our HTML has spans inside H1, this overwrite isn't perfect for the structure.
-                // Let's stick to a simpler logic or skip overwriting HTML structure.
-
-                // Correction: The data-text usage in CSS often handles simple glitches. 
-                // Let's revert the innerHTML to original after effect, or avoid overwriting if it has children.
                 if (el.children.length > 0) {
-                    // If element has children (like spans), don't mess with innerText too brutally.
                     el.innerHTML = el.getAttribute('data-original-html') || el.innerHTML;
                 }
             }
@@ -222,9 +214,9 @@ function initScrollReveal() {
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
-    document.querySelectorAll('.cyber-card, .roadmap-card, .impact-card, .section-title, .split-layout').forEach(el => {
+    document.querySelectorAll('.cyber-card, .reviews-carousel-wrapper, .videos-carousel-wrapper, .impact-carousel-wrapper, .roadmap-carousel-wrapper, .section-title, .split-layout').forEach(el => {
         el.style.opacity = 0;
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.6s ease-out';
