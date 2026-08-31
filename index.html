@@ -34,7 +34,10 @@
             <div class="nav-status">
                 <span class="status-dot"></span> SYSTEM STATUS: <span class="text-lime">ONLINE</span>
             </div>
-            <div class="nav-links">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links" id="primary-nav">
                 <a href="#mission" class="nav-item">MISSION_INTEL</a>
                 <a href="#roadmaps" class="nav-item">ROADMAPS</a>
                 <a href="salaries.html" class="nav-item">SALARIES</a>
@@ -222,6 +225,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-lime"></i> <span>SA Avg: R290K &ndash; R480K/yr</span>
                         </div>
+                        <a href="salaries.html?role=soc-analyst" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 2. Offensive Security -->
@@ -244,6 +248,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-red"></i> <span>SA Avg: R460K &ndash; R810K/yr</span>
                         </div>
+                        <a href="salaries.html?role=offensive-security" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 3. Cloud Security -->
@@ -266,6 +271,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-cyan"></i> <span>SA Avg: R500K &ndash; R1.1M/yr</span>
                         </div>
+                        <a href="salaries.html?role=cloud-security" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 4. DevSecOps -->
@@ -288,6 +294,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-lime"></i> <span>SA Avg: R630K &ndash; R1.1M/yr</span>
                         </div>
+                        <a href="salaries.html?role=devsecops" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 5. Digital Forensics -->
@@ -310,6 +317,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-purple"></i> <span>SA Avg: R500K &ndash; R790K/yr</span>
                         </div>
+                        <a href="salaries.html?role=digital-forensics" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 6. Application Security -->
@@ -332,6 +340,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-cyan"></i> <span>SA Avg: R420K &ndash; R740K/yr</span>
                         </div>
+                        <a href="salaries.html?role=application-security" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 7. IAM (Identity & Access Management) -->
@@ -354,6 +363,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-purple"></i> <span>SA Avg: R470K &ndash; R780K/yr</span>
                         </div>
+                        <a href="salaries.html?role=iam" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 8. AI Security Engineer -->
@@ -376,6 +386,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-lime"></i> <span>SA Avg: R500K+ (emerging specialization)</span>
                         </div>
+                        <a href="salaries.html?role=ai-security" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 9. GRC -->
@@ -401,6 +412,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-purple"></i> <span>SA Avg: R390K &ndash; R680K/yr</span>
                         </div>
+                        <a href="salaries.html?role=grc" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
 
                     <!-- 10. Cyber Crime -->
@@ -426,6 +438,7 @@
                         <div class="roadmap-salary">
                             <i class="fa-solid fa-sack-dollar text-red"></i> <span>SA Avg: R450K+ (emerging specialization)</span>
                         </div>
+                        <a href="salaries.html?role=cyber-crime" class="roadmap-salary-link">View full breakdown <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -978,6 +991,7 @@
         </div>
     </footer>
 
+    <script src="nav.js"></script>
     <script src="script.js"></script>
 </body>
 

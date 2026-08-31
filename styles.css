@@ -193,6 +193,26 @@ body::after {
     gap: 30px;
 }
 
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-toggle:hover {
+    border-color: var(--cyber-cyan);
+    color: var(--cyber-cyan);
+}
+
 .nav-item {
     font-family: 'Fira Code', monospace;
     font-size: 0.9rem;
@@ -517,8 +537,42 @@ footer {
 
 /* Mobile */
 @media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
     .nav-links {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--bg-panel);
+        border-bottom: 1px solid var(--border-color);
+        padding: 10px 20px 20px;
+        max-height: calc(100vh - 100%);
+        overflow-y: auto;
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-links .nav-item {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links .nav-item::before {
+        display: none;
+    }
+
+    .nav-links .btn {
+        margin-top: 16px;
+        justify-content: center;
     }
 
     .hero h1 {
@@ -1678,6 +1732,23 @@ footer {
     font-size: 0.82rem;
     color: var(--text-primary);
     margin-top: 10px;
+}
+
+.roadmap-salary-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    color: var(--cyber-cyan);
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.roadmap-salary-link:hover {
+    gap: 10px;
+    color: var(--cyber-lime);
 }
 
 .roadmap-banner {

@@ -224,7 +224,10 @@
             <div class="nav-status">
                 <span class="status-dot"></span> DATABASE: <span class="text-cyan">ACCESSED</span>
             </div>
-            <div class="nav-links">
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links" id="primary-nav">
                 <a href="index.html#mission" class="nav-item">MISSION_INTEL</a>
                 <a href="index.html#roadmaps" class="nav-item">ROADMAPS</a>
                 <a href="salaries.html" class="nav-item active text-cyan">SALARIES</a>
@@ -283,6 +286,7 @@
         </div>
     </footer>
 
+    <script src="nav.js"></script>
     <script>
         // South African salary data, curated from Glassdoor/PayScale/ERI-SalaryExpert/
         // Indeed searches (Aug 2026). Same honesty principle as the homepage roadmap
@@ -523,7 +527,12 @@
         const chipGrid = document.getElementById('role-chip-grid');
         const countEl = document.getElementById('salary-search-count');
         const detailEl = document.getElementById('salary-detail');
-        let activeId = ROLES[0].id;
+
+        // Deep-link support: a roadmap card's "View full breakdown" link
+        // arrives as salaries.html?role=<id>. Falls back to the first role
+        // if the param is missing or doesn't match a real id.
+        const requestedId = new URLSearchParams(window.location.search).get('role');
+        let activeId = ROLES.some((r) => r.id === requestedId) ? requestedId : ROLES[0].id;
 
         function matchesQuery(role, query) {
             if (!query) return true;
@@ -629,6 +638,13 @@
 
         renderChips();
         renderDetail();
+
+        // Arrived via a roadmap card's deep link - jump straight to the
+        // detail panel instead of leaving the visitor at the search bar
+        // above it.
+        if (requestedId && activeId === requestedId) {
+            detailEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     </script>
 </body>
 
