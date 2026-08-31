@@ -908,12 +908,37 @@ footer {
     color: var(--cyber-red);
 }
 
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.events-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+.events-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 30px;
+    padding: 20px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+}
+
+.events-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.events-carousel .event-card {
+    width: 360px;
+    max-width: 85vw;
+    min-width: 290px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
 }
 
 .event-card {
@@ -982,8 +1007,12 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .events-grid {
-        grid-template-columns: 1fr;
+    .events-carousel-wrapper {
+        gap: 10px;
+    }
+
+    .events-carousel .event-card {
+        width: 300px;
     }
 }
 
@@ -1545,6 +1574,18 @@ footer {
     text-transform: uppercase;
 }
 
+.roadmap-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.roadmap-badge-row .roadmap-badge {
+    margin-bottom: 0;
+}
+
 .badge-lime {
     color: var(--cyber-lime);
     background: rgba(204, 255, 0, 0.1);
@@ -1567,6 +1608,12 @@ footer {
     color: var(--cyber-red);
     background: rgba(255, 42, 95, 0.1);
     border: 1px solid rgba(255, 42, 95, 0.3);
+}
+
+.badge-warning {
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.1);
+    border: 1px solid rgba(250, 204, 21, 0.3);
 }
 
 .roadmap-header {
@@ -1621,6 +1668,16 @@ footer {
     border-top: 1px solid var(--border-color);
     padding-top: 15px;
     margin-top: auto;
+}
+
+.roadmap-salary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    margin-top: 10px;
 }
 
 .roadmap-banner {

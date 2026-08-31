@@ -245,12 +245,14 @@ const EVENT_BADGE_CLASS = {
 
 async function initEventsFeed() {
     const statusEl = document.getElementById('events-status');
-    const gridEl = document.getElementById('events-grid');
-    if (!statusEl || !gridEl) return;
+    const wrapperEl = document.getElementById('events-carousel-wrapper');
+    const trackEl = document.getElementById('events-carousel');
+    if (!statusEl || !wrapperEl || !trackEl) return;
 
     // Delegated once, up front - card markup gets replaced wholesale on every
-    // fetch below, so per-card listeners would be lost each time.
-    gridEl.addEventListener('click', (e) => {
+    // fetch below (and initAutoCarousel further clones it for the infinite
+    // loop), so per-card listeners would be lost each time.
+    trackEl.addEventListener('click', (e) => {
         const btn = e.target.closest('.event-desc-toggle');
         if (!btn) return;
         const wrap = btn.closest('.event-desc-wrap');
@@ -277,18 +279,25 @@ async function initEventsFeed() {
             return;
         }
 
-        gridEl.innerHTML = events.map(renderEventCard).join('');
+        trackEl.innerHTML = events.map(renderEventCard).join('');
         statusEl.hidden = true;
-        gridEl.hidden = false;
+        wrapperEl.hidden = false;
 
         // Only reveal READ_MORE on cards whose description actually overflows
         // the clamp - a short blurb that already fits gets no dead-end button.
-        gridEl.querySelectorAll('.event-desc-wrap').forEach((wrap) => {
+        trackEl.querySelectorAll('.event-desc-wrap').forEach((wrap) => {
             const desc = wrap.querySelector('.event-desc');
             if (desc.scrollHeight > desc.clientHeight + 1) {
                 wrap.querySelector('.event-desc-toggle').hidden = false;
             }
         });
+
+        // Events are fetched async, unlike every other carousel's hardcoded
+        // HTML - initAutoCarousel has to run after insertion (so it has real
+        // cards to clone for the loop), not from the synchronous
+        // initCarousels() at page load, or it would clone zero children and
+        // auto-scroll an empty track.
+        initAutoCarousel('events-carousel', 'prev-event', 'next-event', '.event-card');
     } catch (err) {
         console.error('Failed to load community events:', err);
         statusEl.textContent = "Couldn't load events right now — please try again later.";
