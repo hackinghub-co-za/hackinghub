@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypewriter();
     initCarousels();
     initScrollReveal();
+    initEventsFeed();
 });
 
 /* -------------------------------------------------------------------------- */
@@ -222,4 +223,95 @@ function initScrollReveal() {
         el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
     });
+}
+
+/* -------------------------------------------------------------------------- */
+/*                          Community Events Feed                             */
+/* -------------------------------------------------------------------------- */
+
+// Public anon key - safe to ship in client JS by design. RLS/the RPC body
+// (get_public_community_events, admin dashboard supabase/052_public_events.sql)
+// is the actual security boundary here, not secrecy of this key - same key
+// class the admin dashboard itself ships client-side as VITE_SUPABASE_ANON_KEY.
+const SUPABASE_URL = 'https://kveiflphktpvsddhkspz.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt2ZWlmbHBoa3RwdnNkZGhrc3B6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwOTUzODEsImV4cCI6MjEwMTY3MTM4MX0.IdD6sh921RKRKwBN-5ZtmaHs4dIDTq75z2iNaIkHMjs';
+
+const EVENT_BADGE_CLASS = {
+    'HH Meetup': 'badge-lime',
+    'Industry Event': 'badge-cyan',
+    'Sunday Catchup': 'badge-purple',
+    'Study Session': 'badge-red',
+};
+
+async function initEventsFeed() {
+    const statusEl = document.getElementById('events-status');
+    const gridEl = document.getElementById('events-grid');
+    if (!statusEl || !gridEl) return;
+
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_public_community_events`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify({ p_upcoming_only: true }),
+        });
+
+        if (!res.ok) throw new Error(`Request failed (${res.status})`);
+        const events = await res.json();
+
+        if (!events.length) {
+            statusEl.textContent = 'No upcoming events right now — check back soon.';
+            return;
+        }
+
+        gridEl.innerHTML = events.map(renderEventCard).join('');
+        statusEl.hidden = true;
+        gridEl.hidden = false;
+    } catch (err) {
+        console.error('Failed to load community events:', err);
+        statusEl.textContent = "Couldn't load events right now — please try again later.";
+        statusEl.classList.add('is-error');
+    }
+}
+
+function renderEventCard(event) {
+    const badgeClass = EVENT_BADGE_CLASS[event.type] || 'badge-cyan';
+    const dateLabel = formatEventDate(event.date);
+    const timeLabel = event.time ? ` &bull; ${escapeHtml(event.time)}` : '';
+    const rsvpLabel = event.rsvp_count > 0
+        ? `<p class="event-meta"><i class="fa-solid fa-users text-cyan"></i> ${event.rsvp_count} attending</p>`
+        : '';
+    const linkHtml = event.link
+        ? `<a href="${escapeAttr(event.link)}" target="_blank" rel="noopener noreferrer" class="event-link">
+               <i class="fa-solid fa-arrow-up-right-from-square"></i> EVENT_DETAILS
+           </a>`
+        : '';
+
+    return `
+        <div class="cyber-card event-card hover-glow">
+            <div class="roadmap-badge ${badgeClass}">${escapeHtml(event.type)}</div>
+            <h3>${escapeHtml(event.title)}</h3>
+            <p class="event-meta"><i class="fa-solid fa-calendar-days text-cyan"></i> ${dateLabel}${timeLabel}</p>
+            ${event.location ? `<p class="event-meta"><i class="fa-solid fa-location-dot text-cyan"></i> ${escapeHtml(event.location)}</p>` : ''}
+            ${rsvpLabel}
+            ${event.description ? `<p>${escapeHtml(event.description)}</p>` : ''}
+            ${linkHtml}
+        </div>
+    `;
+}
+
+function formatEventDate(isoDate) {
+    const d = new Date(`${isoDate}T00:00:00Z`);
+    return d.toLocaleDateString('en-ZA', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
+}
+
+function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function escapeAttr(str) {
+    return escapeHtml(str);
 }
