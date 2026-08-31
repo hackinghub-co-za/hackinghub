@@ -14,6 +14,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacking Hub | Cyber Career Accelerator</title>
+    <meta name="description" content="A South African cybersecurity career accelerator — coach-built roadmaps, real salary data, hands-on prep, and a community, to help you land your first role in security.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hackinghub.co.za/">
+    <meta property="og:title" content="Hacking Hub | Cyber Career Accelerator">
+    <meta property="og:description" content="A South African cybersecurity career accelerator — coach-built roadmaps, real salary data, hands-on prep, and a community, to help you land your first role in security.">
+    <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hacking Hub | Cyber Career Accelerator">
+    <meta name="twitter:description" content="A South African cybersecurity career accelerator — coach-built roadmaps, real salary data, hands-on prep, and a community, to help you land your first role in security.">
+    <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <link rel="stylesheet" href="styles.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,33 +35,9 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="cyber-nav">
-        <div class="container nav-container">
-            <div class="logo">
-                <img src="images/hacking-hub-logo.png" alt="Hacking Hub Logo" class="nav-logo-image">
-                <span class="logo-text">HACKING <span class="text-lime">HUB</span></span>
-            </div>
-            <div class="nav-status">
-                <span class="status-dot"></span> SYSTEM STATUS: <span class="text-lime">ONLINE</span>
-            </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="nav-links" id="primary-nav">
-                <a href="#mission" class="nav-item">MISSION_INTEL</a>
-                <a href="#roadmaps" class="nav-item">ROADMAPS</a>
-                <a href="salaries.html" class="nav-item">SALARIES</a>
-                <a href="quiz.html" class="nav-item">QUIZ</a>
-                <a href="interview-prep.html" class="nav-item">INTERVIEW_PREP</a>
-                <a href="#events" class="nav-item">EVENTS</a>
-                <a href="#reviews" class="nav-item">REVIEWS</a>
-                <a href="#interviews" class="nav-item">INTERVIEWS</a>
-                <a href="#pricing" class="nav-item">PRICING</a>
-                <a href="#faq" class="nav-item">FAQ</a>
-                <a href="#pricing" class="btn btn-sm btn-cyan">VIEW_PRICING</a>
-            </div>
-        </div>
-    </nav>
+    <nav class="cyber-nav" id="site-nav"></nav>
+    <script src="partials.js"></script>
+    <script>renderNav('index');</script>
 
     <!-- Hero Section -->
     <header class="hero">
@@ -460,11 +446,63 @@
         </div>
     </section>
 
+    <!-- Resources Section -->
+    <section id="resources" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="text-lime">03 //</span> RESOURCES</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <p style="color: var(--text-secondary); font-family: 'Fira Code', monospace; font-size: 0.95rem; margin-bottom: 50px; text-align: center;">
+                // FREE TOOLS, NO SIGN-UP REQUIRED &mdash; SEE WHAT MEMBERS GET BEFORE YOU JOIN
+            </p>
+
+            <div class="resources-grid">
+                <div class="cyber-card hover-glow">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <h3>SALARY_INTEL</h3>
+                    <p>Real South African salary data for every domain on this page &mdash; broken down by experience level and location, sourced and cited, not guessed.</p>
+                    <a href="salaries.html" class="resource-card-link">Explore Salaries <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="cyber-card hover-glow">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3>PRACTICE_QUIZ</h3>
+                    <p>Ten free CompTIA Security+ sample questions, pulled from our own question bank &mdash; instant feedback, no account needed.</p>
+                    <a href="quiz.html" class="resource-card-link">Take the Quiz <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="cyber-card hover-glow">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <h3>INTERVIEW_PREP</h3>
+                    <p>Paste a job description and watch Gemma's analysis sequence run live &mdash; a preview of the real, personalized tool members get in the portal.</p>
+                    <a href="interview-prep.html" class="resource-card-link">Run the Demo <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="cyber-card hover-glow">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <h3>COMMUNITY_EVENTS</h3>
+                    <p>Meetups, industry events, and study sessions &mdash; see what's actually happening in the community below, live from the portal.</p>
+                    <a href="#events" class="resource-card-link">View Events <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Impact Section -->
     <section id="impact" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">03 //</span> IMPACT_REPORT</h2>
+                <h2 class="section-title"><span class="text-lime">04 //</span> IMPACT_REPORT</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -523,7 +561,7 @@
     <section id="events" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">04 //</span> COMMUNITY_EVENTS</h2>
+                <h2 class="section-title"><span class="text-lime">05 //</span> COMMUNITY_EVENTS</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -546,7 +584,7 @@
     <section id="reviews" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">05 //</span> MEMBER_REVIEWS</h2>
+                <h2 class="section-title"><span class="text-lime">06 //</span> MEMBER_REVIEWS</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -697,7 +735,7 @@
     <section id="interviews" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">06 //</span> FIELD_INTERVIEWS</h2>
+                <h2 class="section-title"><span class="text-lime">07 //</span> FIELD_INTERVIEWS</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -771,7 +809,7 @@
     <section id="pricing" class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">07 //</span> ACCESS_TIERS</h2>
+                <h2 class="section-title"><span class="text-lime">08 //</span> ACCESS_TIERS</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -898,7 +936,7 @@
     <section id="faq" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">08 //</span> FAQ_DECRYPTED</h2>
+                <h2 class="section-title"><span class="text-lime">09 //</span> FAQ_DECRYPTED</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -981,17 +1019,8 @@
 
     <!-- Footer -->
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-left">
-                <div class="logo">HACKING <span class="text-lime">HUB</span></div>
-                <p class="copy">&copy; 2025 // SECURING_THE_FUTURE</p>
-            </div>
-            <div class="footer-quote">
-                "CONSISTENT EFFORT BEATS OCCASIONAL BURSTS OF MOTIVATION."
-            </div>
-        </div>
-    </footer>
+    <footer id="site-footer"></footer>
+    <script>renderFooter();</script>
 
     <script src="nav.js"></script>
     <script src="script.js"></script>

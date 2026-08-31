@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /flag.txt
+
+Sitemap: https://hackinghub.co.za/sitemap.xml

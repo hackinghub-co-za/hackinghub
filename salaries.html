@@ -14,6 +14,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salary Intel | Hacking Hub</title>
+    <meta name="description" content="Real South African cybersecurity salaries by role, experience level, and location — search any domain from SOC Analyst to Cloud Security, free, no sign-up required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hackinghub.co.za/salaries.html">
+    <meta property="og:title" content="Salary Intel | Hacking Hub">
+    <meta property="og:description" content="Real South African cybersecurity salaries by role, experience level, and location — search any domain from SOC Analyst to Cloud Security, free, no sign-up required.">
+    <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Salary Intel | Hacking Hub">
+    <meta name="twitter:description" content="Real South African cybersecurity salaries by role, experience level, and location — search any domain from SOC Analyst to Cloud Security, free, no sign-up required.">
+    <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <link rel="stylesheet" href="styles.css">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -198,6 +208,43 @@
             font-size: 0.85rem;
         }
 
+        .salary-cta {
+            max-width: 900px;
+            margin: 30px auto 0;
+            padding: 24px;
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.05), rgba(14, 215, 181, 0.05));
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .more-tools {
+            max-width: 900px;
+            margin: 20px auto 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .more-tools a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+        }
+
+        .more-tools a:hover {
+            border-color: var(--cyber-cyan);
+            color: var(--text-primary);
+        }
+
         @media (max-width: 768px) {
             .salary-detail {
                 padding: 25px;
@@ -213,35 +260,9 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="cyber-nav">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: inherit;">
-                    <img src="images/hacking-hub-logo.png" alt="Hacking Hub Logo" class="nav-logo-image">
-                    <span class="logo-text">HACKING <span class="text-lime">HUB</span></span>
-                </a>
-            </div>
-            <div class="nav-status">
-                <span class="status-dot"></span> DATABASE: <span class="text-cyan">ACCESSED</span>
-            </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="nav-links" id="primary-nav">
-                <a href="index.html#mission" class="nav-item">MISSION_INTEL</a>
-                <a href="index.html#roadmaps" class="nav-item">ROADMAPS</a>
-                <a href="salaries.html" class="nav-item active text-cyan">SALARIES</a>
-                <a href="quiz.html" class="nav-item">QUIZ</a>
-                <a href="interview-prep.html" class="nav-item">INTERVIEW_PREP</a>
-                <a href="index.html#events" class="nav-item">EVENTS</a>
-                <a href="index.html#reviews" class="nav-item">REVIEWS</a>
-                <a href="index.html#interviews" class="nav-item">INTERVIEWS</a>
-                <a href="index.html#pricing" class="nav-item">PRICING</a>
-                <a href="index.html#faq" class="nav-item">FAQ</a>
-                <a href="index.html#pricing" class="btn btn-sm btn-cyan">VIEW_PRICING</a>
-            </div>
-        </div>
-    </nav>
+    <nav class="cyber-nav" id="site-nav"></nav>
+    <script src="partials.js"></script>
+    <script>renderNav('salaries');</script>
 
     <!-- Header -->
     <header class="section section-dark" style="padding-bottom: 40px;">
@@ -272,21 +293,29 @@
             <div class="role-chip-grid" id="role-chip-grid"></div>
 
             <div class="cyber-card salary-detail hover-glow" id="salary-detail"></div>
+
+            <div class="salary-cta">
+                <h3 style="margin-bottom: 10px;">Like what you see?</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                    This is real, public data. Members get a coach-built roadmap for the domain that pays what they want,
+                    plus everything else in the portal &mdash; join to get started.
+                </p>
+                <a href="index.html#pricing" class="btn btn-primary">
+                    <span class="btn-content">VIEW_PRICING</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="more-tools">
+                <a href="quiz.html"><i class="fa-solid fa-graduation-cap"></i> Try the Security+ Quiz</a>
+                <a href="interview-prep.html"><i class="fa-solid fa-terminal"></i> Run the Interview Prep Demo</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-left">
-                <div class="logo">HACKING <span class="text-lime">HUB</span></div>
-                <p class="copy">&copy; 2025 // SECURING_THE_FUTURE</p>
-            </div>
-            <div class="footer-quote">
-                "CONSISTENT EFFORT BEATS OCCASIONAL BURSTS OF MOTIVATION."
-            </div>
-        </div>
-    </footer>
+    <footer id="site-footer"></footer>
+    <script>renderFooter();</script>
 
     <script src="nav.js"></script>
     <script>

@@ -14,6 +14,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Operative Database | Hacking Hub</title>
+    <meta name="description" content="Real reviews and success stories from Hacking Hub members — hear directly from operatives who've gone through the program.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hackinghub.co.za/reviews.html">
+    <meta property="og:title" content="Operative Database | Hacking Hub">
+    <meta property="og:description" content="Real reviews and success stories from Hacking Hub members — hear directly from operatives who've gone through the program.">
+    <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Operative Database | Hacking Hub">
+    <meta name="twitter:description" content="Real reviews and success stories from Hacking Hub members — hear directly from operatives who've gone through the program.">
+    <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -130,36 +140,9 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="cyber-nav">
-        <div class="container nav-container">
-            <div class="logo">
-                <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: inherit;">
-                    <img src="images/hacking-hub-logo.png" alt="Hacking Hub Logo" class="nav-logo-img"
-                        style="height: 40px; border-radius: 50%; border: 1px solid var(--cyber-lime);">
-                    <span class="logo-text">HACKING <span class="text-lime">HUB</span></span>
-                </a>
-            </div>
-            <div class="nav-status">
-                <span class="status-dot"></span> DATABASE: <span class="text-cyan">ACCESSED</span>
-            </div>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="nav-links" id="primary-nav">
-                <a href="index.html#mission" class="nav-item">MISSION_INTEL</a>
-                <a href="index.html#roadmaps" class="nav-item">ROADMAPS</a>
-                <a href="salaries.html" class="nav-item">SALARIES</a>
-                <a href="quiz.html" class="nav-item">QUIZ</a>
-                <a href="interview-prep.html" class="nav-item">INTERVIEW_PREP</a>
-                <a href="index.html#events" class="nav-item">EVENTS</a>
-                <a href="reviews.html" class="nav-item active text-cyan">REVIEWS</a>
-                <a href="index.html#interviews" class="nav-item">INTERVIEWS</a>
-                <a href="index.html#pricing" class="nav-item">PRICING</a>
-                <a href="index.html#faq" class="nav-item">FAQ</a>
-                <a href="https://calendly.com/siya-gladile/30min" class="btn btn-sm btn-cyan">INITIATE_UPLINK</a>
-            </div>
-        </div>
-    </nav>
+    <nav class="cyber-nav" id="site-nav"></nav>
+    <script src="partials.js"></script>
+    <script>renderNav('reviews');</script>
 
     <!-- Header -->
     <header class="section section-dark" style="padding-bottom: 40px;">
@@ -549,17 +532,8 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-left">
-                <div class="logo">HACKING <span class="text-lime">HUB</span></div>
-                <p class="copy">&copy; 2025 // SECURING_THE_FUTURE</p>
-            </div>
-            <div class="footer-quote">
-                "CONSISTENT EFFORT BEATS OCCASIONAL BURSTS OF MOTIVATION."
-            </div>
-        </div>
-    </footer>
+    <footer id="site-footer"></footer>
+    <script>renderFooter();</script>
 
     <script src="nav.js"></script>
 </body>
