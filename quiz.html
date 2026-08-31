@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHNELJ2BH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WHNELJ2BH2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Quiz | Hacking Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for the Practice Quiz page */
+        .quiz-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .quiz-intro {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .quiz-intro p {
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 16px auto 28px;
+            line-height: 1.6;
+        }
+
+        .quiz-progress-track {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            background: var(--cyber-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+
+        .quiz-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .quiz-choice {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-choice:hover:not(:disabled) {
+            border-color: var(--cyber-cyan);
+        }
+
+        .quiz-choice:disabled {
+            cursor: default;
+        }
+
+        .quiz-choice.is-correct {
+            border-color: var(--cyber-lime);
+            background: rgba(204, 255, 0, 0.08);
+        }
+
+        .quiz-choice.is-wrong {
+            border-color: var(--cyber-red);
+            background: rgba(255, 42, 95, 0.08);
+        }
+
+        .quiz-explanation {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin: 4px 0 24px;
+            line-height: 1.6;
+        }
+
+        .quiz-score-ring {
+            font-family: 'Fira Code', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cyber-lime);
+            margin-bottom: 8px;
+        }
+
+        .quiz-cta {
+            margin-top: 24px;
+            padding: 24px;
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.05), rgba(14, 215, 181, 0.05));
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: inherit;">
+                    <img src="images/hacking-hub-logo.png" alt="Hacking Hub Logo" class="nav-logo-image">
+                    <span class="logo-text">HACKING <span class="text-lime">HUB</span></span>
+                </a>
+            </div>
+            <div class="nav-status">
+                <span class="status-dot"></span> DATABASE: <span class="text-cyan">ACCESSED</span>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="index.html#mission" class="nav-item">MISSION_INTEL</a>
+                <a href="index.html#roadmaps" class="nav-item">ROADMAPS</a>
+                <a href="salaries.html" class="nav-item">SALARIES</a>
+                <a href="quiz.html" class="nav-item active text-cyan">QUIZ</a>
+                <a href="index.html#events" class="nav-item">EVENTS</a>
+                <a href="index.html#reviews" class="nav-item">REVIEWS</a>
+                <a href="index.html#interviews" class="nav-item">INTERVIEWS</a>
+                <a href="index.html#pricing" class="nav-item">PRICING</a>
+                <a href="index.html#faq" class="nav-item">FAQ</a>
+                <a href="index.html#pricing" class="btn btn-sm btn-cyan">VIEW_PRICING</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="section section-dark" style="padding-bottom: 40px;">
+        <div class="container">
+            <h1>PRACTICE_<span class="text-lime">QUIZ</span></h1>
+            <p style="color: var(--text-secondary); max-width: 650px; margin-top: 20px;">
+                // 10 FREE SAMPLE QUESTIONS &mdash; COMPTIA SECURITY+ (SY0-701)<br>
+                // NO SIGN-UP REQUIRED. MEMBERS GET THE FULL BANK ACROSS SIX CERTS, WITH AUTOMATIC EXAM-READINESS TRACKING.
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="cyber-card quiz-wrap hover-glow" id="quiz-card">
+                <div class="quiz-intro" id="quiz-intro">
+                    <i class="fa-solid fa-graduation-cap" style="font-size: 2.2rem; color: var(--cyber-cyan);"></i>
+                    <h2 style="margin-top: 16px;">Think you know Security+?</h2>
+                    <p>
+                        Ten real questions pulled from our own Security+ practice bank, spanning all five
+                        official exam domains. Instant feedback after every answer, no account needed.
+                    </p>
+                    <button type="button" class="btn btn-primary" id="quiz-start-btn">
+                        <span class="btn-content">START QUIZ</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div id="quiz-body" hidden></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="logo">HACKING <span class="text-lime">HUB</span></div>
+                <p class="copy">&copy; 2025 // SECURING_THE_FUTURE</p>
+            </div>
+            <div class="footer-quote">
+                "CONSISTENT EFFORT BEATS OCCASIONAL BURSTS OF MOTIVATION."
+            </div>
+        </div>
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+        // Ten sample Security+ (SY0-701) questions, hand-picked from the
+        // same 30-question, five-domain bank members get the full version
+        // of in the portal (hh-admin-dashboard supabase/054_quiz_system.sql)
+        // - same original content, no backend needed for this teaser since
+        // it's fixed, unpersisted, and doesn't need per-visitor tracking.
+        const QUESTIONS = [
+            { domain: 'General Security Concepts', question: 'Which three properties make up the CIA triad in information security?', choices: ['Confidentiality, Integrity, Availability', 'Confidentiality, Identity, Authorization', 'Control, Integrity, Auditing', 'Confidentiality, Investigation, Accountability'], correctIndex: 0, explanation: 'The CIA triad - Confidentiality, Integrity, and Availability - is the foundational model for describing what security controls are meant to protect.' },
+            { domain: 'General Security Concepts', question: 'What is the core principle behind a Zero Trust security model?', choices: ['Trust every device once it is inside the corporate network', 'Never trust, always verify - authenticate and authorize every request regardless of origin', 'Trust is granted permanently after the first successful login', 'Only external traffic needs to be verified'], correctIndex: 1, explanation: 'Zero Trust assumes no implicit trust based on network location - every request is verified and authorized on its own merits, whether it originates inside or outside the perimeter.' },
+            { domain: 'Threats, Vulnerabilities, and Mitigations', question: 'What distinguishes spear phishing from generic phishing?', choices: ['Spear phishing only happens over SMS', 'Spear phishing is a broad, untargeted attack sent to thousands of random addresses', 'Spear phishing is a targeted attack, personalized using research on a specific individual or organization', 'Spear phishing never uses email'], correctIndex: 2, explanation: 'Spear phishing is targeted - the attacker researches the victim (name, role, colleagues) to make the message far more convincing than a generic phishing blast.' },
+            { domain: 'Threats, Vulnerabilities, and Mitigations', question: 'What is a key characteristic that distinguishes a DDoS attack from a standard DoS attack?', choices: ['A DDoS attack always targets a database directly', 'A DDoS attack originates from multiple distributed sources at once, rather than a single source', 'A DDoS attack is always encrypted', 'A DDoS attack requires physical access to the target'], correctIndex: 1, explanation: '"Distributed" is the key word - a DDoS attack uses many compromised systems (often a botnet) simultaneously, making it harder to block by simply filtering one source IP.' },
+            { domain: 'Security Architecture', question: 'What is the primary security benefit of network segmentation?', choices: ['It increases available bandwidth for all users', 'It limits how far an attacker can move laterally if one segment is compromised', 'It eliminates the need for firewalls', 'It automatically encrypts all traffic on the network'], correctIndex: 1, explanation: 'Segmentation divides a network into isolated zones, so a breach in one segment (e.g. guest Wi-Fi) doesn’t automatically grant access to more sensitive segments (e.g. finance servers).' },
+            { domain: 'Security Architecture', question: 'What does a VPN (Virtual Private Network) primarily provide?', choices: ['Faster internet speeds', 'An encrypted tunnel for traffic across an untrusted network, protecting confidentiality and often masking the origin', 'Automatic malware removal', 'Unlimited cloud storage'], correctIndex: 1, explanation: 'A VPN encrypts traffic between the client and a VPN endpoint, protecting data in transit across networks (like public Wi-Fi) that can’t otherwise be trusted.' },
+            { domain: 'Security Operations', question: 'What is the correct general order of the incident response process?', choices: ['Containment, Preparation, Eradication, Identification, Recovery, Lessons Learned', 'Preparation, Identification, Containment, Eradication, Recovery, Lessons Learned', 'Identification, Recovery, Preparation, Containment, Eradication, Lessons Learned', 'Lessons Learned, Preparation, Identification, Containment, Eradication, Recovery'], correctIndex: 1, explanation: 'The standard order is Preparation (before an incident occurs), Identification, Containment, Eradication, Recovery, then Lessons Learned - each phase builds on the last.' },
+            { domain: 'Security Operations', question: 'Multi-factor authentication (MFA) commonly combines factors from which categories?', choices: ['Something you know, something you have, something you are', 'Something you own, something you rent, something you borrow', 'Your name, your address, your phone number', 'Two passwords used together'], correctIndex: 0, explanation: 'MFA strengthens authentication by requiring at least two independent factor categories: knowledge (a password), possession (a phone/token), and inherence (a fingerprint or other biometric).' },
+            { domain: 'Security Program Management and Oversight', question: 'What is the key difference between a Business Continuity Plan (BCP) and a Disaster Recovery Plan (DRP)?', choices: ['They are identical documents with different names', 'A BCP focuses on keeping critical business operations running during a disruption, while a DRP focuses specifically on restoring IT systems and data afterward', 'A DRP is only for natural disasters, never cyberattacks', 'A BCP only applies to the finance department'], correctIndex: 1, explanation: 'A BCP is the broader plan for keeping the business operating through a disruption of any kind; a DRP is the narrower, IT-focused plan for restoring systems, applications, and data after an incident.' },
+            { domain: 'Security Program Management and Oversight', question: 'What is the general purpose of a data protection regulation such as South Africa’s POPIA or the EU’s GDPR?', choices: ['To ban all collection of personal data outright', 'To set legal requirements for how organizations must collect, process, protect, and handle individuals’ personal information', 'To regulate only government agencies, never private companies', 'To replace the need for any internal security controls'], correctIndex: 1, explanation: 'Regulations like POPIA and GDPR establish legal obligations for how personal data is collected, used, secured, and disclosed - with real penalties for organizations that mishandle it, not just a best-practice suggestion.' },
+        ];
+
+        let currentIndex = 0;
+        let correctCount = 0;
+        let answered = false;
+
+        const introEl = document.getElementById('quiz-intro');
+        const bodyEl = document.getElementById('quiz-body');
+        const startBtn = document.getElementById('quiz-start-btn');
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function renderQuestion() {
+            const q = QUESTIONS[currentIndex];
+            answered = false;
+            bodyEl.innerHTML = `
+                <div class="quiz-meta">
+                    <span>QUESTION ${currentIndex + 1} OF ${QUESTIONS.length}</span>
+                    <span>${escapeHtml(q.domain)}</span>
+                </div>
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-fill" style="width: ${(currentIndex / QUESTIONS.length) * 100}%"></div>
+                </div>
+                <p class="quiz-question">${escapeHtml(q.question)}</p>
+                <div id="quiz-choices"></div>
+                <div id="quiz-explanation-wrap"></div>
+                <button type="button" class="btn btn-secondary" id="quiz-next-btn" style="width: 100%; justify-content: center; display: none;">
+                    ${currentIndex === QUESTIONS.length - 1 ? 'SEE RESULTS' : 'NEXT QUESTION'} <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            `;
+
+            const choicesEl = document.getElementById('quiz-choices');
+            choicesEl.innerHTML = q.choices.map((choice, idx) =>
+                `<button type="button" class="quiz-choice" data-idx="${idx}">${escapeHtml(choice)}</button>`
+            ).join('');
+
+            choicesEl.querySelectorAll('.quiz-choice').forEach((btn) => {
+                btn.addEventListener('click', () => handleChoose(Number(btn.dataset.idx)));
+            });
+
+            document.getElementById('quiz-next-btn').addEventListener('click', goNext);
+        }
+
+        function handleChoose(chosenIdx) {
+            if (answered) return;
+            answered = true;
+            const q = QUESTIONS[currentIndex];
+            if (chosenIdx === q.correctIndex) correctCount += 1;
+
+            document.querySelectorAll('.quiz-choice').forEach((btn) => {
+                const idx = Number(btn.dataset.idx);
+                btn.disabled = true;
+                if (idx === q.correctIndex) btn.classList.add('is-correct');
+                else if (idx === chosenIdx) btn.classList.add('is-wrong');
+            });
+
+            document.getElementById('quiz-explanation-wrap').innerHTML =
+                `<p class="quiz-explanation"><i class="fa-solid fa-circle-info text-cyan"></i> ${escapeHtml(q.explanation)}</p>`;
+            document.getElementById('quiz-next-btn').style.display = 'flex';
+        }
+
+        function goNext() {
+            if (currentIndex === QUESTIONS.length - 1) {
+                renderResults();
+            } else {
+                currentIndex += 1;
+                renderQuestion();
+            }
+        }
+
+        function renderResults() {
+            const pct = Math.round((correctCount / QUESTIONS.length) * 100);
+            bodyEl.innerHTML = `
+                <div style="text-align: center; padding: 20px 0;">
+                    <div class="quiz-score-ring">${pct}%</div>
+                    <p style="color: var(--text-secondary); margin-bottom: 4px;">${correctCount} of ${QUESTIONS.length} correct</p>
+                    <div class="quiz-cta">
+                        <h3 style="margin-bottom: 10px;">Want the full question bank?</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                            Members get the complete Security+ bank plus AZ-900, SC-200, SC-900, CySA+, and eJPT -
+                            with Study and Exam modes, and every finished quiz automatically updates your real
+                            Exam Readiness score.
+                        </p>
+                        <a href="index.html#pricing" class="btn btn-primary">
+                            <span class="btn-content">VIEW_PRICING</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="quiz-retry-btn" style="margin-top: 16px; justify-content: center;">
+                        <i class="fa-solid fa-rotate-left"></i> Try Again
+                    </button>
+                </div>
+            `;
+            document.getElementById('quiz-retry-btn').addEventListener('click', () => {
+                currentIndex = 0;
+                correctCount = 0;
+                renderQuestion();
+            });
+        }
+
+        startBtn.addEventListener('click', () => {
+            introEl.hidden = true;
+            bodyEl.hidden = false;
+            renderQuestion();
+        });
+    </script>
+</body>
+
+</html>
