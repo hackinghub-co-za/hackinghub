@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHNELJ2BH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WHNELJ2BH2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Prep | Hacking Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for the AI Interview Prep demo page */
+        .ip-wrap {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .ip-intro {
+            text-align: center;
+            padding: 8px 0 32px;
+        }
+
+        .ip-intro p {
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 14px auto 0;
+            line-height: 1.6;
+        }
+
+        .ip-demo-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--cyber-red);
+            background: rgba(255, 42, 95, 0.08);
+            border: 1px solid rgba(255, 42, 95, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ip-field-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .ip-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            padding: 14px 16px;
+            border-radius: 6px;
+            resize: vertical;
+            margin-bottom: 20px;
+            transition: border-color 0.2s ease;
+        }
+
+        .ip-textarea:focus {
+            outline: none;
+            border-color: var(--cyber-cyan);
+        }
+
+        .ip-terminal {
+            background: #0a0d12;
+            border: 1px solid var(--cyber-cyan);
+            border-radius: 8px;
+            box-shadow: 0 0 40px rgba(14, 215, 181, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .ip-terminal-header {
+            background: #12161d;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ip-terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .ip-terminal-body {
+            padding: 24px 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            min-height: 180px;
+        }
+
+        .ip-log-line {
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .ip-log-line.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ip-log-line .ip-prompt {
+            color: var(--cyber-lime);
+        }
+
+        .ip-log-line.is-highlight {
+            color: var(--cyber-cyan);
+        }
+
+        .ip-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--cyber-lime);
+            vertical-align: middle;
+            animation: ip-blink 1s step-end infinite;
+        }
+
+        @keyframes ip-blink {
+            50% { opacity: 0; }
+        }
+
+        .ip-question-card {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+        }
+
+        .ip-question-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ip-q-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .ip-q-head h4 {
+            font-size: 0.98rem;
+            line-height: 1.5;
+        }
+
+        .ip-tip {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .ip-cta {
+            margin-top: 30px;
+            padding: 28px;
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.05), rgba(14, 215, 181, 0.05));
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: inherit;">
+                    <img src="images/hacking-hub-logo.png" alt="Hacking Hub Logo" class="nav-logo-image">
+                    <span class="logo-text">HACKING <span class="text-lime">HUB</span></span>
+                </a>
+            </div>
+            <div class="nav-status">
+                <span class="status-dot"></span> DATABASE: <span class="text-cyan">ACCESSED</span>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="index.html#mission" class="nav-item">MISSION_INTEL</a>
+                <a href="index.html#roadmaps" class="nav-item">ROADMAPS</a>
+                <a href="salaries.html" class="nav-item">SALARIES</a>
+                <a href="quiz.html" class="nav-item">QUIZ</a>
+                <a href="interview-prep.html" class="nav-item active text-cyan">INTERVIEW_PREP</a>
+                <a href="index.html#events" class="nav-item">EVENTS</a>
+                <a href="index.html#reviews" class="nav-item">REVIEWS</a>
+                <a href="index.html#interviews" class="nav-item">INTERVIEWS</a>
+                <a href="index.html#pricing" class="nav-item">PRICING</a>
+                <a href="index.html#faq" class="nav-item">FAQ</a>
+                <a href="index.html#pricing" class="btn btn-sm btn-cyan">VIEW_PRICING</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="section section-dark" style="padding-bottom: 30px;">
+        <div class="container">
+            <h1 class="glitch-text" data-text="AI_INTERVIEW_PREP">AI_<span class="text-lime">INTERVIEW_PREP</span></h1>
+            <p style="color: var(--text-secondary); max-width: 650px; margin-top: 20px;">
+                // POWERED BY GEMMA, THE AI EMBEDDED IN THE MEMBER PORTAL<br>
+                // PASTE A JOB DESCRIPTION AND SEE THE ANALYSIS SEQUENCE IN ACTION
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="ip-wrap">
+                <div class="ip-intro">
+                    <span class="ip-demo-tag"><i class="fa-solid fa-flask"></i> LIVE DEMO &mdash; SAMPLE OUTPUT</span>
+                    <p>
+                        This runs a real detection pass on what you paste below, then reveals a sample question set in
+                        that style. Members get questions Gemma generates fresh from their <em>exact</em> job description
+                        and CV, every time.
+                    </p>
+                </div>
+
+                <div id="ip-form-section">
+                    <p class="ip-field-label"><i class="fa-solid fa-briefcase text-cyan"></i> JOB DESCRIPTION</p>
+                    <textarea id="ip-jd" class="ip-textarea" rows="6" placeholder="Paste a job description you're interested in..."></textarea>
+
+                    <p class="ip-field-label"><i class="fa-solid fa-file-lines text-cyan"></i> YOUR CV TEXT (OPTIONAL)</p>
+                    <textarea id="ip-cv" class="ip-textarea" rows="5" placeholder="Paste your CV text for a more tailored demo..."></textarea>
+
+                    <button type="button" class="btn btn-primary" id="ip-start-btn" style="width: 100%; justify-content: center;">
+                        <span class="btn-content">INITIATE_ANALYSIS</span>
+                        <i class="fa-solid fa-terminal"></i>
+                    </button>
+                </div>
+
+                <div id="ip-sequence-section" hidden>
+                    <div class="ip-terminal">
+                        <div class="ip-terminal-header">
+                            <span class="ip-terminal-dot" style="background: #ff5f56;"></span>
+                            <span class="ip-terminal-dot" style="background: #ffbd2e;"></span>
+                            <span class="ip-terminal-dot" style="background: #27c93f;"></span>
+                            <span style="font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #888; margin-left: 8px;">gemma@hackinghub:~$ analyze</span>
+                        </div>
+                        <div class="ip-terminal-body" id="ip-log"></div>
+                    </div>
+                </div>
+
+                <div id="ip-results-section" hidden>
+                    <div id="ip-questions"></div>
+
+                    <div class="ip-cta">
+                        <h3 style="margin-bottom: 10px;">That was a preview.</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                            Members paste their real job description and CV in the portal and get questions Gemma
+                            generates from scratch for that exact pairing — not a sample set. Same tool, real output.
+                        </p>
+                        <a href="index.html#pricing" class="btn btn-primary">
+                            <span class="btn-content">VIEW_PRICING</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="ip-retry-btn" style="margin-top: 16px; width: 100%; justify-content: center;">
+                        <i class="fa-solid fa-rotate-left"></i> Run Another Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <div class="logo">HACKING <span class="text-lime">HUB</span></div>
+                <p class="copy">&copy; 2025 // SECURING_THE_FUTURE</p>
+            </div>
+            <div class="footer-quote">
+                "CONSISTENT EFFORT BEATS OCCASIONAL BURSTS OF MOTIVATION."
+            </div>
+        </div>
+    </footer>
+
+    <script src="nav.js"></script>
+    <script>
+        // Decrypt-scramble title reveal - same mechanism as script.js's
+        // initTypewriter() (which this page doesn't load, since it's
+        // self-contained like salaries.html/quiz.html), reproduced here so
+        // the hero title gets the same effect used elsewhere on the site.
+        (function initGlitchTitle() {
+            const el = document.querySelector('.glitch-text');
+            if (!el) return;
+            const text = el.getAttribute('data-text');
+            const originalHtml = el.innerHTML;
+            let iteration = 0;
+            const interval = setInterval(() => {
+                el.innerText = text.split('').map((_, i) => (i < iteration ? text[i] : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_'[Math.floor(Math.random() * 27)])).join('');
+                if (iteration >= text.length) {
+                    clearInterval(interval);
+                    el.innerHTML = originalHtml;
+                }
+                iteration += 1 / 3;
+            }, 30);
+        })();
+
+        // Honest, real (if simple) client-side "analysis": a keyword match
+        // against whatever the visitor actually pasted, used only to pick
+        // which pre-written example set to reveal. No text is sent
+        // anywhere, no AI call happens on this page - this is a scripted
+        // showcase, not a live model call (deliberate choice, see the demo
+        // tag copy above), but the detection itself is genuinely computed
+        // from their input, not faked.
+        const KEYWORD_SETS = {
+            cloud: ['aws', 'azure', 'gcp', 'cloud', 'kubernetes', 'docker', 'devsecops', 'terraform', 'iaas', 'saas'],
+            offensive: ['penetration', 'pentest', 'red team', 'exploit', 'oscp', 'ethical hacking', 'vulnerability assessment', 'ejpt', 'pnpt'],
+        };
+
+        const QUESTION_SETS = {
+            general: [
+                { question: "Walk me through how you'd triage a SIEM alert flagging unusual outbound traffic from an internal server.", category: 'Technical', tip: 'Narrow down source/destination, check against known-good baselines, and state clear escalation criteria.' },
+                { question: 'Tell me about a time you had to learn a new tool or technology quickly to solve a problem.', category: 'Behavioral', tip: 'Use a structured example - situation, action, result - with real specifics, not generalities.' },
+                { question: "It's 2am and you get paged for a potential ransomware outbreak on three workstations. What are your first three actions?", category: 'Scenario-Based', tip: 'Lead with containment (isolate the affected hosts) before deep investigation, and mention who you escalate to.' },
+                { question: "What's the difference between a false positive and a false negative in threat detection, and which is more dangerous in a SOC context?", category: 'Technical', tip: 'Explain both, then argue why false negatives (missed real threats) are usually the bigger risk versus alert fatigue from false positives.' },
+                { question: 'How do you stay current with new threats and vulnerabilities?', category: 'Behavioral', tip: 'Name specific real sources - feeds, communities, CTFs - rather than a vague "I read a lot."' },
+            ],
+            offensive: [
+                { question: 'Explain the difference between a vulnerability scan and a full penetration test.', category: 'Technical', tip: 'Emphasize identification vs. active exploitation, and frame the difference in terms of business impact.' },
+                { question: "You've gained initial access to a low-privilege user account during an engagement. Walk me through your approach to privilege escalation.", category: 'Scenario-Based', tip: "Start with enumeration, not guessing - reference real techniques without overclaiming what you've personally done." },
+                { question: 'Describe a time you found a vulnerability that turned out to be a dead end. How did you handle it?', category: 'Behavioral', tip: 'Show methodology and resilience, not just "I moved on" - what did you learn from ruling it out?' },
+                { question: "What's your process for scoping and getting authorization before a penetration test begins?", category: 'Technical', tip: 'Mention rules of engagement and written authorization - this signals legal/ethical grounding, which interviewers screen for hard.' },
+                { question: 'During a test, you accidentally cause a service outage on a production system. What do you do?', category: 'Scenario-Based', tip: 'Immediate disclosure and communication, following whatever incident protocol was defined in the rules of engagement.' },
+            ],
+            cloud: [
+                { question: 'How does the shared responsibility model change your security approach between IaaS and SaaS deployments?', category: 'Technical', tip: 'Give concrete examples of what shifts - e.g. OS patching responsibility vs. a fully vendor-managed service.' },
+                { question: 'You discover a storage bucket is publicly accessible and contains sensitive data. Walk me through your response.', category: 'Scenario-Based', tip: 'Immediate remediation (restrict access) comes before root-cause analysis and audit - lead with that order.' },
+                { question: 'Tell me about a time you had to push back on a deployment because of a security concern.', category: 'Behavioral', tip: 'Show collaboration, not just blocking - how did you get buy-in rather than just saying no?' },
+                { question: 'What tools or approaches would you use to continuously monitor cloud infrastructure for misconfigurations?', category: 'Technical', tip: 'Name real categories - CSPM tooling, or native provider tools like AWS Config or Azure Policy.' },
+                { question: 'A developer requests broad admin access to speed up their workflow. How do you handle the request?', category: 'Scenario-Based', tip: 'Invoke least privilege and offer a scoped alternative rather than a flat refusal.' },
+            ],
+        };
+
+        const CATEGORY_COLOR = { Technical: 'var(--cyber-cyan)', Behavioral: 'var(--cyber-purple)', 'Scenario-Based': 'var(--cyber-lime)' };
+
+        function detectKeywords(text) {
+            const lower = text.toLowerCase();
+            const scores = { cloud: 0, offensive: 0 };
+            Object.entries(KEYWORD_SETS).forEach(([setName, words]) => {
+                words.forEach((w) => { if (lower.includes(w)) scores[setName] += 1; });
+            });
+            const matched = { cloud: [], offensive: [] };
+            Object.entries(KEYWORD_SETS).forEach(([setName, words]) => {
+                words.forEach((w) => { if (lower.includes(w)) matched[setName].push(w); });
+            });
+            let winner = 'general';
+            if (scores.offensive > 0 && scores.offensive >= scores.cloud) winner = 'offensive';
+            else if (scores.cloud > 0) winner = 'cloud';
+            const allMatched = [...matched.offensive, ...matched.cloud];
+            return { winner, matched: allMatched };
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function wait(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+        async function playLogLine(logEl, html, opts = {}) {
+            const line = document.createElement('div');
+            line.className = 'ip-log-line' + (opts.highlight ? ' is-highlight' : '');
+            line.innerHTML = html;
+            logEl.appendChild(line);
+            await wait(20);
+            line.classList.add('is-visible');
+            await wait(opts.pause ?? 550);
+        }
+
+        async function runSequence(jdText, cvText) {
+            const formSection = document.getElementById('ip-form-section');
+            const sequenceSection = document.getElementById('ip-sequence-section');
+            const resultsSection = document.getElementById('ip-results-section');
+            const logEl = document.getElementById('ip-log');
+            const questionsEl = document.getElementById('ip-questions');
+
+            formSection.hidden = true;
+            sequenceSection.hidden = false;
+            logEl.innerHTML = '';
+
+            const combined = `${jdText} ${cvText}`;
+            const { winner, matched } = detectKeywords(combined);
+            const wordCount = jdText.trim() ? jdText.trim().split(/\s+/).length : 0;
+
+            await playLogLine(logEl, '<span class="ip-prompt">&gt;</span> INITIATING GEMMA ANALYSIS SEQUENCE...', { pause: 500 });
+            await playLogLine(logEl, `<span class="ip-prompt">&gt;</span> PARSING JOB DESCRIPTION... ${wordCount ? `[${wordCount} WORDS DETECTED]` : '[NO INPUT — USING BASELINE PROFILE]'}`, { pause: 600 });
+            await playLogLine(logEl, '<span class="ip-prompt">&gt;</span> CROSS-REFERENCING CANDIDATE PROFILE...', { pause: 600 });
+            await playLogLine(
+                logEl,
+                matched.length
+                    ? `<span class="ip-prompt">&gt;</span> KEY COMPETENCIES DETECTED: ${escapeHtml(matched.slice(0, 6).join(', ').toUpperCase())}`
+                    : '<span class="ip-prompt">&gt;</span> KEY COMPETENCIES DETECTED: GENERAL CYBERSECURITY PROFILE',
+                { pause: 700, highlight: true }
+            );
+            await playLogLine(logEl, '<span class="ip-prompt">&gt;</span> CALIBRATING QUESTION DIFFICULTY...', { pause: 550 });
+            await playLogLine(logEl, '<span class="ip-prompt">&gt;</span> GENERATING TAILORED INTERVIEW SET...<span class="ip-cursor"></span>', { pause: 900 });
+            await playLogLine(logEl, '<span class="ip-prompt">&gt;</span> <span style="color: var(--cyber-red);">[DEMO MODE — SAMPLE OUTPUT LOADED]</span>', { pause: 500 });
+
+            sequenceSection.hidden = true;
+            resultsSection.hidden = false;
+
+            const questions = QUESTION_SETS[winner];
+            questionsEl.innerHTML = questions.map((q) => `
+                <div class="cyber-card ip-question-card hover-glow">
+                    <div class="ip-q-head">
+                        <h4>${escapeHtml(q.question)}</h4>
+                        <span class="roadmap-badge" style="color: ${CATEGORY_COLOR[q.category]}; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); flex-shrink: 0;">${q.category}</span>
+                    </div>
+                    <p class="ip-tip"><i class="fa-solid fa-lightbulb text-cyan" style="margin-top: 3px;"></i> ${escapeHtml(q.tip)}</p>
+                </div>
+            `).join('');
+
+            const cards = questionsEl.querySelectorAll('.ip-question-card');
+            for (const card of cards) {
+                card.classList.add('is-visible');
+                await wait(140);
+            }
+
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.getElementById('ip-start-btn').addEventListener('click', () => {
+            const jd = document.getElementById('ip-jd').value;
+            const cv = document.getElementById('ip-cv').value;
+            runSequence(jd, cv);
+        });
+
+        document.getElementById('ip-retry-btn').addEventListener('click', () => {
+            document.getElementById('ip-results-section').hidden = true;
+            document.getElementById('ip-form-section').hidden = false;
+            window.scrollTo({ top: document.getElementById('ip-form-section').offsetTop - 100, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
