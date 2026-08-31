@@ -248,6 +248,16 @@ async function initEventsFeed() {
     const gridEl = document.getElementById('events-grid');
     if (!statusEl || !gridEl) return;
 
+    // Delegated once, up front - card markup gets replaced wholesale on every
+    // fetch below, so per-card listeners would be lost each time.
+    gridEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.event-desc-toggle');
+        if (!btn) return;
+        const wrap = btn.closest('.event-desc-wrap');
+        const expanded = wrap.classList.toggle('is-expanded');
+        btn.textContent = expanded ? 'READ_LESS' : 'READ_MORE';
+    });
+
     try {
         const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_public_community_events`, {
             method: 'POST',
@@ -270,6 +280,15 @@ async function initEventsFeed() {
         gridEl.innerHTML = events.map(renderEventCard).join('');
         statusEl.hidden = true;
         gridEl.hidden = false;
+
+        // Only reveal READ_MORE on cards whose description actually overflows
+        // the clamp - a short blurb that already fits gets no dead-end button.
+        gridEl.querySelectorAll('.event-desc-wrap').forEach((wrap) => {
+            const desc = wrap.querySelector('.event-desc');
+            if (desc.scrollHeight > desc.clientHeight + 1) {
+                wrap.querySelector('.event-desc-toggle').hidden = false;
+            }
+        });
     } catch (err) {
         console.error('Failed to load community events:', err);
         statusEl.textContent = "Couldn't load events right now — please try again later.";
@@ -289,6 +308,15 @@ function renderEventCard(event) {
                <i class="fa-solid fa-arrow-up-right-from-square"></i> EVENT_DETAILS
            </a>`
         : '';
+    // Clamped by default (CSS) so every card starts at the same height
+    // regardless of description length; the toggle button starts hidden and
+    // is only revealed post-render, for descriptions that actually overflow.
+    const descHtml = event.description
+        ? `<div class="event-desc-wrap">
+               <p class="event-desc">${escapeHtml(event.description)}</p>
+               <button type="button" class="event-desc-toggle" hidden>READ_MORE</button>
+           </div>`
+        : '';
 
     return `
         <div class="cyber-card event-card hover-glow">
@@ -297,7 +325,7 @@ function renderEventCard(event) {
             <p class="event-meta"><i class="fa-solid fa-calendar-days text-cyan"></i> ${dateLabel}${timeLabel}</p>
             ${event.location ? `<p class="event-meta"><i class="fa-solid fa-location-dot text-cyan"></i> ${escapeHtml(event.location)}</p>` : ''}
             ${rsvpLabel}
-            ${event.description ? `<p>${escapeHtml(event.description)}</p>` : ''}
+            ${descHtml}
             ${linkHtml}
         </div>
     `;
