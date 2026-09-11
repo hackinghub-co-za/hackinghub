@@ -69,6 +69,13 @@ const PAGE_CONFIG = {
         ctaHref: 'index.html#pricing', ctaLabel: 'VIEW_PRICING', ctaExternal: false,
         current: 'interview-prep',
     },
+    'role-quiz': {
+        isHome: false,
+        navStatusLabel: 'DATABASE', navStatusValue: 'ACCESSED', navStatusColor: 'text-cyan',
+        reviewsHref: 'index.html#reviews',
+        ctaHref: 'index.html#pricing', ctaLabel: 'VIEW_PRICING', ctaExternal: false,
+        current: 'role-quiz',
+    },
 };
 
 function buildNavHtml(pageKey) {
@@ -96,7 +103,7 @@ function buildNavHtml(pageKey) {
         return `<a href="${href}" class="${cls}"${currentAttr}>${label}</a>`;
     };
 
-    const dropdownDestinations = ['salaries', 'quiz', 'interview-prep'];
+    const dropdownDestinations = ['salaries', 'quiz', 'interview-prep', 'role-quiz'];
     const triggerClasses = ['nav-item', 'nav-dropdown-trigger', dropdownDestinations.includes(cfg.current) ? 'text-cyan' : ''].filter(Boolean).join(' ');
 
     const ctaHref = cfg.ctaExternal ? cfg.ctaHref : cfg.ctaHref;
@@ -122,6 +129,7 @@ function buildNavHtml(pageKey) {
                     <div class="nav-dropdown-menu">
                         ${dropdownLink('roadmaps', 'Roadmaps', anchor('roadmaps'))}
                         ${dropdownLink('salaries', 'Salaries', 'salaries.html')}
+                        ${dropdownLink('role-quiz', 'Which Role Are You?', 'role-quiz.html')}
                         ${dropdownLink('quiz', 'Quiz', 'quiz.html')}
                         ${dropdownLink('interview-prep', 'Interview Prep', 'interview-prep.html')}
                     </div>

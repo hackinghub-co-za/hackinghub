@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHNELJ2BH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WHNELJ2BH2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Which Cyber Role Are You? | Hacking Hub</title>
+
+    <!-- PWA / installable app. These tags are hand-repeated per page like the
+         rest of each <head> (only the nav/footer are templated). -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0a0f18">
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hacking Hub">
+    <script src="pwa.js" defer></script>
+    <meta name="description" content="10 quick questions, a dramatic results reveal, and a real match against the 10 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hackinghub.co.za/role-quiz.html">
+    <meta property="og:title" content="Which Cyber Role Are You? | Hacking Hub">
+    <meta property="og:description" content="10 quick questions, a dramatic results reveal, and a real match against the 10 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Which Cyber Role Are You? | Hacking Hub">
+    <meta name="twitter:description" content="10 quick questions, a dramatic results reveal, and a real match against the 10 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for the Role Quiz page */
+        .rq-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .rq-intro {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .rq-intro p {
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 16px auto 24px;
+            line-height: 1.6;
+        }
+
+        .rq-domain-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin: 22px 0 28px;
+        }
+
+        .rq-domain-chips span {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.68rem;
+            padding: 5px 10px;
+            border-radius: 3px;
+            border: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+        }
+
+        .rq-progress-track {
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            border-radius: 2px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .rq-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-lime));
+            transition: width 0.4s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .rq-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+
+        .rq-question {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.5;
+            text-wrap: balance;
+        }
+
+        .rq-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            width: 100%;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .rq-option:hover:not(:disabled) {
+            border-color: var(--cyber-cyan);
+            background: rgba(14, 215, 181, 0.04);
+        }
+
+        .rq-option:disabled {
+            cursor: default;
+        }
+
+        .rq-option.is-picked {
+            border-color: var(--cyber-lime);
+            background: rgba(204, 255, 0, 0.08);
+        }
+
+        .rq-option-key {
+            font-family: 'Fira Code', monospace;
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+        }
+
+        .rq-analyzing {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .rq-scan-ring {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 26px;
+            border-radius: 50%;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--cyber-lime);
+            border-right-color: var(--cyber-cyan);
+            animation: rq-spin 1s linear infinite;
+        }
+
+        @keyframes rq-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .rq-scan-log {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--cyber-cyan);
+            min-height: 90px;
+            text-align: left;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .rq-result-reveal {
+            text-align: center;
+            padding: 8px 0 36px;
+            opacity: 0;
+        }
+
+        .rq-result-reveal.in {
+            animation: rq-resultIn 0.6s cubic-bezier(.2, .9, .3, 1.2) both;
+        }
+
+        @keyframes rq-resultIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .rq-result-label {
+            font-family: 'Fira Code', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            margin-bottom: 10px;
+        }
+
+        .rq-result-role {
+            font-size: clamp(1.8rem, 6vw, 2.6rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .rq-result-pct {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.05rem;
+        }
+
+        .rq-result-category {
+            font-family: 'Fira Code', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 3px;
+            border: 1px solid;
+            display: inline-block;
+            margin-top: 12px;
+        }
+
+        .rq-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .rq-bar-row {
+            display: grid;
+            grid-template-columns: 140px 1fr 48px;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rq-bar-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: right;
+            color: var(--text-secondary);
+        }
+
+        .rq-bar-row.is-top .rq-bar-name {
+            color: var(--text-primary);
+        }
+
+        .rq-bar-track {
+            height: 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .rq-bar-fill {
+            height: 100%;
+            width: 0;
+            border-radius: 2px;
+            transition: width 1s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .rq-bar-pct {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.76rem;
+            color: var(--text-tertiary);
+        }
+
+        .rq-bar-row.is-top .rq-bar-pct {
+            color: var(--cyber-lime);
+            font-weight: 600;
+        }
+
+        .rq-result-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .more-tools {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .more-tools a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+        }
+
+        .more-tools a:hover {
+            border-color: var(--cyber-cyan);
+            color: var(--text-primary);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 560px) {
+            .rq-bar-row {
+                grid-template-columns: 92px 1fr 40px;
+            }
+
+            .rq-bar-name {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="cyber-nav" id="site-nav"></nav>
+    <script src="partials.js"></script>
+    <script>renderNav('role-quiz');</script>
+
+    <!-- Header -->
+    <header class="section section-dark" style="padding-bottom: 40px;">
+        <div class="container">
+            <h1>WHICH CYBER <span class="text-lime">ROLE ARE YOU?</span></h1>
+            <p style="color: var(--text-secondary); max-width: 650px; margin-top: 20px;">
+                // 10 QUICK QUESTIONS &mdash; A REAL MATCH AGAINST ALL 10 DOMAINS WE COACH MEMBERS INTO<br>
+                // NO SIGN-UP REQUIRED. RESULTS INCLUDE REAL SOUTH AFRICAN SALARY DATA FOR YOUR TOP MATCH.
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="cyber-card rq-wrap hover-glow" id="rq-card">
+                <div class="rq-intro" id="rq-intro">
+                    <i class="fa-solid fa-compass" style="font-size: 2.2rem; color: var(--cyber-cyan);"></i>
+                    <h2 style="margin-top: 16px;">Find your closest-fit specialization.</h2>
+                    <p>
+                        No right answers &mdash; just the honest overlap between what you actually enjoy and one
+                        of the 10 real cybersecurity domains Hacking Hub coaches members into.
+                    </p>
+                    <div class="rq-domain-chips" id="rq-domain-chips"></div>
+                    <button type="button" class="btn btn-primary" id="rq-start-btn">
+                        <span class="btn-content">BEGIN SCAN</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div id="rq-body" hidden></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="site-footer"></footer>
+    <script>renderFooter();</script>
+
+    <script src="nav.js"></script>
+    <script>
+        // 20-question pool, 10 drawn at random per play-through so a retake
+        // (or a second visitor) doesn't see the identical quiz every time.
+        // Each option scores points toward 1-3 of the 10 domains below -
+        // ids/names/colors/categories pulled directly from salaries.html's
+        // own ROLES array, so a result links straight into that page's
+        // existing ?role= deep-linking instead of a parallel taxonomy.
+        const DOMAINS = {
+            'soc-analyst': { name: 'SOC Analyst', cat: 'DEFENSIVE / BLUE TEAM', color: 'lime', icon: 'fa-shield-halved' },
+            'offensive-security': { name: 'Offensive Security', cat: 'RED TEAM / PENTESTING', color: 'red', icon: 'fa-user-ninja' },
+            'cloud-security': { name: 'Cloud Security', cat: 'CLOUD ARCHITECTURE', color: 'cyan', icon: 'fa-cloud-shield' },
+            'devsecops': { name: 'DevSecOps', cat: 'SECURITY AUTOMATION', color: 'lime', icon: 'fa-code-branch' },
+            'digital-forensics': { name: 'Digital Forensics (DFIR)', cat: 'INCIDENT RESPONSE', color: 'purple', icon: 'fa-fingerprint' },
+            'application-security': { name: 'Application Security', cat: 'SECURE SOFTWARE', color: 'cyan', icon: 'fa-bug-slash' },
+            'iam': { name: 'IAM (Identity & Access)', cat: 'IDENTITY & ZERO TRUST', color: 'purple', icon: 'fa-id-card-clip' },
+            'ai-security': { name: 'AI Security Engineer', cat: 'PIONEERING / AI SECURITY', color: 'lime', icon: 'fa-brain' },
+            'grc': { name: 'GRC (Governance, Risk & Compliance)', cat: 'GOVERNANCE / COMPLIANCE', color: 'purple', icon: 'fa-scale-balanced' },
+            'cyber-crime': { name: 'Cyber Crime (Mastering the Dark Arts)', cat: 'CYBER CRIME / INVESTIGATION', color: 'red', icon: 'fa-hat-wizard' },
+        };
+        const COLOR_HEX = { lime: '#ccff00', cyan: '#0ed7b5', purple: '#7000ff', red: '#ff2a5f' };
+
+        const QUESTION_POOL = [
+            { text: "It's Friday afternoon and a critical alert just fired. What's your instinct?", options: [
+                { label: 'Drop everything, trace it live, and shut it down before it spreads.', scores: { 'soc-analyst': 2, 'digital-forensics': 1 } },
+                { label: "Honestly? I'd rather have found the hole in the wall before anyone got in.", scores: { 'offensive-security': 2, 'application-security': 1 } },
+                { label: 'I want to know exactly how it got in, who did it, and what they touched.', scores: { 'digital-forensics': 2, 'cyber-crime': 1 } },
+                { label: 'This is exactly why you automate incident response instead of triaging by hand.', scores: { 'devsecops': 2, 'cloud-security': 1 } },
+            ] },
+            { text: 'Pick the puzzle that actually excites you.', options: [
+                { label: 'A locked system with no obvious way in — until you find the one thing everyone missed.', scores: { 'offensive-security': 2 } },
+                { label: 'A messy pile of logs that somehow adds up to exactly what happened.', scores: { 'digital-forensics': 2, 'soc-analyst': 1 } },
+                { label: 'A pipeline that breaks every time someone forgets a step — until you make it impossible to forget.', scores: { 'devsecops': 2 } },
+                { label: 'A policy nobody follows, because nobody can actually explain why it exists.', scores: { 'grc': 2, 'iam': 1 } },
+            ] },
+            { text: 'Your ideal Tuesday involves...', options: [
+                { label: 'Watching a live dashboard, catching the one anomaly that matters in a sea of noise.', scores: { 'soc-analyst': 2 } },
+                { label: "Reading a stranger's code line by line until you find where it lies to itself.", scores: { 'application-security': 2 } },
+                { label: 'Reverse-engineering how a threat actor thinks, not just what they did.', scores: { 'cyber-crime': 2, 'offensive-security': 1 } },
+                { label: 'Designing who gets access to what, and building the guardrails so nobody has to ask.', scores: { 'iam': 2 } },
+            ] },
+            { text: 'A friend asks what "the cloud" actually is. Your honest reaction:', options: [
+                { label: 'Let me actually explain this properly — I could talk about it for an hour.', scores: { 'cloud-security': 2 } },
+                { label: "Someone else's computer, badly secured by default. Let's go fix that.", scores: { 'cloud-security': 2, 'devsecops': 1 } },
+                { label: "Not really your itch — you'd rather know who's allowed to touch it.", scores: { 'iam': 1, 'grc': 1 } },
+                { label: "You're more interested in what's running on top of it than the infrastructure itself.", scores: { 'application-security': 1, 'offensive-security': 1 } },
+            ] },
+            { text: 'Pick a headline that would actually make you click.', options: [
+                { label: '"Researchers jailbreak a major AI model in under 10 prompts."', scores: { 'ai-security': 2 } },
+                { label: '"Breach traced back to one leaked employee password."', scores: { 'iam': 2, 'cyber-crime': 1 } },
+                { label: '"Company fined R50 million for a compliance failure nobody flagged."', scores: { 'grc': 2 } },
+                { label: '"SOC team caught the breach in 4 minutes flat."', scores: { 'soc-analyst': 2 } },
+            ] },
+            { text: 'When something breaks, you would rather be the one who...', options: [
+                { label: 'Catches it in real time, before it becomes a headline.', scores: { 'soc-analyst': 2 } },
+                { label: 'Already broke it on purpose, months ago, in a report nobody read.', scores: { 'offensive-security': 2, 'application-security': 1 } },
+                { label: 'Pieces together exactly what happened, after the fact.', scores: { 'digital-forensics': 2 } },
+                { label: "Built the system so it couldn't break that way in the first place.", scores: { 'devsecops': 2, 'cloud-security': 1 } },
+            ] },
+            { text: 'Which of these would you actually enjoy doing for free, on a weekend?', options: [
+                { label: 'A CTF room, just to see if you can get root.', scores: { 'offensive-security': 2 } },
+                { label: "Digging through OSINT to figure out who's really behind an anonymous account.", scores: { 'cyber-crime': 2 } },
+                { label: 'Automating something tedious so you never have to do it by hand again.', scores: { 'devsecops': 2 } },
+                { label: 'Prompting an AI model to see exactly where its guardrails break.', scores: { 'ai-security': 2 } },
+            ] },
+            { text: 'A suspicious login just showed up from an unfamiliar country. First move?', options: [
+                { label: 'Check whether MFA actually stopped it, and review who has access to what.', scores: { 'iam': 2 } },
+                { label: 'Pull the logs and rebuild the full timeline of what happened.', scores: { 'digital-forensics': 1, 'soc-analyst': 1 } },
+                { label: "Try to figure out who's really behind it, and what they're actually after.", scores: { 'cyber-crime': 2 } },
+                { label: "Ask why this wasn't caught by policy before it ever got this far.", scores: { 'grc': 2 } },
+            ] },
+            { text: 'If you had to be truly excellent at exactly one skill, it would be...', options: [
+                { label: 'Finding the flaw nobody else saw.', scores: { 'application-security': 2, 'offensive-security': 1 } },
+                { label: 'Explaining risk in a way a non-technical exec actually understands.', scores: { 'grc': 2 } },
+                { label: 'Knowing exactly how a modern AI system can be tricked, and how to stop it.', scores: { 'ai-security': 3 } },
+                { label: 'Designing infrastructure that is secure by default, at scale.', scores: { 'cloud-security': 2, 'devsecops': 1 } },
+            ] },
+            { text: 'What actually matters most to you in a cyber career?', options: [
+                { label: 'Being the calm, fast responder people trust when things go wrong.', scores: { 'soc-analyst': 1, 'digital-forensics': 1 } },
+                { label: 'Thinking like the attacker before the attacker gets the chance to.', scores: { 'offensive-security': 2 } },
+                { label: 'Building systems that are secure by default, not bolted on afterward.', scores: { 'devsecops': 1, 'cloud-security': 1, 'application-security': 1 } },
+                { label: 'Making the rules and the "why" behind security, not just the "how."', scores: { 'grc': 2, 'iam': 1 } },
+            ] },
+            { text: 'A junior dev just pushed code with a hardcoded API key straight to production. Your reaction?', options: [
+                { label: 'This is exactly the kind of thing a pipeline check should have caught.', scores: { 'devsecops': 2, 'application-security': 1 } },
+                { label: "Let's see if it's actually been exploited yet before anything else.", scores: { 'digital-forensics': 2, 'soc-analyst': 1 } },
+                { label: "This is a training and policy gap, not just a technical one.", scores: { 'grc': 2 } },
+                { label: "I'd rather have found this myself by trying to break in, before it shipped.", scores: { 'offensive-security': 2 } },
+            ] },
+            { text: "Pick the tool you'd actually want to get good at.", options: [
+                { label: 'Wireshark, watching packets tell the real story.', scores: { 'soc-analyst': 2 } },
+                { label: 'Burp Suite, poking at a web app until it breaks.', scores: { 'offensive-security': 2, 'application-security': 1 } },
+                { label: "Terraform, building infrastructure that's secure the moment it exists.", scores: { 'cloud-security': 2, 'devsecops': 1 } },
+                { label: 'A prompt-injection playground for a language model.', scores: { 'ai-security': 2 } },
+            ] },
+            { text: "What's the most satisfying way to end a workday?", options: [
+                { label: "The dashboard is quiet. Nothing got past you today.", scores: { 'soc-analyst': 2 } },
+                { label: "You just proved a 'secure' system wasn't.", scores: { 'offensive-security': 2 } },
+                { label: 'You automated away a task so nobody has to do it manually again.', scores: { 'devsecops': 2 } },
+                { label: 'You wrote the policy that stops this problem from happening twice.', scores: { 'grc': 2 } },
+            ] },
+            { text: 'A recruiter says a role is "80% policy work — reading frameworks, writing reports." Gut reaction?', options: [
+                { label: "Pass — I want to be closer to the actual systems.", scores: { 'cloud-security': 1, 'application-security': 1 } },
+                { label: "That's actually exactly my kind of work.", scores: { 'grc': 2 } },
+                { label: "Only if it's about who gets access to what.", scores: { 'iam': 2 } },
+                { label: "I'd rather investigate an incident than write about preventing one.", scores: { 'cyber-crime': 1, 'digital-forensics': 1 } },
+            ] },
+            { text: 'Which of these is the more interesting mystery to you?', options: [
+                { label: 'How did the attacker actually get in, step by step?', scores: { 'digital-forensics': 2 } },
+                { label: 'Who is the attacker, really — and what do they want?', scores: { 'cyber-crime': 2 } },
+                { label: "Why didn't our defenses catch this in the first place?", scores: { 'soc-analyst': 1, 'devsecops': 1 } },
+                { label: 'Could I have gotten in the same way, faster?', scores: { 'offensive-security': 2 } },
+            ] },
+            { text: "You're building a new app from scratch. What do you care about first?", options: [
+                { label: "Who's allowed to log in, and how they prove who they are.", scores: { 'iam': 2 } },
+                { label: 'Whether the code itself has exploitable flaws.', scores: { 'application-security': 2 } },
+                { label: "Whether it's hosted somewhere actually secure.", scores: { 'cloud-security': 2 } },
+                { label: 'Whether the AI feature you bolted on can be tricked into misbehaving.', scores: { 'ai-security': 2 } },
+            ] },
+            { text: 'Pick the compliment that would actually mean the most to you.', options: [
+                { label: '"You caught that in under five minutes."', scores: { 'soc-analyst': 2 } },
+                { label: '"Nobody else would have thought to try that."', scores: { 'offensive-security': 2 } },
+                { label: '"You explained the risk so clearly the board actually understood it."', scores: { 'grc': 2 } },
+                { label: '"You automated something that used to take us a full day."', scores: { 'devsecops': 2 } },
+            ] },
+            { text: 'Which real-world cyber story would you actually want to dig into?', options: [
+                { label: "A ransomware gang's entire operation, unravelled.", scores: { 'cyber-crime': 2 } },
+                { label: 'How a single misconfigured cloud storage bucket leaked millions of records.', scores: { 'cloud-security': 2 } },
+                { label: 'How an AI chatbot got tricked into leaking its own system prompt.', scores: { 'ai-security': 2 } },
+                { label: 'How a phishing email slipped past every filter.', scores: { 'soc-analyst': 1, 'application-security': 1 } },
+            ] },
+            { text: "You'd rather be known as the person who...", options: [
+                { label: "Is first to know when something's wrong.", scores: { 'soc-analyst': 2 } },
+                { label: 'Finds the hole before anyone else does.', scores: { 'offensive-security': 2 } },
+                { label: 'Makes sure it never happens the same way twice.', scores: { 'devsecops': 1, 'grc': 1 } },
+                { label: 'Figures out exactly what happened, no matter how messy.', scores: { 'digital-forensics': 2 } },
+            ] },
+            { text: "Last one. If money and job titles didn't exist, what would you actually spend your time on?", options: [
+                { label: 'Watching systems, catching the thing everyone else missed.', scores: { 'soc-analyst': 1, 'digital-forensics': 1 } },
+                { label: 'Breaking things on purpose, better than anyone else can.', scores: { 'offensive-security': 2 } },
+                { label: 'Understanding exactly how AI systems can be manipulated.', scores: { 'ai-security': 2 } },
+                { label: 'Making the rules that keep everyone else safe.', scores: { 'grc': 1, 'iam': 1 } },
+            ] },
+        ];
+
+        const QUESTIONS_PER_ROUND = 10;
+        let QUESTIONS = [];
+        let MAX_PER_DOMAIN = {};
+
+        function shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        // Draws a fresh random 10 from the 20-question pool, then computes
+        // each domain's max achievable score from THAT specific draw - not
+        // the whole pool - so a domain touched by fewer of this round's
+        // questions can still legitimately reach 100%, not get artificially
+        // capped by questions that didn't even come up this time.
+        function newRound() {
+            QUESTIONS = shuffle(QUESTION_POOL).slice(0, QUESTIONS_PER_ROUND);
+            MAX_PER_DOMAIN = {};
+            Object.keys(DOMAINS).forEach((id) => { MAX_PER_DOMAIN[id] = 0; });
+            QUESTIONS.forEach((q) => {
+                const perQ = {};
+                q.options.forEach((opt) => {
+                    Object.keys(opt.scores).forEach((id) => {
+                        perQ[id] = Math.max(perQ[id] || 0, opt.scores[id]);
+                    });
+                });
+                Object.keys(perQ).forEach((id) => { MAX_PER_DOMAIN[id] += perQ[id]; });
+            });
+        }
+
+        const state = { index: 0, scores: {} };
+        function resetState() {
+            newRound();
+            state.index = 0;
+            state.scores = {};
+            Object.keys(DOMAINS).forEach((id) => { state.scores[id] = 0; });
+        }
+        resetState();
+
+        const introEl = document.getElementById('rq-intro');
+        const bodyEl = document.getElementById('rq-body');
+        const startBtn = document.getElementById('rq-start-btn');
+        const KEYS = ['A', 'B', 'C', 'D'];
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        document.getElementById('rq-domain-chips').innerHTML = Object.values(DOMAINS)
+            .map((d) => `<span>${escapeHtml(d.name.split(' (')[0])}</span>`).join('');
+
+        function renderQuestion() {
+            const q = QUESTIONS[state.index];
+            bodyEl.innerHTML = `
+                <div class="rq-meta"><span>QUESTION ${state.index + 1} OF ${QUESTIONS.length}</span></div>
+                <div class="rq-progress-track"><div class="rq-progress-fill" style="width:${(state.index / QUESTIONS.length) * 100}%"></div></div>
+                <div class="rq-question">${escapeHtml(q.text)}</div>
+                <div id="rq-options"></div>
+            `;
+            const optionsEl = document.getElementById('rq-options');
+            optionsEl.innerHTML = q.options.map((opt, i) =>
+                `<button type="button" class="rq-option" data-i="${i}"><span class="rq-option-key">${KEYS[i]}</span><span>${escapeHtml(opt.label)}</span></button>`
+            ).join('');
+            optionsEl.querySelectorAll('.rq-option').forEach((btn) => {
+                btn.addEventListener('click', () => handleAnswer(q, Number(btn.dataset.i), btn));
+            });
+        }
+
+        function handleAnswer(question, optionIndex, btnEl) {
+            const scores = question.options[optionIndex].scores;
+            Object.keys(scores).forEach((id) => { state.scores[id] += scores[id]; });
+
+            btnEl.classList.add('is-picked');
+            document.querySelectorAll('.rq-option').forEach((b) => { b.disabled = true; });
+
+            setTimeout(() => {
+                state.index += 1;
+                if (state.index < QUESTIONS.length) {
+                    renderQuestion();
+                } else {
+                    runAnalysis();
+                }
+            }, 320);
+        }
+
+        function runAnalysis() {
+            bodyEl.innerHTML = `
+                <div class="rq-analyzing">
+                    <div class="rq-scan-ring"></div>
+                    <div class="rq-scan-log" id="rq-scan-log"></div>
+                </div>
+            `;
+            const logEl = document.getElementById('rq-scan-log');
+            const lines = [
+                '> COMPILING RESPONSES...',
+                '> CROSS-REFERENCING 10 DOMAIN PROFILES...',
+                '> RANKING SIGNAL STRENGTH...',
+                '> MATCH FOUND.',
+            ];
+            let i = 0;
+            function nextLine() {
+                if (i >= lines.length) { setTimeout(renderResults, 500); return; }
+                const div = document.createElement('div');
+                logEl.appendChild(div);
+                const text = lines[i];
+                let c = 0;
+                (function type() {
+                    div.textContent = text.slice(0, c);
+                    c += 1;
+                    if (c <= text.length) { setTimeout(type, 12); }
+                    else { i += 1; setTimeout(nextLine, 260); }
+                })();
+            }
+            nextLine();
+        }
+
+        function renderResults() {
+            const ranked = Object.keys(DOMAINS).map((id) => {
+                const max = MAX_PER_DOMAIN[id] || 1;
+                const pct = Math.max(0, Math.min(100, Math.round((state.scores[id] / max) * 100)));
+                return { id, pct };
+            }).sort((a, b) => b.pct - a.pct);
+
+            const top = ranked[0];
+            const topDomain = DOMAINS[top.id];
+            const hex = COLOR_HEX[topDomain.color];
+
+            const barsHtml = ranked.map((r) => {
+                const d = DOMAINS[r.id];
+                const isTop = r.id === top.id;
+                return `
+                    <div class="rq-bar-row${isTop ? ' is-top' : ''}">
+                        <div class="rq-bar-name">${escapeHtml(d.name.split(' (')[0])}</div>
+                        <div class="rq-bar-track"><div class="rq-bar-fill" data-pct="${r.pct}" style="background:${COLOR_HEX[d.color]}"></div></div>
+                        <div class="rq-bar-pct">${r.pct}%</div>
+                    </div>`;
+            }).join('');
+
+            bodyEl.innerHTML = `
+                <div class="rq-result-reveal" id="rq-result-reveal">
+                    <div class="rq-result-label">Your closest match</div>
+                    <div class="rq-result-role" style="color:${hex}">${escapeHtml(topDomain.name)}</div>
+                    <div class="rq-result-pct">${top.pct}% MATCH</div>
+                    <div class="rq-result-category" style="color:${hex}; border-color:${hex};">${escapeHtml(topDomain.cat)}</div>
+                </div>
+                <div class="rq-bars">${barsHtml}</div>
+                <div class="rq-result-ctas">
+                    <a href="salaries.html?role=${top.id}" class="btn btn-primary">
+                        <span class="btn-content">SEE ${escapeHtml(topDomain.name.split(' (')[0]).toUpperCase()} SALARY DATA</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="index.html#pricing" class="btn btn-secondary">
+                        <span class="btn-content">GET THE COACH-BUILT ROADMAP</span>
+                    </a>
+                </div>
+                <button type="button" class="btn btn-secondary" id="rq-retry-btn" style="margin-top: 16px; justify-content: center;">
+                    <i class="fa-solid fa-rotate-left"></i> Retake the Scan
+                </button>
+                <div class="more-tools">
+                    <a href="quiz.html"><i class="fa-solid fa-graduation-cap"></i> Try the Security+ Quiz</a>
+                    <a href="interview-prep.html"><i class="fa-solid fa-terminal"></i> Try Interview Prep</a>
+                </div>
+            `;
+
+            const revealEl = document.getElementById('rq-result-reveal');
+            requestAnimationFrame(() => revealEl.classList.add('in'));
+            setTimeout(() => {
+                document.querySelectorAll('.rq-bar-fill').forEach((el) => { el.style.width = el.dataset.pct + '%'; });
+            }, 150);
+
+            document.getElementById('rq-retry-btn').addEventListener('click', () => {
+                resetState();
+                renderQuestion();
+            });
+        }
+
+        startBtn.addEventListener('click', () => {
+            introEl.hidden = true;
+            bodyEl.hidden = false;
+            renderQuestion();
+        });
+    </script>
+</body>
+
+</html>
