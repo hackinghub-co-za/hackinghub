@@ -1213,6 +1213,26 @@ footer {
     flex-direction: column;
 }
 
+/* Same image_url the member portal already shows on its own event cards -
+   16:9, object-fit: cover, matching that same treatment here so an event's
+   image reads consistently whether a member sees it in the portal or a
+   visitor sees it on the public site. */
+.event-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    border: 1px solid var(--border-color);
+}
+
+.event-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .event-meta {
     display: flex;
     align-items: center;

@@ -355,6 +355,12 @@ async function initEventsFeed() {
 
 function renderEventCard(event) {
     const badgeClass = EVENT_BADGE_CLASS[event.type] || 'badge-cyan';
+    // Same image_url the member portal already shows on its own event cards
+    // (supabase/019_events.sql's event-images bucket) - this RPC has always
+    // returned it, the public site just never rendered it until now.
+    const imageHtml = event.image_url
+        ? `<div class="event-card-image"><img src="${escapeAttr(event.image_url)}" alt="" loading="lazy"></div>`
+        : '';
     const dateLabel = formatEventDate(event.date);
     const timeLabel = event.time ? ` &bull; ${escapeHtml(event.time)}` : '';
     const rsvpLabel = event.rsvp_count > 0
@@ -377,6 +383,7 @@ function renderEventCard(event) {
 
     return `
         <div class="cyber-card event-card hover-glow">
+            ${imageHtml}
             <div class="roadmap-badge ${badgeClass}">${escapeHtml(event.type)}</div>
             <h3>${escapeHtml(event.title)}</h3>
             <p class="event-meta"><i class="fa-solid fa-calendar-days text-cyan"></i> ${dateLabel}${timeLabel}</p>
