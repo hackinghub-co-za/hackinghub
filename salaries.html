@@ -267,6 +267,144 @@
                 gap: 14px;
             }
         }
+
+        /* ===== SALARY ESTIMATOR ===== */
+        .salary-estimator {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .estimator-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 25px 0 5px;
+        }
+
+        .estimator-field label {
+            display: block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .estimator-select {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            padding: 14px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .estimator-select:focus {
+            outline: none;
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 20px rgba(14, 215, 181, 0.15);
+        }
+
+        select.estimator-select {
+            cursor: pointer;
+        }
+
+        .estimator-result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 30px 0 5px;
+        }
+
+        .estimator-result-stat {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 22px;
+            text-align: center;
+        }
+
+        .estimator-result-label {
+            display: block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .estimator-result-value {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .estimator-basis {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 16px;
+        }
+
+        .estimator-feedback {
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px dashed var(--border-color);
+            text-align: center;
+        }
+
+        .estimator-feedback-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .estimator-feedback-btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .estimator-feedback-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .estimator-feedback-btn:hover {
+            border-color: var(--cyber-cyan);
+            color: var(--text-primary);
+        }
+
+        .estimator-feedback-btn.is-selected {
+            border-color: var(--cyber-lime);
+            color: var(--cyber-lime);
+            background: rgba(204, 255, 0, 0.08);
+        }
+
+        .estimator-feedback-ack {
+            margin-top: 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            color: var(--cyber-lime);
+        }
+
+        @media (max-width: 768px) {
+            .estimator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -287,6 +425,52 @@
             </p>
         </div>
     </header>
+
+    <!-- Salary Estimator -->
+    <section class="section" style="padding-bottom: 60px;">
+        <div class="container">
+            <div class="cyber-card salary-estimator hover-glow" id="salary-estimator">
+                <div class="salary-detail-header" style="margin-bottom: 0;">
+                    <div class="salary-detail-icon text-lime"><i class="fa-solid fa-calculator"></i></div>
+                    <div>
+                        <p class="salary-section-label" style="margin-bottom: 4px;"><i class="fa-solid fa-bolt"></i> QUICK TOOL</p>
+                        <h2 class="salary-detail-title" style="margin-bottom: 0;">Salary Estimator</h2>
+                    </div>
+                </div>
+                <p class="salary-desc">
+                    Pick a role, a location, and how many years of experience you have &mdash; we'll estimate a
+                    monthly and annual salary from the real South African figures below.
+                </p>
+
+                <div class="estimator-grid">
+                    <div class="estimator-field">
+                        <label for="est-role">Role / Title</label>
+                        <select id="est-role" class="estimator-select"></select>
+                    </div>
+                    <div class="estimator-field">
+                        <label for="est-location">Location</label>
+                        <select id="est-location" class="estimator-select">
+                            <option value="national">National Average</option>
+                            <option value="johannesburg">Johannesburg</option>
+                            <option value="cape town">Cape Town</option>
+                            <option value="durban">Durban</option>
+                            <option value="pretoria">Pretoria</option>
+                        </select>
+                    </div>
+                    <div class="estimator-field">
+                        <label for="est-years">Years of Experience</label>
+                        <input type="number" id="est-years" class="estimator-select" min="0" max="30" step="1" value="3">
+                    </div>
+                </div>
+
+                <div class="estimator-result-grid" id="estimator-result"></div>
+                <p class="estimator-basis" id="estimator-basis"></p>
+                <p class="salary-note" id="estimator-caveat" style="margin-bottom: 0;"></p>
+
+                <div class="estimator-feedback" id="estimator-feedback"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Search + Results -->
     <section class="section">
@@ -674,6 +858,153 @@
             `;
         }
 
+        // ---------------------------------------------------------------
+        // Salary Estimator - interpolates/extrapolates a personal monthly +
+        // annual figure from the exact ROLES data above (same source rows the
+        // lookup table renders), scaled by years of experience and location.
+        // It's a derived estimate, not a separate survey - the methodology is
+        // stated plainly in the caveat line rendered with every result.
+        // ---------------------------------------------------------------
+        const estRoleSelect = document.getElementById('est-role');
+        const estLocationSelect = document.getElementById('est-location');
+        const estYearsInput = document.getElementById('est-years');
+        const estResultEl = document.getElementById('estimator-result');
+        const estBasisEl = document.getElementById('estimator-basis');
+        const estCaveatEl = document.getElementById('estimator-caveat');
+        const estFeedbackEl = document.getElementById('estimator-feedback');
+
+        estRoleSelect.innerHTML = ROLES.map((r) => `<option value="${r.id}">${r.name}</option>`).join('');
+        estRoleSelect.value = activeId;
+
+        // "R293,968" -> 293968. A "R468,889 – R772,311" range (IAM's national
+        // average, disagreeing sources shown as a range rather than picked)
+        // resolves to its midpoint - good enough for a rough personal estimate
+        // even where the sourced table itself couldn't settle on one figure.
+        function parseRandValue(str) {
+            const nums = (str.match(/[\d,]+/g) || []).map((n) => parseInt(n.replace(/,/g, ''), 10));
+            if (!nums.length) return null;
+            return nums.length === 1 ? nums[0] : (nums[0] + nums[nums.length - 1]) / 2;
+        }
+
+        function formatRand(n) {
+            return 'R' + Math.round(n).toLocaleString('en-US');
+        }
+
+        // Every role's first/last experience row is treated as a junior/senior
+        // anchor at these years, even though the labels vary (most roles say
+        // "Entry-Level (1-3 yrs)" / "Senior-Level (8+ yrs)"; Cloud Security's
+        // are a 25th/75th-percentile pay spread instead - see its sourcing
+        // note in the ROLES data). 2 and 8 are the midpoint of "1-3" and the
+        // floor of "8+" respectively - a reasonable general curve, not a claim
+        // that every role's anchors mean literally the same thing.
+        const ANCHOR_LOW_YEARS = 2;
+        const ANCHOR_HIGH_YEARS = 8;
+
+        function estimateBaseSalary(role, years) {
+            if (!role.experience.length) {
+                // No experience breakdown published (AI Security, Cyber Crime) -
+                // flat proxy figure regardless of years entered.
+                const proxy = role.locations.find((l) => /national/i.test(l.label));
+                return { value: parseRandValue(proxy.value), flat: true };
+            }
+            const low = parseRandValue(role.experience[0].value);
+            const high = parseRandValue(role.experience[role.experience.length - 1].value);
+            const slope = (high - low) / (ANCHOR_HIGH_YEARS - ANCHOR_LOW_YEARS);
+            let value;
+            if (years <= ANCHOR_LOW_YEARS) {
+                // Taper toward a floor rather than extending the same slope
+                // below zero, which would imply a 0-year hire earns almost
+                // nothing.
+                const floor = low * 0.65;
+                const t = Math.max(0, years) / ANCHOR_LOW_YEARS;
+                value = floor + (low - floor) * t;
+            } else if (years >= ANCHOR_HIGH_YEARS) {
+                // Growth beyond the senior anchor continues at a damped rate
+                // (senior pay bands compress) and is capped past +15 years so
+                // the curve can't run away to an absurd figure.
+                const extraYears = Math.min(years - ANCHOR_HIGH_YEARS, 15);
+                value = high + slope * 0.4 * extraYears;
+            } else {
+                value = low + slope * (years - ANCHOR_LOW_YEARS);
+            }
+            return { value, flat: false };
+        }
+
+        function getLocationFactor(role, locationKey) {
+            const national = role.locations.find((l) => /national/i.test(l.label));
+            const nationalMid = national ? parseRandValue(national.value) : null;
+            if (locationKey === 'national' || !nationalMid) {
+                return { factor: 1, matched: true, label: national ? national.label : 'National Average' };
+            }
+            const cityRow = role.locations.find((l) => !/national/i.test(l.label) && l.label.toLowerCase() === locationKey);
+            if (!cityRow) return { factor: 1, matched: false, label: null };
+            return { factor: parseRandValue(cityRow.value) / nationalMid, matched: true, label: cityRow.label };
+        }
+
+        function renderEstimatorFeedback() {
+            estFeedbackEl.innerHTML = `
+                <p class="estimator-feedback-label">How does this compare to what you actually earn (or were offered)?</p>
+                <div class="estimator-feedback-btns">
+                    <button type="button" class="estimator-feedback-btn" data-choice="lower"><i class="fa-solid fa-arrow-down"></i> Mine's Lower</button>
+                    <button type="button" class="estimator-feedback-btn" data-choice="right"><i class="fa-solid fa-check"></i> About Right</button>
+                    <button type="button" class="estimator-feedback-btn" data-choice="higher"><i class="fa-solid fa-arrow-up"></i> Mine's Higher</button>
+                </div>
+                <p class="estimator-feedback-ack" id="estimator-feedback-ack" hidden></p>
+            `;
+            const ackMessages = {
+                lower: "Thanks — noted. That's useful signal for keeping this honest.",
+                right: 'Good to know the estimate landed on target.',
+                higher: "Thanks — noted. That's useful signal for keeping this honest.",
+            };
+            const ackEl = document.getElementById('estimator-feedback-ack');
+            estFeedbackEl.querySelectorAll('.estimator-feedback-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    estFeedbackEl.querySelectorAll('.estimator-feedback-btn').forEach((b) => b.classList.remove('is-selected'));
+                    btn.classList.add('is-selected');
+                    ackEl.textContent = ackMessages[btn.dataset.choice];
+                    ackEl.hidden = false;
+                });
+            });
+        }
+
+        function renderEstimate() {
+            const role = ROLES.find((r) => r.id === estRoleSelect.value);
+            const years = Math.max(0, Math.min(30, Number(estYearsInput.value) || 0));
+            const locationKey = estLocationSelect.value;
+
+            const base = estimateBaseSalary(role, years);
+            const loc = getLocationFactor(role, locationKey);
+            const annual = base.value * loc.factor;
+            const monthly = annual / 12;
+
+            estResultEl.innerHTML = `
+                <div class="estimator-result-stat">
+                    <span class="estimator-result-label">EST. MONTHLY</span>
+                    <span class="estimator-result-value text-lime">${formatRand(monthly)}</span>
+                </div>
+                <div class="estimator-result-stat">
+                    <span class="estimator-result-label">EST. ANNUAL</span>
+                    <span class="estimator-result-value text-cyan">${formatRand(annual)}</span>
+                </div>
+            `;
+
+            const cityLabel = loc.matched ? loc.label : estLocationSelect.options[estLocationSelect.selectedIndex].text;
+            estBasisEl.textContent = `Based on ${role.name}, ${years} yr${years === 1 ? '' : 's'} of experience, ${cityLabel}.`;
+
+            const caveats = ['This is an estimate interpolated/extrapolated from the published figures above, not a separate survey — actual offers vary by company, stack, and negotiation.'];
+            if (base.flat) caveats.unshift(`No experience breakdown is published for ${role.name} yet, so this uses the flat proxy figure regardless of years entered.`);
+            if (!loc.matched && locationKey !== 'national') caveats.unshift(`No ${cityLabel}-specific figure is published for ${role.name} — shown at the national rate instead.`);
+            if (role.note) caveats.push(role.note);
+            estCaveatEl.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${caveats.join(' ')}`;
+
+            renderEstimatorFeedback();
+        }
+
+        [estRoleSelect, estLocationSelect, estYearsInput].forEach((el) => {
+            el.addEventListener('input', renderEstimate);
+            el.addEventListener('change', renderEstimate);
+        });
+
         searchInput.addEventListener('input', renderChips);
         searchInput.addEventListener('keydown', (e) => {
             if (e.key !== 'Enter') return;
@@ -683,6 +1014,7 @@
 
         renderChips();
         renderDetail();
+        renderEstimate();
 
         // Arrived via a roadmap card's deep link - jump straight to the
         // detail panel instead of leaving the visitor at the search bar
