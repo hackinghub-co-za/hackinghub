@@ -19,6 +19,7 @@ const SITE_FOOTER_HTML = `
         <div class="footer-left">
             <div class="logo">HACKING <span class="text-lime">HUB</span></div>
             <p class="copy">&copy; 2025 // SECURING_THE_FUTURE</p>
+            <p class="copy"><a href="privacy.html" style="color: inherit;">Privacy Policy</a></p>
         </div>
         <div class="footer-quote">
             "CONSISTENT EFFORT BEATS OCCASIONAL BURSTS OF MOTIVATION."
@@ -75,6 +76,13 @@ const PAGE_CONFIG = {
         reviewsHref: 'index.html#reviews',
         ctaHref: 'index.html#pricing', ctaLabel: 'VIEW_PRICING', ctaExternal: false,
         current: 'role-quiz',
+    },
+    privacy: {
+        isHome: false,
+        navStatusLabel: 'DATABASE', navStatusValue: 'ACCESSED', navStatusColor: 'text-cyan',
+        reviewsHref: 'index.html#reviews',
+        ctaHref: 'index.html#pricing', ctaLabel: 'VIEW_PRICING', ctaExternal: false,
+        current: null, // not part of the RESOURCES dropdown or any nav-item - reached via the footer link only
     },
 };
 
