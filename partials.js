@@ -14,6 +14,18 @@
 // interaction logic) still runs on DOMContentLoaded as before, by which
 // point this has already filled in the real markup it operates on.
 
+// Thin wrapper around gtag's event call, used by the interactive tools
+// (Salary Intel, both quizzes, Interview Prep) to report real usage - not
+// page views, which GA already gets for free from the gtag config block
+// each page carries, but "did someone actually use this thing". Never pass
+// pasted free-text (job descriptions, CV content) as a param - only
+// categorical/numeric signals, consistent with privacy.html's "standard,
+// anonymized site analytics" line for these tools. No-ops quietly if gtag
+// never loaded (an ad blocker, offline, etc.) rather than throwing.
+function trackEvent(name, params) {
+    if (typeof gtag === 'function') gtag('event', name, params || {});
+}
+
 const SITE_FOOTER_HTML = `
     <div class="container footer-content">
         <div class="footer-left">

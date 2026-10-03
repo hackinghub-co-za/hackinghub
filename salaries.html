@@ -796,6 +796,7 @@
                     renderChips();
                     renderDetail();
                     detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    trackEvent('salary_role_viewed', { role_id: activeId });
                 });
             });
         }
@@ -963,6 +964,7 @@
                     btn.classList.add('is-selected');
                     ackEl.textContent = ackMessages[btn.dataset.choice];
                     ackEl.hidden = false;
+                    trackEvent('salary_estimate_feedback', { choice: btn.dataset.choice });
                 });
             });
         }
@@ -1000,9 +1002,21 @@
             renderEstimatorFeedback();
         }
 
+        // Fires once per page load, on the first change a visitor actually
+        // makes - not on the initial auto-populated render below, which
+        // would otherwise count every page view as "used the calculator".
+        let estimatorUseTracked = false;
+        function trackEstimatorUseOnce() {
+            if (estimatorUseTracked) return;
+            estimatorUseTracked = true;
+            trackEvent('salary_estimator_used');
+        }
+
         [estRoleSelect, estLocationSelect, estYearsInput].forEach((el) => {
             el.addEventListener('input', renderEstimate);
             el.addEventListener('change', renderEstimate);
+            el.addEventListener('input', trackEstimatorUseOnce);
+            el.addEventListener('change', trackEstimatorUseOnce);
         });
 
         searchInput.addEventListener('input', renderChips);

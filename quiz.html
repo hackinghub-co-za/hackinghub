@@ -316,6 +316,7 @@
 
         function renderResults() {
             const pct = Math.round((correctCount / QUESTIONS.length) * 100);
+            trackEvent('quiz_completed', { score_pct: pct, correct: correctCount, total: QUESTIONS.length });
             bodyEl.innerHTML = `
                 <div style="text-align: center; padding: 20px 0;">
                     <div class="quiz-score-ring">${pct}%</div>
@@ -352,6 +353,7 @@
             introEl.hidden = true;
             bodyEl.hidden = false;
             renderQuestion();
+            trackEvent('quiz_started');
         });
     </script>
 </body>

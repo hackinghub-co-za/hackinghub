@@ -456,6 +456,7 @@
 
             sequenceSection.hidden = true;
             resultsSection.hidden = false;
+            trackEvent('interview_prep_completed', { detected_category: winner });
 
             const questions = QUESTION_SETS[winner];
             questionsEl.innerHTML = questions.map((q) => `
@@ -480,6 +481,8 @@
         document.getElementById('ip-start-btn').addEventListener('click', () => {
             const jd = document.getElementById('ip-jd').value;
             const cv = document.getElementById('ip-cv').value;
+            // Booleans only - never the pasted JD/CV text itself.
+            trackEvent('interview_prep_started', { has_jd: jd.trim().length > 0, has_cv: cv.trim().length > 0 });
             runSequence(jd, cv);
         });
 

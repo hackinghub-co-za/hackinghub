@@ -651,6 +651,7 @@
             const top = ranked[0];
             const topDomain = DOMAINS[top.id];
             const hex = COLOR_HEX[topDomain.color];
+            trackEvent('role_quiz_completed', { matched_role: top.id, match_pct: top.pct });
 
             const barsHtml = ranked.map((r) => {
                 const d = DOMAINS[r.id];
@@ -705,6 +706,7 @@
             introEl.hidden = true;
             bodyEl.hidden = false;
             renderQuestion();
+            trackEvent('role_quiz_started');
         });
     </script>
 </body>
