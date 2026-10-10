@@ -27,15 +27,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Hacking Hub">
     <script src="pwa.js" defer></script>
-    <meta name="description" content="10 quick questions, a dramatic results reveal, and a real match against the 10 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta name="description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hackinghub.co.za/role-quiz.html">
     <meta property="og:title" content="Which Cyber Role Are You? | Hacking Hub">
-    <meta property="og:description" content="10 quick questions, a dramatic results reveal, and a real match against the 10 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta property="og:description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
     <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Which Cyber Role Are You? | Hacking Hub">
-    <meta name="twitter:description" content="10 quick questions, a dramatic results reveal, and a real match against the 10 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta name="twitter:description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
     <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -345,7 +345,7 @@
         <div class="container">
             <h1>WHICH CYBER <span class="text-lime">ROLE ARE YOU?</span></h1>
             <p style="color: var(--text-secondary); max-width: 650px; margin-top: 20px;">
-                // 10 QUICK QUESTIONS &mdash; A REAL MATCH AGAINST ALL 10 DOMAINS WE COACH MEMBERS INTO<br>
+                // 10 QUICK QUESTIONS &mdash; A REAL MATCH AGAINST ALL 9 DOMAINS WE COACH MEMBERS INTO<br>
                 // NO SIGN-UP REQUIRED. RESULTS INCLUDE REAL SOUTH AFRICAN SALARY DATA FOR YOUR TOP MATCH.
             </p>
         </div>
@@ -359,7 +359,7 @@
                     <h2 style="margin-top: 16px;">Find your closest-fit specialization.</h2>
                     <p>
                         No right answers &mdash; just the honest overlap between what you actually enjoy and one
-                        of the 10 real cybersecurity domains Hacking Hub coaches members into.
+                        of the 9 real cybersecurity domains Hacking Hub coaches members into.
                     </p>
                     <div class="rq-domain-chips" id="rq-domain-chips"></div>
                     <button type="button" class="btn btn-primary" id="rq-start-btn">
@@ -381,7 +381,7 @@
     <script>
         // 20-question pool, 10 drawn at random per play-through so a retake
         // (or a second visitor) doesn't see the identical quiz every time.
-        // Each option scores points toward 1-3 of the 10 domains below -
+        // Each option scores points toward 1-3 of the 9 domains below -
         // ids/names/colors/categories pulled directly from salaries.html's
         // own ROLES array, so a result links straight into that page's
         // existing ?role= deep-linking instead of a parallel taxonomy.
@@ -395,7 +395,6 @@
             'iam': { name: 'IAM (Identity & Access)', cat: 'IDENTITY & ZERO TRUST', color: 'purple', icon: 'fa-id-card-clip' },
             'ai-security': { name: 'AI Security Engineer', cat: 'PIONEERING / AI SECURITY', color: 'lime', icon: 'fa-brain' },
             'grc': { name: 'GRC (Governance, Risk & Compliance)', cat: 'GOVERNANCE / COMPLIANCE', color: 'purple', icon: 'fa-scale-balanced' },
-            'cyber-crime': { name: 'Cyber Crime (Mastering the Dark Arts)', cat: 'CYBER CRIME / INVESTIGATION', color: 'red', icon: 'fa-hat-wizard' },
         };
         const COLOR_HEX = { lime: '#ccff00', cyan: '#0ed7b5', purple: '#7000ff', red: '#ff2a5f' };
 
@@ -403,7 +402,7 @@
             { text: "It's Friday afternoon and a critical alert just fired. What's your instinct?", options: [
                 { label: 'Drop everything, trace it live, and shut it down before it spreads.', scores: { 'soc-analyst': 2, 'digital-forensics': 1 } },
                 { label: "Honestly? I'd rather have found the hole in the wall before anyone got in.", scores: { 'offensive-security': 2, 'application-security': 1 } },
-                { label: 'I want to know exactly how it got in, who did it, and what they touched.', scores: { 'digital-forensics': 2, 'cyber-crime': 1 } },
+                { label: 'I want to know exactly how it got in, who did it, and what they touched.', scores: { 'digital-forensics': 2 } },
                 { label: 'This is exactly why you automate incident response instead of triaging by hand.', scores: { 'devsecops': 2, 'cloud-security': 1 } },
             ] },
             { text: 'Pick the puzzle that actually excites you.', options: [
@@ -415,7 +414,7 @@
             { text: 'Your ideal Tuesday involves...', options: [
                 { label: 'Watching a live dashboard, catching the one anomaly that matters in a sea of noise.', scores: { 'soc-analyst': 2 } },
                 { label: "Reading a stranger's code line by line until you find where it lies to itself.", scores: { 'application-security': 2 } },
-                { label: 'Reverse-engineering how a threat actor thinks, not just what they did.', scores: { 'cyber-crime': 2, 'offensive-security': 1 } },
+                { label: 'Reverse-engineering how a threat actor thinks, not just what they did.', scores: { 'offensive-security': 1 } },
                 { label: 'Designing who gets access to what, and building the guardrails so nobody has to ask.', scores: { 'iam': 2 } },
             ] },
             { text: 'A friend asks what "the cloud" actually is. Your honest reaction:', options: [
@@ -426,7 +425,7 @@
             ] },
             { text: 'Pick a headline that would actually make you click.', options: [
                 { label: '"Researchers jailbreak a major AI model in under 10 prompts."', scores: { 'ai-security': 2 } },
-                { label: '"Breach traced back to one leaked employee password."', scores: { 'iam': 2, 'cyber-crime': 1 } },
+                { label: '"Breach traced back to one leaked employee password."', scores: { 'iam': 2 } },
                 { label: '"Company fined R50 million for a compliance failure nobody flagged."', scores: { 'grc': 2 } },
                 { label: '"SOC team caught the breach in 4 minutes flat."', scores: { 'soc-analyst': 2 } },
             ] },
@@ -438,14 +437,14 @@
             ] },
             { text: 'Which of these would you actually enjoy doing for free, on a weekend?', options: [
                 { label: 'A CTF room, just to see if you can get root.', scores: { 'offensive-security': 2 } },
-                { label: "Digging through OSINT to figure out who's really behind an anonymous account.", scores: { 'cyber-crime': 2 } },
+                { label: "Digging through OSINT to figure out who's really behind an anonymous account.", scores: { 'digital-forensics': 2 } },
                 { label: 'Automating something tedious so you never have to do it by hand again.', scores: { 'devsecops': 2 } },
                 { label: 'Prompting an AI model to see exactly where its guardrails break.', scores: { 'ai-security': 2 } },
             ] },
             { text: 'A suspicious login just showed up from an unfamiliar country. First move?', options: [
                 { label: 'Check whether MFA actually stopped it, and review who has access to what.', scores: { 'iam': 2 } },
                 { label: 'Pull the logs and rebuild the full timeline of what happened.', scores: { 'digital-forensics': 1, 'soc-analyst': 1 } },
-                { label: "Try to figure out who's really behind it, and what they're actually after.", scores: { 'cyber-crime': 2 } },
+                { label: "Try to figure out who's really behind it, and what they're actually after.", scores: { 'digital-forensics': 2 } },
                 { label: "Ask why this wasn't caught by policy before it ever got this far.", scores: { 'grc': 2 } },
             ] },
             { text: 'If you had to be truly excellent at exactly one skill, it would be...', options: [
@@ -482,11 +481,11 @@
                 { label: "Pass — I want to be closer to the actual systems.", scores: { 'cloud-security': 1, 'application-security': 1 } },
                 { label: "That's actually exactly my kind of work.", scores: { 'grc': 2 } },
                 { label: "Only if it's about who gets access to what.", scores: { 'iam': 2 } },
-                { label: "I'd rather investigate an incident than write about preventing one.", scores: { 'cyber-crime': 1, 'digital-forensics': 1 } },
+                { label: "I'd rather investigate an incident than write about preventing one.", scores: { 'digital-forensics': 1 } },
             ] },
             { text: 'Which of these is the more interesting mystery to you?', options: [
                 { label: 'How did the attacker actually get in, step by step?', scores: { 'digital-forensics': 2 } },
-                { label: 'Who is the attacker, really — and what do they want?', scores: { 'cyber-crime': 2 } },
+                { label: 'Who is the attacker, really — and what do they want?', scores: { 'digital-forensics': 2 } },
                 { label: "Why didn't our defenses catch this in the first place?", scores: { 'soc-analyst': 1, 'devsecops': 1 } },
                 { label: 'Could I have gotten in the same way, faster?', scores: { 'offensive-security': 2 } },
             ] },
@@ -503,7 +502,7 @@
                 { label: '"You automated something that used to take us a full day."', scores: { 'devsecops': 2 } },
             ] },
             { text: 'Which real-world cyber story would you actually want to dig into?', options: [
-                { label: "A ransomware gang's entire operation, unravelled.", scores: { 'cyber-crime': 2 } },
+                { label: "A ransomware gang's entire operation, unravelled.", scores: { 'digital-forensics': 2 } },
                 { label: 'How a single misconfigured cloud storage bucket leaked millions of records.', scores: { 'cloud-security': 2 } },
                 { label: 'How an AI chatbot got tricked into leaking its own system prompt.', scores: { 'ai-security': 2 } },
                 { label: 'How a phishing email slipped past every filter.', scores: { 'soc-analyst': 1, 'application-security': 1 } },
@@ -620,7 +619,7 @@
             const logEl = document.getElementById('rq-scan-log');
             const lines = [
                 '> COMPILING RESPONSES...',
-                '> CROSS-REFERENCING 10 DOMAIN PROFILES...',
+                '> CROSS-REFERENCING 9 DOMAIN PROFILES...',
                 '> RANKING SIGNAL STRENGTH...',
                 '> MATCH FOUND.',
             ];

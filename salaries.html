@@ -520,8 +520,8 @@
         // South African salary data, curated from Glassdoor/PayScale/ERI-SalaryExpert/
         // Indeed searches (Aug 2026). Same honesty principle as the homepage roadmap
         // tiles: only real, sourced figures - no interpolated/fabricated rows. Where a
-        // role has no dedicated SA survey (AI Security Engineer, Cyber Crime), the
-        // figure is proxied from the closest general benchmark and explicitly labeled.
+        // role has no dedicated SA survey (AI Security Engineer), the figure is
+        // proxied from the closest general benchmark and explicitly labeled.
         // Where a city figure existed but was for a mismatched/broader job title or
         // was wildly inconsistent with every other data point for that role (Digital
         // Forensics' Johannesburg/Cape Town search results), it was left out rather
@@ -716,7 +716,7 @@
                 category: 'GOVERNANCE / COMPLIANCE',
                 color: 'purple',
                 icon: 'fa-scale-balanced',
-                underConstruction: true,
+                underConstruction: false,
                 description: 'Shape security policy, run risk assessments, and keep organizations audit-ready against frameworks like ISO 27001, NIST, and POPIA.',
                 tags: ['ISO 27001', 'POPIA', 'Risk Assessments', 'Compliance Audits'],
                 certs: 'ISO 27001 LA • CRISC • CISA',
@@ -729,26 +729,6 @@
                     { label: 'National Average', value: 'R546,116' },
                     { label: 'Cape Town', value: 'R593,003' },
                 ],
-            },
-            {
-                id: 'cyber-crime',
-                name: 'Cyber Crime (Mastering the Dark Arts)',
-                aliases: ['cybercrime', 'dark web', 'osint', 'threat intel', 'threat intelligence', 'investigation'],
-                category: 'CYBER CRIME / INVESTIGATION',
-                color: 'red',
-                icon: 'fa-hat-wizard',
-                underConstruction: true,
-                description: "Track threat actors, investigate breaches from the offender's side, and learn how cybercriminals actually operate — OSINT, dark web monitoring, and digital evidence handling under South Africa's Cybercrimes Act.",
-                tags: ['OSINT', 'Dark Web Monitoring', 'Threat Actor Tracking', 'Cybercrimes Act'],
-                certs: 'CHFI • GCTI • OSINT Certified',
-                // No dedicated SA survey for "cybercrime investigator"/"threat intelligence
-                // analyst" (checked both directly). Proxied from the general
-                // Cybersecurity Analyst benchmark. Source: za.indeed.com/career/cybersecurity-analyst/salaries
-                experience: [],
-                locations: [
-                    { label: 'National Average (proxy)', value: 'R531,610' },
-                ],
-                note: 'No dedicated SA survey exists yet for this specific title — this is the general Cybersecurity Analyst benchmark, used as the closest honest proxy.',
             },
         ];
 
@@ -903,8 +883,8 @@
 
         function estimateBaseSalary(role, years) {
             if (!role.experience.length) {
-                // No experience breakdown published (AI Security, Cyber Crime) -
-                // flat proxy figure regardless of years entered.
+                // No experience breakdown published (AI Security) - flat proxy
+                // figure regardless of years entered.
                 const proxy = role.locations.find((l) => /national/i.test(l.label));
                 return { value: parseRandValue(proxy.value), flat: true };
             }
