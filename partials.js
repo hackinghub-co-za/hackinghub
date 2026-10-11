@@ -58,7 +58,7 @@ const PAGE_CONFIG = {
         isHome: false,
         navStatusLabel: 'DATABASE', navStatusValue: 'ACCESSED', navStatusColor: 'text-cyan',
         reviewsHref: 'reviews.html',
-        ctaHref: 'https://calendly.com/siya-gladile/30min', ctaLabel: 'INITIATE_UPLINK', ctaExternal: true,
+        ctaHref: 'https://calendar.app.google/QHqnMWPbVY74iWgw9', ctaLabel: 'INITIATE_UPLINK', ctaExternal: true,
         current: 'reviews',
     },
     salaries: {
