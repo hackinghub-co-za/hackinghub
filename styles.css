@@ -2163,19 +2163,6 @@ summary,
     font-size: 1.4rem;
 }
 
-/* ===== PROOF STRIP ===== */
-.proof-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.proof-grid .review-card {
-    width: auto;
-    max-width: none;
-    min-width: 0;
-}
-
 /* ===== WHY CYBER ===== */
 .why-chips {
     display: flex;
@@ -2200,44 +2187,68 @@ summary,
     margin-right: 8px;
 }
 
-.why-table-wrap {
-    max-width: 900px;
-    margin: 0 auto;
-    overflow-x: auto;
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.why-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
+.role-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-top: 2px solid var(--cyber-cyan);
+    border-radius: 8px;
 }
 
-.why-table th {
-    text-align: left;
+.role-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.role-card-head i {
+    color: var(--cyber-lime);
+}
+
+.role-card-head h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.role-pay {
     font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--text-tertiary);
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.why-table td {
-    padding: 14px;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-secondary);
-}
-
-.why-table td:first-child {
-    color: var(--text-primary);
-    font-weight: 600;
-}
-
-.why-table .why-pay {
-    font-family: 'Fira Code', monospace;
+    font-size: 1.3rem;
     color: var(--cyber-cyan);
     white-space: nowrap;
+}
+
+.role-pay span {
+    color: var(--text-tertiary);
+}
+
+.role-pay-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+}
+
+.role-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    flex-grow: 1;
+}
+
+.role-cert {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--cyber-lime);
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
 }
 
 @media (max-width: 768px) {
@@ -2248,13 +2259,5 @@ summary,
     .how-arrow {
         transform: rotate(90deg);
         justify-self: center;
-    }
-
-    .proof-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .why-table {
-        min-width: 560px;
     }
 }

@@ -37,7 +37,7 @@
     <meta name="twitter:title" content="Hacking Hub | Cyber Career Accelerator">
     <meta name="twitter:description" content="A South African cybersecurity career accelerator — coach-built roadmaps, real salary data, hands-on prep, and a community, to help you land your first role in security.">
     <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google AdSense -->
@@ -191,11 +191,11 @@
         </div>
     </section>
 
-    <!-- Proof Strip -->
-    <section id="proof" class="section">
+    <!-- Member Reviews Section -->
+    <section id="reviews" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">02 //</span> WHERE_YOU_ARE_NOW</h2>
+                <h2 class="section-title"><span class="text-lime">02 //</span> MEMBER_REVIEWS</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -203,31 +203,220 @@
                 // EVERY MEMBER BELOW STARTED EXACTLY WHERE YOU ARE
             </p>
 
-            <div class="proof-grid">
-                <div class="review-card">
-                    <img src="images/joshua-harrop-headshot.jpeg" alt="Joshua" class="review-avatar">
-                    <div class="review-content">
-                        <h3>JOSHUA</h3>
-                        <p class="role text-cyan">SOC Analyst Intern</p>
-                        <p class="review-text">"Before Hacking Hub, I was studying in isolation. The daily accountability check-ins changed everything. I finally passed my Security+."</p>
+            <div class="reviews-carousel-wrapper">
+                <button class="carousel-btn prev-btn" id="prev-review"><i class="fa-solid fa-chevron-left"></i></button>
+
+                <div class="reviews-carousel" id="reviews-carousel">
+                    <!-- Review Card: Thando Twala -->
+                    <div class="review-card hover-glow">
+                        <img src="images/thando-twala-headshot.png" alt="Thando Twala" class="review-avatar">
+                        <div class="review-content">
+                            <h3>THANDO TWALA</h3>
+                            <p class="role text-cyan">Cybersecurity Analyst</p>
+                            <p class="review-text">"Ever since joining Hacking Hub, I've seen major improvements in my understanding of cybersecurity. My career journey is clearer now, aligned with a precise roadmap. Engaging with like-minded peers who share deep technical knowledge has been instrumental in helping me secure a new role."</p>
+                            <a href="https://www.linkedin.com/in/thando-twala-880881250/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card: Thato -->
+                    <div class="review-card hover-glow">
+                        <img src="images/thato-headshot.png" alt="Thato" class="review-avatar">
+                        <div class="review-content">
+                            <h3>THATO</h3>
+                            <p class="role text-purple">Cybersecurity Intern</p>
+                            <p class="review-text">"I joined Hacking Hub and immediately locked in. Between diving into labs, working on projects, presenting, and hitting deadlines, the peer support kept me going. Right after graduating, I landed the internship I'd been hoping for! The 1-on-1 interview prep was key in helping me secure the role."</p>
+                            <a href="https://www.linkedin.com/in/thato-pilusa/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card: Cathrine -->
+                    <div class="review-card hover-glow">
+                        <img src="images/cathrine-headshot.jpeg" alt="Cathrine" class="review-avatar">
+                        <div class="review-content">
+                            <h3>CATHRINE</h3>
+                            <p class="role text-cyan">SOC Analyst</p>
+                            <p class="review-text">"Making it through the Hacking Hub screening process turned out to be a pivotal moment in advancing myself in cybersecurity. Through consistent effort, hands-on labs, and strong theoretical grounding, I built real practical skills. That discipline ultimately helped me secure a role in cybersecurity, where I now confidently apply everything I learned."</p>
+                            <a href="https://www.linkedin.com/in/cathrine-masekoameng-29989425a/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card: Callum -->
+                    <div class="review-card hover-glow">
+                        <img src="images/callum-headshot.jpeg" alt="Callum" class="review-avatar">
+                        <div class="review-content">
+                            <h3>CALLUM</h3>
+                            <p class="role text-lime">IT Audit &amp; GRC Analyst</p>
+                            <p class="review-text">"Hacking Hub is a results driven community. This community holds you accountable by making sure you are staying on track to complete your goals. Seeing other members consistently putting in work motivates you to keep working even on the days you do not feel like working. We also learn from each other's expertise in our HH Sunday meetings which foster insightful discussions."</p>
+                            <a href="https://www.linkedin.com/in/callum-molver-02c/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card: Lesoko -->
+                    <div class="review-card hover-glow">
+                        <img src="images/lesoko-headshot-again.png" alt="Lesoko" class="review-avatar">
+                        <div class="review-content">
+                            <h3>LESOKO</h3>
+                            <p class="role text-cyan">Cybersecurity Professional</p>
+                            <p class="review-text">"Hacking Hub played a huge role in helping me land my first cybersecurity job. The environment encourages continuous learning and collaboration making it an invaluable resource for anyone looking to break into cybersecurity or grow their career. The community kept me accountable, motivated and consistently pushed me to learn and improve."</p>
+                            <a href="https://www.linkedin.com/in/lesoko-monyepao-abb546270/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 1 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/joshua-harrop-headshot.jpeg" alt="Joshua Harrop" class="review-avatar">
+                        <div class="review-content">
+                            <h3>JOSHUA</h3>
+                            <p class="role text-cyan">SOC Analyst Intern</p>
+                            <p class="review-text">"Before Hacking Hub, I was studying in isolation. The daily
+                                accountability check-ins changed everything. I finally passed my Security+."</p>
+                            <a href="https://www.linkedin.com/in/joshua-harrop-750945263/" class="linkedin-btn"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/nonhlanhla-sindane-headshot.jpeg" alt="Nonhlanhla" class="review-avatar">
+                        <div class="review-content">
+                            <h3>NONHLANHLA</h3>
+                            <p class="role text-cyan">Junior Security Code Review Analyst</p>
+                            <p class="review-text">"I started doing cybersecurity work consistently every day instead of just learning in bursts. The community gave me real exposure, pushed me to build confidence, and ultimately helped me land a job in cybersecurity. It made me realize how important it is to invest in myself and my growth."</p>
+                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7437877574623584257/" class="linkedin-btn"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/lindokuhle-headshot.jpeg" alt="Lindokuhle" class="review-avatar">
+                        <div class="review-content">
+                            <h3>LINDOKUHLE</h3>
+                            <p class="role text-lime">Junior Consultant: IT Auditing</p>
+                            <p class="review-text">"The HH environment allowed me to remain consistent and constantly
+                                challenged me to acquire more knowledge. I'm surrounded by like-minded people that are
+                                either in the industry or trying to get into it, which is also very motivating."</p>
+                            <a href="https://www.linkedin.com/in/lindokuhle-dlamini/" class="linkedin-btn"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 4 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/khody-headshot.jpeg" alt="Khody" class="review-avatar">
+                        <div class="review-content">
+                            <h3>KHODY</h3>
+                            <p class="role text-cyan">Cybersecurity Engineer</p>
+                            <p class="review-text">"Hacking Hub has pushed my skills to a higher level by keeping me
+                                consistent, hands-on, and accountable in my learning. The daily challenges and team
+                                motivation strengthened my discipline, especially the commitment to completing a
+                                TryHackMe room a day. Being surrounded by driven cybersecurity enthusiasts has sharpened
+                                my thinking, expanded my technical depth, and helped me approach problems more
+                                strategically. Overall, it has genuinely improved my confidence and performance in my
+                                career as a security professional."</p>
+                            <a href="https://www.linkedin.com/in/khody-netshifhefhe-4783b5213/" class="linkedin-btn"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 5 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/nomonde-headshot.jpeg" alt="Nomonde" class="review-avatar">
+                        <div class="review-content">
+                            <h3>NOMONDE</h3>
+                            <p class="role text-purple">Junior Software Developer</p>
+                            <p class="review-text">"My experience at Hacking Hub was transformative. The hands-on blue
+                                team training provided real-world skills in threat hunting and log analysis that
+                                directly prepared me for a cybersecurity career. This program didn't just teach
+                                security, it built the defensive mindset and practical expertise that made me job-ready
+                                from day one."</p>
+                            <a href="https://www.linkedin.com/in/onalenna-nomonde-moroeng-cybersecurity/"
+                                class="linkedin-btn"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 6 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/thando-headshot.jpeg" alt="Thando" class="review-avatar">
+                        <div class="review-content">
+                            <h3>THANDO</h3>
+                            <p class="role text-cyan">Junior Tech Risk Analyst</p>
+                            <p class="review-text">"Hacking Hub has been a transformative part of my cybersecurity
+                                journey. The community gave me structure, accountability, and a space where learning
+                                feels both supported and challenging. Through the resources and peer motivation, I built
+                                real technical confidence."</p>
+                            <a href="https://www.linkedin.com/in/thandokuhle-mandondo-06a640249/"
+                                class="linkedin-btn"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 7 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/zanele-headshot.jpeg" alt="Zanele" class="review-avatar">
+                        <div class="review-content">
+                            <h3>ZANELE</h3>
+                            <p class="role text-purple">Cloud Security Professional</p>
+                            <p class="review-text">"Hacking hub is a great community that values integrity, hard-work
+                                and grit. The supportive community has provided me with a safe and encouraging space to
+                                upskill and network with my peers. Siya has done an amazing job at cultivating such a
+                                supportive community!"</p>
+                            <a href="https://www.linkedin.com/in/zanelelmpofu/" class="linkedin-btn"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 8 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/dilemo-headshot.jpeg" alt="Dilemo" class="review-avatar">
+                        <div class="review-content">
+                            <h3>DILEMO</h3>
+                            <p class="role text-cyan">SOC Triage Specialist</p>
+                            <p class="review-text">"My experience within HH has shown me Cybersecurity is a Journey that spans different career paths, whether it is Red, Blue or Purple team... one reoccurring theme is present... and that is if you Lock-In 🔐 you will unlock your dreams. I am the proof."</p>
+                            <a href="https://www.linkedin.com/in/dilemo-molaoa-bb3964136/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 9 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/timothy-headshot.jpeg" alt="Timothy" class="review-avatar">
+                        <div class="review-content">
+                            <h3>TIMOTHY</h3>
+                            <p class="role text-purple">Graduate Tech Analyst</p>
+                            <p class="review-text">"Hacking Hub has helped me overcome procrastination and stagnation.
+                                The challenges and daily peer-to-peer accountability, as well as the one on one
+                                1-on-1 Strategy Sessions has instilled discipline within me to stay consistent and
+                                always strive to improve."</p>
+                            <a href="https://www.linkedin.com/in/timothy-adams2/" class="linkedin-btn"><i
+                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 10 -->
+                    <div class="review-card hover-glow">
+                        <img src="images/craig-antonio-headshot.png" alt="Craig Antonio" class="review-avatar">
+                        <div class="review-content">
+                            <h3>CRAIG ANTONIO</h3>
+                            <p class="role text-lime">IT Professional</p>
+                            <p class="review-text">"Hacking Hub is a community that inspires and promotes growth. As a community that is always growing, there's no way you won't grow while you're part of it. From the 1-on-1 sessions to your own custom roadmap, tailored specifically to the role you're targeting, everything is designed to help you succeed. This was made especially evident in my life when I landed my first job in IT! 'You are a product of your environment.'"</p>
+                            <a href="https://www.linkedin.com/in/craig-antonio/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
+                    </div>
+
+                    <!-- Review Card: Pinky Ndlazi -->
+                    <div class="review-card hover-glow">
+                        <img src="images/pinky-headshot.jpeg" alt="Pinky Ndlazi" class="review-avatar">
+                        <div class="review-content">
+                            <h3>PINKY NDLAZI</h3>
+                            <p class="role text-cyan">Cybersecurity Intern</p>
+                            <p class="review-text">"I found the community during a particularly tough stretch, a time when I was feeling pretty hopeless, despite all the hard work I'd put into amassing certifications and grinding through labs. The entry-level cybersecurity space comes with so much noise that it's easy to get discouraged. One day on LinkedIn, I stumbled upon Siya's profile, sent a connection request, and asked if I could join his community. He welcomed me in within a day. Long story short: Hacking Hub kept me inspired, motivated, and above all, sane. Seeing peers on the exact same journey land roles and level up kept my hope alive and proved that the effort is worth it."</p>
+                            <a href="https://www.linkedin.com/in/ntsoareleng-ndlazi-371991378/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
+                        </div>
                     </div>
                 </div>
-                <div class="review-card">
-                    <img src="images/nonhlanhla-sindane-headshot.jpeg" alt="Nonhlanhla" class="review-avatar">
-                    <div class="review-content">
-                        <h3>NONHLANHLA</h3>
-                        <p class="role text-cyan">Junior Security Code Review Analyst</p>
-                        <p class="review-text">"I started doing cybersecurity work consistently every day instead of just learning in bursts... and ultimately landed a job in cybersecurity."</p>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <img src="images/pinky-headshot.jpeg" alt="Pinky Ndlazi" class="review-avatar">
-                    <div class="review-content">
-                        <h3>PINKY NDLAZI</h3>
-                        <p class="role text-cyan">Cybersecurity Intern</p>
-                        <p class="review-text">"I was feeling pretty hopeless... Hacking Hub kept me inspired, motivated, and above all, sane."</p>
-                    </div>
-                </div>
+
+                <button class="carousel-btn next-btn" id="next-review"><i
+                        class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -251,19 +440,42 @@
                 <span class="why-chip"><i class="fa-solid fa-brain"></i>AI Security is wide open</span>
             </div>
 
-            <div class="why-table-wrap">
-                <table class="why-table">
-                    <thead>
-                        <tr><th>ROLE</th><th>ENTRY &rarr; SENIOR (SA / YEAR)</th><th>WHY IT'S A GOOD DOOR</th><th>FIRST CERT</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>SOC Analyst</td><td class="why-pay">R294K &rarr; R479K</td><td>Most common first security job</td><td>Security+</td></tr>
-                        <tr><td>GRC</td><td class="why-pay">R390K &rarr; R676K</td><td>Ideal for career changers; POPIA demand</td><td>ISO 27001 LA</td></tr>
-                        <tr><td>Offensive Security</td><td class="why-pay">R472K &rarr; R763K</td><td>Needs the most hands-on proof</td><td>eJPT</td></tr>
-                        <tr><td>Cloud Security</td><td class="why-pay">R495K &rarr; R1.2M</td><td>Highest ceiling; follows cloud migration</td><td>AWS Security</td></tr>
-                        <tr><td>DevSecOps</td><td class="why-pay">R629K &rarr; R1.1M</td><td>Top of the range for DevOps people</td><td>CKS</td></tr>
-                    </tbody>
-                </table>
+            <div class="role-grid">
+                <div class="role-card">
+                    <div class="role-card-head"><i class="fa-solid fa-shield-halved"></i><h3>SOC ANALYST</h3></div>
+                    <div class="role-pay">R294K <span>&rarr;</span> R479K</div>
+                    <div class="role-pay-label">ENTRY &rarr; SENIOR / YEAR (SA)</div>
+                    <p>Most common first security job</p>
+                    <div class="role-cert">FIRST CERT: Security+</div>
+                </div>
+                <div class="role-card">
+                    <div class="role-card-head"><i class="fa-solid fa-scale-balanced"></i><h3>GRC</h3></div>
+                    <div class="role-pay">R390K <span>&rarr;</span> R676K</div>
+                    <div class="role-pay-label">ENTRY &rarr; SENIOR / YEAR (SA)</div>
+                    <p>Ideal for career changers; POPIA demand</p>
+                    <div class="role-cert">FIRST CERT: ISO 27001 LA</div>
+                </div>
+                <div class="role-card">
+                    <div class="role-card-head"><i class="fa-solid fa-user-secret"></i><h3>OFFENSIVE SECURITY</h3></div>
+                    <div class="role-pay">R472K <span>&rarr;</span> R763K</div>
+                    <div class="role-pay-label">ENTRY &rarr; SENIOR / YEAR (SA)</div>
+                    <p>Needs the most hands-on proof</p>
+                    <div class="role-cert">FIRST CERT: eJPT</div>
+                </div>
+                <div class="role-card">
+                    <div class="role-card-head"><i class="fa-solid fa-cloud"></i><h3>CLOUD SECURITY</h3></div>
+                    <div class="role-pay">R495K <span>&rarr;</span> R1.2M</div>
+                    <div class="role-pay-label">ENTRY &rarr; SENIOR / YEAR (SA)</div>
+                    <p>Highest ceiling; follows cloud migration</p>
+                    <div class="role-cert">FIRST CERT: AWS Security</div>
+                </div>
+                <div class="role-card">
+                    <div class="role-card-head"><i class="fa-solid fa-code-branch"></i><h3>DEVSECOPS</h3></div>
+                    <div class="role-pay">R629K <span>&rarr;</span> R1.1M</div>
+                    <div class="role-pay-label">ENTRY &rarr; SENIOR / YEAR (SA)</div>
+                    <p>Top of the range for DevOps people</p>
+                    <div class="role-cert">FIRST CERT: CKS</div>
+                </div>
             </div>
 
             <div style="text-align: center; margin-top: 40px;">
@@ -539,12 +751,12 @@
                     <div class="pricing-tier-label text-purple">PERMANENT_ACCESS</div>
                     <div class="pricing-icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <div class="pricing-price">
-                        <span class="price-amount text-purple">R1,000</span>
-                        <span class="price-period">/ month (for 10 months)</span>
+                        <span class="price-amount text-purple">R1,250</span>
+                        <span class="price-period">/ month (for 12 months) &middot; or R15,000 once-off</span>
                     </div>
-                    <p class="pricing-desc">Pay <strong>R1,000 per month for 10 months</strong> (10 installments total, R10,000 total). After month 10, your membership becomes <strong>100% permanent with zero recurring fees</strong> forever.</p>
+                    <p class="pricing-desc">Pay <strong>R15,000 once-off</strong>, or <strong>R1,250 per month for 12 months</strong> (12 installments, R15,000 total). Once it's paid off, your membership becomes <strong>100% permanent with zero recurring fees</strong> forever.</p>
                     <ul class="pricing-features">
-                        <li><i class="fa-solid fa-check text-purple"></i> <strong>10 monthly payments of R1,000 (R10,000 total)</strong></li>
+                        <li><i class="fa-solid fa-check text-purple"></i> <strong>R15,000 once-off, or 12 monthly payments of R1,250</strong></li>
                         <li><i class="fa-solid fa-check text-purple"></i> Proprietary learning platform</li>
                         <li><i class="fa-solid fa-check text-purple"></i> Community Discord access</li>
                         <li><i class="fa-solid fa-check text-purple"></i> Accountability programme</li>
@@ -606,237 +818,11 @@
         </div>
     </section>
 
-    <!-- Member Reviews Section -->
-    <section id="reviews" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">06 //</span> MEMBER_REVIEWS</h2>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="reviews-carousel-wrapper">
-                <button class="carousel-btn prev-btn" id="prev-review"><i class="fa-solid fa-chevron-left"></i></button>
-
-                <div class="reviews-carousel" id="reviews-carousel">
-                    <!-- Review Card: Thando Twala -->
-                    <div class="review-card hover-glow">
-                        <img src="images/thando-twala-headshot.png" alt="Thando Twala" class="review-avatar">
-                        <div class="review-content">
-                            <h3>THANDO TWALA</h3>
-                            <p class="role text-cyan">Cybersecurity Analyst</p>
-                            <p class="review-text">"Ever since joining Hacking Hub, I've seen major improvements in my understanding of cybersecurity. My career journey is clearer now, aligned with a precise roadmap. Engaging with like-minded peers who share deep technical knowledge has been instrumental in helping me secure a new role."</p>
-                            <a href="https://www.linkedin.com/in/thando-twala-880881250/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card: Thato -->
-                    <div class="review-card hover-glow">
-                        <img src="images/thato-headshot.png" alt="Thato" class="review-avatar">
-                        <div class="review-content">
-                            <h3>THATO</h3>
-                            <p class="role text-purple">Cybersecurity Intern</p>
-                            <p class="review-text">"I joined Hacking Hub and immediately locked in. Between diving into labs, working on projects, presenting, and hitting deadlines, the peer support kept me going. Right after graduating, I landed the internship I'd been hoping for! The 1-on-1 interview prep was key in helping me secure the role."</p>
-                            <a href="https://www.linkedin.com/in/thato-pilusa/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card: Cathrine -->
-                    <div class="review-card hover-glow">
-                        <img src="images/cathrine-headshot.jpeg" alt="Cathrine" class="review-avatar">
-                        <div class="review-content">
-                            <h3>CATHRINE</h3>
-                            <p class="role text-cyan">SOC Analyst</p>
-                            <p class="review-text">"Making it through the Hacking Hub screening process turned out to be a pivotal moment in advancing myself in cybersecurity. Through consistent effort, hands-on labs, and strong theoretical grounding, I built real practical skills. That discipline ultimately helped me secure a role in cybersecurity, where I now confidently apply everything I learned."</p>
-                            <a href="https://www.linkedin.com/in/cathrine-masekoameng-29989425a/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card: Callum -->
-                    <div class="review-card hover-glow">
-                        <img src="images/callum-headshot.jpeg" alt="Callum" class="review-avatar">
-                        <div class="review-content">
-                            <h3>CALLUM</h3>
-                            <p class="role text-lime">IT Audit &amp; GRC Analyst</p>
-                            <p class="review-text">"Hacking Hub is a results driven community. This community holds you accountable by making sure you are staying on track to complete your goals. Seeing other members consistently putting in work motivates you to keep working even on the days you do not feel like working. We also learn from each other's expertise in our HH Sunday meetings which foster insightful discussions."</p>
-                            <a href="https://www.linkedin.com/in/callum-molver-02c/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card: Lesoko -->
-                    <div class="review-card hover-glow">
-                        <img src="images/lesoko-headshot-again.png" alt="Lesoko" class="review-avatar">
-                        <div class="review-content">
-                            <h3>LESOKO</h3>
-                            <p class="role text-cyan">Cybersecurity Professional</p>
-                            <p class="review-text">"Hacking Hub played a huge role in helping me land my first cybersecurity job. The environment encourages continuous learning and collaboration making it an invaluable resource for anyone looking to break into cybersecurity or grow their career. The community kept me accountable, motivated and consistently pushed me to learn and improve."</p>
-                            <a href="https://www.linkedin.com/in/lesoko-monyepao-abb546270/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 1 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/joshua-harrop-headshot.jpeg" alt="Joshua Harrop" class="review-avatar">
-                        <div class="review-content">
-                            <h3>JOSHUA</h3>
-                            <p class="role text-cyan">SOC Analyst Intern</p>
-                            <p class="review-text">"Before Hacking Hub, I was studying in isolation. The daily
-                                accountability check-ins changed everything. I finally passed my Security+."</p>
-                            <a href="https://www.linkedin.com/in/joshua-harrop-750945263/" class="linkedin-btn"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 2 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/nonhlanhla-sindane-headshot.jpeg" alt="Nonhlanhla" class="review-avatar">
-                        <div class="review-content">
-                            <h3>NONHLANHLA</h3>
-                            <p class="role text-cyan">Junior Security Code Review Analyst</p>
-                            <p class="review-text">"I started doing cybersecurity work consistently every day instead of just learning in bursts. The community gave me real exposure, pushed me to build confidence, and ultimately helped me land a job in cybersecurity. It made me realize how important it is to invest in myself and my growth."</p>
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7437877574623584257/" class="linkedin-btn"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 3 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/lindokuhle-headshot.jpeg" alt="Lindokuhle" class="review-avatar">
-                        <div class="review-content">
-                            <h3>LINDOKUHLE</h3>
-                            <p class="role text-lime">Junior Consultant: IT Auditing</p>
-                            <p class="review-text">"The HH environment allowed me to remain consistent and constantly
-                                challenged me to acquire more knowledge. I'm surrounded by like-minded people that are
-                                either in the industry or trying to get into it, which is also very motivating."</p>
-                            <a href="https://www.linkedin.com/in/lindokuhle-dlamini/" class="linkedin-btn"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 4 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/khody-headshot.jpeg" alt="Khody" class="review-avatar">
-                        <div class="review-content">
-                            <h3>KHODY</h3>
-                            <p class="role text-cyan">Cybersecurity Engineer</p>
-                            <p class="review-text">"Hacking Hub has pushed my skills to a higher level by keeping me
-                                consistent, hands-on, and accountable in my learning. The daily challenges and team
-                                motivation strengthened my discipline, especially the commitment to completing a
-                                TryHackMe room a day. Being surrounded by driven cybersecurity enthusiasts has sharpened
-                                my thinking, expanded my technical depth, and helped me approach problems more
-                                strategically. Overall, it has genuinely improved my confidence and performance in my
-                                career as a security professional."</p>
-                            <a href="https://www.linkedin.com/in/khody-netshifhefhe-4783b5213/" class="linkedin-btn"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 5 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/nomonde-headshot.jpeg" alt="Nomonde" class="review-avatar">
-                        <div class="review-content">
-                            <h3>NOMONDE</h3>
-                            <p class="role text-purple">Junior Software Developer</p>
-                            <p class="review-text">"My experience at Hacking Hub was transformative. The hands-on blue
-                                team training provided real-world skills in threat hunting and log analysis that
-                                directly prepared me for a cybersecurity career. This program didn't just teach
-                                security, it built the defensive mindset and practical expertise that made me job-ready
-                                from day one."</p>
-                            <a href="https://www.linkedin.com/in/onalenna-nomonde-moroeng-cybersecurity/"
-                                class="linkedin-btn"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 6 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/thando-headshot.jpeg" alt="Thando" class="review-avatar">
-                        <div class="review-content">
-                            <h3>THANDO</h3>
-                            <p class="role text-cyan">Junior Tech Risk Analyst</p>
-                            <p class="review-text">"Hacking Hub has been a transformative part of my cybersecurity
-                                journey. The community gave me structure, accountability, and a space where learning
-                                feels both supported and challenging. Through the resources and peer motivation, I built
-                                real technical confidence."</p>
-                            <a href="https://www.linkedin.com/in/thandokuhle-mandondo-06a640249/"
-                                class="linkedin-btn"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 7 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/zanele-headshot.jpeg" alt="Zanele" class="review-avatar">
-                        <div class="review-content">
-                            <h3>ZANELE</h3>
-                            <p class="role text-purple">Cloud Security Professional</p>
-                            <p class="review-text">"Hacking hub is a great community that values integrity, hard-work
-                                and grit. The supportive community has provided me with a safe and encouraging space to
-                                upskill and network with my peers. Siya has done an amazing job at cultivating such a
-                                supportive community!"</p>
-                            <a href="https://www.linkedin.com/in/zanelelmpofu/" class="linkedin-btn"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 8 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/dilemo-headshot.jpeg" alt="Dilemo" class="review-avatar">
-                        <div class="review-content">
-                            <h3>DILEMO</h3>
-                            <p class="role text-cyan">SOC Triage Specialist</p>
-                            <p class="review-text">"My experience within HH has shown me Cybersecurity is a Journey that spans different career paths, whether it is Red, Blue or Purple team... one reoccurring theme is present... and that is if you Lock-In 🔐 you will unlock your dreams. I am the proof."</p>
-                            <a href="https://www.linkedin.com/in/dilemo-molaoa-bb3964136/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 9 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/timothy-headshot.jpeg" alt="Timothy" class="review-avatar">
-                        <div class="review-content">
-                            <h3>TIMOTHY</h3>
-                            <p class="role text-purple">Graduate Tech Analyst</p>
-                            <p class="review-text">"Hacking Hub has helped me overcome procrastination and stagnation.
-                                The challenges and daily peer-to-peer accountability, as well as the one on one
-                                1-on-1 Strategy Sessions has instilled discipline within me to stay consistent and
-                                always strive to improve."</p>
-                            <a href="https://www.linkedin.com/in/timothy-adams2/" class="linkedin-btn"><i
-                                    class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card 10 -->
-                    <div class="review-card hover-glow">
-                        <img src="images/craig-antonio-headshot.png" alt="Craig Antonio" class="review-avatar">
-                        <div class="review-content">
-                            <h3>CRAIG ANTONIO</h3>
-                            <p class="role text-lime">IT Professional</p>
-                            <p class="review-text">"Hacking Hub is a community that inspires and promotes growth. As a community that is always growing, there's no way you won't grow while you're part of it. From the 1-on-1 sessions to your own custom roadmap, tailored specifically to the role you're targeting, everything is designed to help you succeed. This was made especially evident in my life when I landed my first job in IT! 'You are a product of your environment.'"</p>
-                            <a href="https://www.linkedin.com/in/craig-antonio/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-
-                    <!-- Review Card: Pinky Ndlazi -->
-                    <div class="review-card hover-glow">
-                        <img src="images/pinky-headshot.jpeg" alt="Pinky Ndlazi" class="review-avatar">
-                        <div class="review-content">
-                            <h3>PINKY NDLAZI</h3>
-                            <p class="role text-cyan">Cybersecurity Intern</p>
-                            <p class="review-text">"I found the community during a particularly tough stretch, a time when I was feeling pretty hopeless, despite all the hard work I'd put into amassing certifications and grinding through labs. The entry-level cybersecurity space comes with so much noise that it's easy to get discouraged. One day on LinkedIn, I stumbled upon Siya's profile, sent a connection request, and asked if I could join his community. He welcomed me in within a day. Long story short: Hacking Hub kept me inspired, motivated, and above all, sane. Seeing peers on the exact same journey land roles and level up kept my hope alive and proved that the effort is worth it."</p>
-                            <a href="https://www.linkedin.com/in/ntsoareleng-ndlazi-371991378/" class="linkedin-btn" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> ESTABLISH_CONNECTION</a>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="carousel-btn next-btn" id="next-review"><i
-                        class="fa-solid fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
-
     <!-- Member Interviews / Video Section -->
     <section id="interviews" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">07 //</span> FIELD_INTERVIEWS</h2>
+                <h2 class="section-title"><span class="text-lime">06 //</span> FIELD_INTERVIEWS</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -909,7 +895,7 @@
     <section id="faq" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">08 //</span> FAQ_DECRYPTED</h2>
+                <h2 class="section-title"><span class="text-lime">07 //</span> FAQ_DECRYPTED</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -977,7 +963,7 @@
                 <details class="faq-item">
                     <summary class="faq-question">CAN I CANCEL MY MEMBERSHIP ANYTIME?</summary>
                     <div class="faq-answer">
-                        Yes. The Elite Operative tier runs on a rolling monthly subscription with no contracts. You can cancel at any point without penalty. The Permanent Access tier is a 10-month installment plan where you pay <strong>R1,000 per month for 10 months</strong> (10 installments total / R10,000 in total), after which you enjoy permanent lifetime access with no ongoing or future payments.
+                        Yes. The Elite Operative tier runs on a rolling monthly subscription with no contracts. You can cancel at any point without penalty. The Permanent Access tier is R15,000 once-off, or a 12-month installment plan where you pay <strong>R1,250 per month for 12 months</strong> (12 installments / R15,000 in total), after which you enjoy permanent lifetime access with no ongoing or future payments.
                     </div>
                 </details>
             </div>
@@ -988,7 +974,7 @@
     <section id="mission" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">09 //</span> MISSION OBJECTIVES</h2>
+                <h2 class="section-title"><span class="text-lime">08 //</span> MISSION OBJECTIVES</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -1036,7 +1022,7 @@
     <section id="impact" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">10 //</span> IMPACT_REPORT</h2>
+                <h2 class="section-title"><span class="text-lime">09 //</span> IMPACT_REPORT</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -1095,7 +1081,7 @@
     <section id="resources" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">11 //</span> RESOURCES</h2>
+                <h2 class="section-title"><span class="text-lime">10 //</span> RESOURCES</h2>
                 <div class="section-line"></div>
             </div>
 
@@ -1156,7 +1142,7 @@
     <section id="events" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title"><span class="text-lime">12 //</span> COMMUNITY_EVENTS</h2>
+                <h2 class="section-title"><span class="text-lime">11 //</span> COMMUNITY_EVENTS</h2>
                 <div class="section-line"></div>
             </div>
 
