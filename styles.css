@@ -2142,3 +2142,119 @@ summary,
         display: none;
     }
 }
+
+/* ===== HOW IT WORKS ===== */
+.how-steps {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+}
+
+.step-num {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--cyber-lime);
+    margin-bottom: 10px;
+}
+
+.how-arrow {
+    color: var(--text-tertiary);
+    font-size: 1.4rem;
+}
+
+/* ===== PROOF STRIP ===== */
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.proof-grid .review-card {
+    width: auto;
+    max-width: none;
+    min-width: 0;
+}
+
+/* ===== WHY CYBER ===== */
+.why-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 30px 0 40px;
+}
+
+.why-chip {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.why-chip i {
+    color: var(--cyber-lime);
+    margin-right: 8px;
+}
+
+.why-table-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.why-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.why-table th {
+    text-align: left;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.why-table td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.why-table td:first-child {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.why-table .why-pay {
+    font-family: 'Fira Code', monospace;
+    color: var(--cyber-cyan);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .how-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .how-arrow {
+        transform: rotate(90deg);
+        justify-self: center;
+    }
+
+    .proof-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-table {
+        min-width: 560px;
+    }
+}
