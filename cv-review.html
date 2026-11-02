@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHNELJ2BH2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WHNELJ2BH2');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Free CV Review | Hacking Hub</title>
+
+    <!-- PWA / installable app. These tags are hand-repeated per page like the
+         rest of each <head> (only the nav/footer are templated). -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0a0f18">
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Hacking Hub">
+    <script src="pwa.js" defer></script>
+    <meta name="description" content="Send us your CV and get a free 15-minute review call with Hacking Hub: what's stopping it getting past the ATS, and exactly what to fix for the cybersecurity role you want.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hackinghub.co.za/cv-review.html">
+    <meta property="og:title" content="Free CV Review | Hacking Hub">
+    <meta property="og:description" content="Send us your CV and get a free 15-minute review call: what's stopping it getting past the ATS, and exactly what to fix for the cybersecurity role you want.">
+    <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Free CV Review | Hacking Hub">
+    <meta name="twitter:description" content="Send us your CV and get a free 15-minute review call: what's stopping it getting past the ATS, and exactly what to fix for the cybersecurity role you want.">
+    <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific styles for the Free CV Review page */
+        .cvr-wrap {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .cvr-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .cvr-step {
+            display: flex;
+            gap: 16px;
+        }
+
+        .cvr-step-num {
+            flex: 0 0 auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: var(--cyber-lime);
+            border: 1px solid var(--cyber-lime);
+            border-radius: 4px;
+            padding: 3px 8px;
+            height: fit-content;
+        }
+
+        .cvr-step h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .cvr-step p,
+        .cvr-checks li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cvr-checks {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cvr-checks i {
+            color: var(--cyber-cyan);
+            margin-right: 8px;
+        }
+
+        .cvr-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 32px;
+        }
+
+        .cvr-field label {
+            display: block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .cvr-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            padding: 14px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .cvr-input:focus {
+            outline: none;
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 20px rgba(14, 215, 181, 0.15);
+        }
+
+        .cvr-file {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            padding: 18px 16px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .cvr-file:hover,
+        .cvr-file:focus-within,
+        .cvr-file.has-file {
+            border-color: var(--cyber-cyan);
+        }
+
+        .cvr-file input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .cvr-file i {
+            color: var(--cyber-cyan);
+            font-size: 1.4rem;
+        }
+
+        .cvr-file-name {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-wrap: anywhere;
+        }
+
+        .cvr-hint {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-top: 6px;
+        }
+
+        .cvr-consent {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .cvr-consent input {
+            margin-top: 3px;
+            accent-color: var(--cyber-lime);
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
+        }
+
+        .cvr-consent a {
+            color: var(--cyber-cyan);
+        }
+
+        /* Honeypot: hidden from people, still filled in by naive bots. */
+        .cvr-hp {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .cvr-error {
+            color: var(--cyber-red);
+            font-size: 0.9rem;
+        }
+
+        .cvr-submit {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .cvr-submit[disabled] {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .cvr-done {
+            text-align: center;
+            padding: 40px 32px;
+        }
+
+        .cvr-done i.fa-circle-check {
+            font-size: 2.6rem;
+            color: var(--cyber-lime);
+            margin-bottom: 16px;
+        }
+
+        .cvr-done p {
+            color: var(--text-secondary);
+            margin: 12px auto 24px;
+            max-width: 420px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 860px) {
+            .cvr-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .cvr-form {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="cyber-nav" id="site-nav"></nav>
+    <script src="partials.js"></script>
+    <script>renderNav('cv-review');</script>
+
+    <!-- Header -->
+    <header class="section section-dark" style="padding-bottom: 40px;">
+        <div class="container">
+            <h1>FREE <span class="text-lime">CV REVIEW</span></h1>
+            <p style="color: var(--text-secondary); max-width: 650px; margin-top: 20px;">
+                // APPLYING EVERYWHERE AND HEARING NOTHING BACK? SEND US YOUR CV.<br>
+                // WE'LL GO THROUGH IT ON A FREE 15-MINUTE CALL AND TELL YOU EXACTLY WHAT TO FIX.
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="cvr-wrap">
+                <div class="cvr-steps">
+                    <div class="cvr-step">
+                        <span class="cvr-step-num">01</span>
+                        <div>
+                            <h3>SEND YOUR CV</h3>
+                            <p>Upload it here as a PDF or Word document. It comes straight to Siya's inbox.</p>
+                        </div>
+                    </div>
+                    <div class="cvr-step">
+                        <span class="cvr-step-num">02</span>
+                        <div>
+                            <h3>BOOK YOUR RESULTS CALL</h3>
+                            <p>You'll go straight to the calendar to pick a 15-minute slot that suits you.</p>
+                        </div>
+                    </div>
+                    <div class="cvr-step">
+                        <span class="cvr-step-num">03</span>
+                        <div>
+                            <h3>GET YOUR FIXES</h3>
+                            <p>On the call, we go through what we found:</p>
+                            <ul class="cvr-checks">
+                                <li><i class="fa-solid fa-check"></i>Why it may not be getting past the ATS</li>
+                                <li><i class="fa-solid fa-check"></i>How well it matches the role you want</li>
+                                <li><i class="fa-solid fa-check"></i>Which certs, labs and projects to show first</li>
+                                <li><i class="fa-solid fa-check"></i>What to cut, and what's missing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cyber-card" style="padding: 0;">
+                    <form class="cvr-form" id="cvr-form" novalidate>
+                        <div class="cvr-field">
+                            <label for="cvr-name">Full Name</label>
+                            <input type="text" id="cvr-name" name="name" class="cvr-input" maxlength="100" autocomplete="name" required>
+                        </div>
+                        <div class="cvr-field">
+                            <label for="cvr-email">Email</label>
+                            <input type="email" id="cvr-email" name="email" class="cvr-input" maxlength="200" autocomplete="email" required>
+                        </div>
+                        <div class="cvr-field">
+                            <label for="cvr-role">Role You're Aiming For</label>
+                            <select id="cvr-role" name="target_role" class="cvr-input">
+                                <option value="">Not sure yet</option>
+                                <option>SOC / Cybersecurity Analyst</option>
+                                <option>GRC</option>
+                                <option>Offensive Security / Pentesting</option>
+                                <option>Cloud Security</option>
+                                <option>DevSecOps</option>
+                                <option>Network Security</option>
+                                <option>Digital Forensics</option>
+                                <option>AI Security</option>
+                                <option>Security Engineering</option>
+                            </select>
+                        </div>
+                        <div class="cvr-field">
+                            <label for="cvr-situation">Where You Are Now</label>
+                            <select id="cvr-situation" name="situation" class="cvr-input">
+                                <option value="">Prefer not to say</option>
+                                <option>Studying</option>
+                                <option>Graduated, looking for my first role</option>
+                                <option>Working in IT, moving into security</option>
+                                <option>Working in another field, changing careers</option>
+                                <option>Already in security, looking to move up</option>
+                            </select>
+                        </div>
+                        <div class="cvr-field">
+                            <label for="cvr-file">Your CV</label>
+                            <label class="cvr-file" id="cvr-file-box" style="text-transform: none; letter-spacing: 0; font-size: 0.95rem; margin: 0;">
+                                <i class="fa-solid fa-file-arrow-up"></i>
+                                <span class="cvr-file-name" id="cvr-file-name">Choose a PDF or Word file</span>
+                                <input type="file" id="cvr-file" name="cv" accept=".pdf,.docx,.doc,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" required>
+                            </label>
+                            <p class="cvr-hint">PDF, DOCX or DOC, up to 5 MB.</p>
+                        </div>
+                        <div class="cvr-hp" aria-hidden="true">
+                            <label for="cvr-website">Website</label>
+                            <input type="text" id="cvr-website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <label class="cvr-consent" for="cvr-consent">
+                            <input type="checkbox" id="cvr-consent" name="consent" value="yes" required>
+                            <span>I agree to Hacking Hub reviewing my CV and contacting me about it. It's only used for this review. See our <a href="privacy.html">privacy policy</a>.</span>
+                        </label>
+                        <p class="cvr-error" id="cvr-error" role="alert" hidden></p>
+                        <button type="submit" class="btn btn-primary cvr-submit" id="cvr-submit">
+                            <span class="btn-content">SEND CV &amp; BOOK MY CALL</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="cvr-done" id="cvr-done" hidden>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <h2 style="font-size: 1.4rem;">CV RECEIVED</h2>
+                        <p>Now pick a time for your 15-minute results call. The calendar should open automatically. If it doesn't, use the button below.</p>
+                        <a href="https://cal.com/siya-gladile-yabcoe/15min" class="btn btn-primary" id="cvr-book" target="_blank" rel="noopener noreferrer">
+                            <span class="btn-content">BOOK MY RESULTS CALL</span>
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cyber-footer" id="site-footer"></footer>
+    <script>renderFooter();</script>
+
+    <script src="nav.js"></script>
+    <script>
+        const CV_REVIEW_ENDPOINT = 'https://kveiflphktpvsddhkspz.supabase.co/functions/v1/cv-review-intake';
+        const BOOKING_URL = 'https://cal.com/siya-gladile-yabcoe/15min';
+        const MAX_FILE_BYTES = 5 * 1024 * 1024;
+
+        const form = document.getElementById('cvr-form');
+        const fileInput = document.getElementById('cvr-file');
+        const fileBox = document.getElementById('cvr-file-box');
+        const fileName = document.getElementById('cvr-file-name');
+        const errorEl = document.getElementById('cvr-error');
+        const submitBtn = document.getElementById('cvr-submit');
+        const doneEl = document.getElementById('cvr-done');
+        const bookLink = document.getElementById('cvr-book');
+
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            fileName.textContent = file ? file.name : 'Choose a PDF or Word file';
+            fileBox.classList.toggle('has-file', !!file);
+        });
+
+        function showError(message) {
+            errorEl.textContent = message;
+            errorEl.hidden = false;
+        }
+
+        // Cal.com pre-fills the booking form from these query parameters.
+        function bookingUrlFor(name, email, role) {
+            const params = new URLSearchParams({ name, email, notes: `Free CV review${role ? ` - ${role}` : ''}` });
+            return `${BOOKING_URL}?${params}`;
+        }
+
+        function goToBooking(name, email, role) {
+            const url = bookingUrlFor(name, email, role);
+            bookLink.href = url;
+            form.hidden = true;
+            doneEl.hidden = false;
+            trackEvent('cv_review_submitted', { target_role: role || 'not_sure' });
+            window.location.href = url;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorEl.hidden = true;
+
+            const name = document.getElementById('cvr-name').value.trim();
+            const email = document.getElementById('cvr-email').value.trim();
+            const role = document.getElementById('cvr-role').value;
+            const file = fileInput.files[0];
+
+            if (!name) return showError('Please enter your name.');
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Please enter a valid email address.');
+            if (!file) return showError('Please attach your CV.');
+            if (!/\.(pdf|docx?)$/i.test(file.name)) return showError('Please upload your CV as a PDF or Word document.');
+            if (file.size > MAX_FILE_BYTES) return showError('Your CV must be 5 MB or smaller.');
+            if (!document.getElementById('cvr-consent').checked) return showError('Please tick the box to agree to us reviewing your CV.');
+
+            submitBtn.disabled = true;
+            submitBtn.querySelector('.btn-content').textContent = 'SENDING...';
+            try {
+                const res = await fetch(CV_REVIEW_ENDPOINT, { method: 'POST', body: new FormData(form) });
+                const data = await res.json().catch(() => ({}));
+                if (res.ok || data.alreadySent) {
+                    goToBooking(name, email, role);
+                    return;
+                }
+                showError(data.error || 'Something went wrong. Please try again, or email your CV to siya@hackinghub.co.za.');
+            } catch {
+                showError("We couldn't reach the server. Check your connection and try again, or email your CV to siya@hackinghub.co.za.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.querySelector('.btn-content').textContent = 'SEND CV & BOOK MY CALL';
+            }
+        });
+    </script>
+</body>
+
+</html>

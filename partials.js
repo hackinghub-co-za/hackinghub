@@ -89,6 +89,13 @@ const PAGE_CONFIG = {
         ctaHref: 'index.html#pricing', ctaLabel: 'VIEW_PRICING', ctaExternal: false,
         current: 'role-quiz',
     },
+    'cv-review': {
+        isHome: false,
+        navStatusLabel: 'DATABASE', navStatusValue: 'ACCESSED', navStatusColor: 'text-cyan',
+        reviewsHref: 'index.html#reviews',
+        ctaHref: 'index.html#pricing', ctaLabel: 'VIEW_PRICING', ctaExternal: false,
+        current: 'cv-review',
+    },
     privacy: {
         isHome: false,
         navStatusLabel: 'DATABASE', navStatusValue: 'ACCESSED', navStatusColor: 'text-cyan',
@@ -123,7 +130,7 @@ function buildNavHtml(pageKey) {
         return `<a href="${href}" class="${cls}"${currentAttr}>${label}</a>`;
     };
 
-    const dropdownDestinations = ['salaries', 'quiz', 'interview-prep', 'role-quiz'];
+    const dropdownDestinations = ['salaries', 'quiz', 'interview-prep', 'role-quiz', 'cv-review'];
     const triggerClasses = ['nav-item', 'nav-dropdown-trigger', dropdownDestinations.includes(cfg.current) ? 'text-cyan' : ''].filter(Boolean).join(' ');
 
     const ctaHref = cfg.ctaExternal ? cfg.ctaHref : cfg.ctaHref;
@@ -152,6 +159,7 @@ function buildNavHtml(pageKey) {
                         ${dropdownLink('role-quiz', 'Which Role Are You?', 'role-quiz.html')}
                         ${dropdownLink('quiz', 'Quiz', 'quiz.html')}
                         ${dropdownLink('interview-prep', 'Interview Prep', 'interview-prep.html')}
+                        ${dropdownLink('cv-review', 'Free CV Review', 'cv-review.html')}
                     </div>
                 </div>
                 ${navItem('events', 'EVENTS', anchor('events'))}
