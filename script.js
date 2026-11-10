@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousels();
     initScrollReveal();
     initEventsFeed();
+    initIntakeSpots();
 });
 
 /* -------------------------------------------------------------------------- */
@@ -407,4 +408,47 @@ function escapeHtml(str) {
 
 function escapeAttr(str) {
     return escapeHtml(str);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Intake Spots Counter                             */
+/* -------------------------------------------------------------------------- */
+
+// "November intake: 6 spots left" (get_current_intake, admin dashboard
+// supabase/114_intake_spots.sql). The count drops by itself as new members
+// make their first payment. Every [data-intake] element starts hidden and is
+// only shown once a real number arrives, so a failed fetch or a month with
+// no intake shows nothing rather than a made-up count.
+async function initIntakeSpots() {
+    const els = document.querySelectorAll('[data-intake]');
+    if (!els.length) return;
+
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_current_intake`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: '{}',
+        });
+        if (!res.ok) return;
+        const [intake] = await res.json();
+        if (!intake || typeof intake.spots_left !== 'number') return;
+
+        const name = String(intake.name || '').toUpperCase();
+        const left = intake.spots_left;
+        const text = left === 0
+            ? `${name} INTAKE IS FULL`
+            : `${name} INTAKE: ${left} ${left === 1 ? 'SPOT' : 'SPOTS'} LEFT`;
+
+        els.forEach((el) => {
+            el.querySelectorAll('[data-intake-text]').forEach((t) => { t.textContent = text; });
+            el.classList.toggle('is-full', left === 0);
+            el.hidden = false;
+        });
+    } catch (err) {
+        console.error('Could not load intake spots:', err);
+    }
 }

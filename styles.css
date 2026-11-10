@@ -2261,3 +2261,64 @@ summary,
         justify-self: center;
     }
 }
+
+/* ===== INTAKE SPOTS COUNTER ===== */
+.intake-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--cyber-red);
+    background: rgba(255, 59, 92, 0.08);
+    border: 1px solid rgba(255, 59, 92, 0.4);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-top: 24px;
+}
+
+a.intake-pill:hover {
+    background: rgba(255, 59, 92, 0.14);
+}
+
+.intake-pill-hero {
+    display: flex;
+    width: fit-content;
+    margin: 0 0 20px;
+}
+
+.intake-pill-row {
+    text-align: center;
+    margin: -36px 0 40px;
+}
+
+.intake-pill-row .intake-pill {
+    margin-top: 0;
+}
+
+.intake-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    flex: 0 0 auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .intake-dot {
+        animation: intake-pulse 1.6s ease-in-out infinite;
+    }
+}
+
+@keyframes intake-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.is-full .intake-pill,
+.intake-pill.is-full {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border-color);
+}

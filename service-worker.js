@@ -16,7 +16,7 @@
  * Bump CACHE_VERSION whenever the precache list or this file changes.
  */
 
-const CACHE_VERSION = 'hh-cache-v3';
+const CACHE_VERSION = 'hh-cache-v4';
 
 // The app shell — enough to render any page offline.
 const PRECACHE_URLS = [
