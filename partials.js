@@ -111,7 +111,7 @@ function buildNavHtml(pageKey) {
 
     const anchor = (name) => (cfg.isHome ? `#${name}` : `index.html#${name}`);
 
-    const logoInner = `<img src="images/hacking-hub-logo.png" alt="Hacking Hub Logo" class="nav-logo-image">
+    const logoInner = `<img src="images/hacking-hub-logo-nav.png" alt="Hacking Hub Logo" class="nav-logo-image" width="40" height="40">
                 <span class="logo-text">HACKING <span class="text-lime">HUB</span></span>`;
     const logo = cfg.isHome
         ? logoInner

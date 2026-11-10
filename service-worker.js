@@ -16,7 +16,7 @@
  * Bump CACHE_VERSION whenever the precache list or this file changes.
  */
 
-const CACHE_VERSION = 'hh-cache-v2';
+const CACHE_VERSION = 'hh-cache-v3';
 
 // The app shell — enough to render any page offline.
 const PRECACHE_URLS = [
@@ -34,6 +34,7 @@ const PRECACHE_URLS = [
   '/pwa.js',
   '/manifest.webmanifest',
   '/images/hacking-hub-logo.png',
+  '/images/hacking-hub-logo-nav.png',
   '/images/icon-192.png',
   '/images/icon-512.png',
   '/images/icon-maskable-512.png',

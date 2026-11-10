@@ -224,6 +224,9 @@ function initTypewriter() {
 
     elements.forEach(el => {
         const text = el.getAttribute('data-text');
+        // Saved before the scramble replaces the markup, so the coloured
+        // spans and line breaks come back once it finishes.
+        const originalHtml = el.innerHTML;
 
         let iteration = 0;
         const interval = setInterval(() => {
@@ -239,9 +242,7 @@ function initTypewriter() {
 
             if (iteration >= text.length) {
                 clearInterval(interval);
-                if (el.children.length > 0) {
-                    el.innerHTML = el.getAttribute('data-original-html') || el.innerHTML;
-                }
+                el.innerHTML = originalHtml;
             }
 
             iteration += 1 / 3;

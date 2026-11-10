@@ -13,7 +13,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Which Cyber Role Are You? | Hacking Hub</title>
+    <title>Which Cybersecurity Role Suits You? Free Quiz | Hacking Hub</title>
 
     <!-- PWA / installable app. These tags are hand-repeated per page like the
          rest of each <head> (only the nav/footer are templated). -->
@@ -27,15 +27,16 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Hacking Hub">
     <script src="pwa.js" defer></script>
-    <meta name="description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <link rel="canonical" href="https://hackinghub.co.za/role-quiz.html">
+    <meta name="description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hackinghub.co.za/role-quiz.html">
-    <meta property="og:title" content="Which Cyber Role Are You? | Hacking Hub">
-    <meta property="og:description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta property="og:title" content="Which Cybersecurity Role Suits You? Free Quiz | Hacking Hub">
+    <meta property="og:description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free.">
     <meta property="og:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Which Cyber Role Are You? | Hacking Hub">
-    <meta name="twitter:description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free, no sign-up required.">
+    <meta name="twitter:title" content="Which Cybersecurity Role Suits You? Free Quiz | Hacking Hub">
+    <meta name="twitter:description" content="10 quick questions, a dramatic results reveal, and a real match against the 9 cybersecurity domains Hacking Hub coaches members into — free.">
     <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -330,6 +331,112 @@
                 font-size: 0.7rem;
             }
         }
+
+        /* Contact step between the scan and the result. */
+        .rq-lead {
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+
+        .rq-lead-head {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .rq-lead-head i {
+            font-size: 2rem;
+            color: var(--cyber-lime);
+        }
+
+        .rq-lead-head h2 {
+            font-size: 1.3rem;
+            margin: 12px 0 8px;
+        }
+
+        .rq-lead-head p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .rq-lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .rq-lead-field label {
+            display: block;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .rq-lead-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            padding: 14px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .rq-lead-input:focus {
+            outline: none;
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 20px rgba(14, 215, 181, 0.15);
+        }
+
+        .rq-lead-consent {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .rq-lead-consent input {
+            margin-top: 3px;
+            accent-color: var(--cyber-lime);
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
+        }
+
+        .rq-lead-consent a {
+            color: var(--cyber-cyan);
+        }
+
+        /* Honeypot: hidden from people, still filled in by naive bots. */
+        .rq-lead-hp {
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .rq-lead-error {
+            color: var(--cyber-red);
+            font-size: 0.9rem;
+        }
+
+        .rq-lead-submit {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .rq-lead-submit[disabled] {
+            opacity: 0.6;
+            cursor: wait;
+        }
     </style>
 </head>
 
@@ -346,7 +453,7 @@
             <h1>WHICH CYBER <span class="text-lime">ROLE ARE YOU?</span></h1>
             <p style="color: var(--text-secondary); max-width: 650px; margin-top: 20px;">
                 // 10 QUICK QUESTIONS &mdash; A REAL MATCH AGAINST ALL 9 DOMAINS WE COACH MEMBERS INTO<br>
-                // NO SIGN-UP REQUIRED. RESULTS INCLUDE REAL SOUTH AFRICAN SALARY DATA FOR YOUR TOP MATCH.
+                // FREE. RESULTS INCLUDE REAL SOUTH AFRICAN SALARY DATA FOR YOUR TOP MATCH.
             </p>
         </div>
     </header>
@@ -625,7 +732,7 @@
             ];
             let i = 0;
             function nextLine() {
-                if (i >= lines.length) { setTimeout(renderResults, 500); return; }
+                if (i >= lines.length) { setTimeout(showLeadGate, 500); return; }
                 const div = document.createElement('div');
                 logEl.appendChild(div);
                 const text = lines[i];
@@ -640,12 +747,119 @@
             nextLine();
         }
 
-        function renderResults() {
-            const ranked = Object.keys(DOMAINS).map((id) => {
+        function rankDomains() {
+            return Object.keys(DOMAINS).map((id) => {
                 const max = MAX_PER_DOMAIN[id] || 1;
                 const pct = Math.max(0, Math.min(100, Math.round((state.scores[id] / max) * 100)));
                 return { id, pct };
             }).sort((a, b) => b.pct - a.pct);
+        }
+
+        // Contact step: first name, email and phone before the result, sent
+        // to the role-quiz-lead edge function, which adds the person to the
+        // Sales Pipeline. Only asked once per visit, so a retake goes straight
+        // to the result.
+        const LEAD_ENDPOINT = 'https://kveiflphktpvsddhkspz.supabase.co/functions/v1/role-quiz-lead';
+        let leadCaptured = false;
+        try { leadCaptured = sessionStorage.getItem('hh_role_quiz_lead') === '1'; } catch { /* storage blocked */ }
+
+        function showLeadGate() {
+            if (leadCaptured) { renderResults(); return; }
+            bodyEl.innerHTML = `
+                <div class="rq-lead">
+                    <div class="rq-lead-head">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        <h2>Your match is ready.</h2>
+                        <p>Tell us where to reach you, and we'll show your result and follow up with the next steps for that role.</p>
+                    </div>
+                    <form class="rq-lead-form" id="rq-lead-form" novalidate>
+                        <div class="rq-lead-field">
+                            <label for="rq-lead-name">First Name</label>
+                            <input type="text" id="rq-lead-name" class="rq-lead-input" maxlength="60" autocomplete="given-name" required>
+                        </div>
+                        <div class="rq-lead-field">
+                            <label for="rq-lead-email">Email</label>
+                            <input type="email" id="rq-lead-email" class="rq-lead-input" maxlength="200" autocomplete="email" required>
+                        </div>
+                        <div class="rq-lead-field">
+                            <label for="rq-lead-phone">Phone Number</label>
+                            <input type="tel" id="rq-lead-phone" class="rq-lead-input" maxlength="40" autocomplete="tel" placeholder="e.g. 082 123 4567" required>
+                        </div>
+                        <div class="rq-lead-hp" aria-hidden="true">
+                            <label for="rq-lead-website">Website</label>
+                            <input type="text" id="rq-lead-website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <label class="rq-lead-consent" for="rq-lead-consent">
+                            <input type="checkbox" id="rq-lead-consent" required>
+                            <span>I agree to Hacking Hub contacting me by email, phone or WhatsApp about my results and its programmes. I can opt out at any time. See our <a href="privacy.html">privacy policy</a>.</span>
+                        </label>
+                        <p class="rq-lead-error" id="rq-lead-error" role="alert" hidden></p>
+                        <button type="submit" class="btn btn-primary rq-lead-submit" id="rq-lead-submit">
+                            <span class="btn-content">SHOW MY RESULT</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            `;
+            trackEvent('role_quiz_lead_form_shown');
+
+            const form = document.getElementById('rq-lead-form');
+            const errorEl = document.getElementById('rq-lead-error');
+            const submitBtn = document.getElementById('rq-lead-submit');
+            const showError = (msg) => { errorEl.textContent = msg; errorEl.hidden = false; };
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorEl.hidden = true;
+                const firstName = document.getElementById('rq-lead-name').value.trim();
+                const email = document.getElementById('rq-lead-email').value.trim();
+                const phone = document.getElementById('rq-lead-phone').value.trim();
+                const digits = phone.replace(/[^\d]/g, '');
+
+                if (!firstName) return showError('Please enter your first name.');
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Please enter a valid email address.');
+                if (digits.length < 9 || digits.length > 15) return showError('Please enter a valid phone number, e.g. 082 123 4567.');
+                if (!document.getElementById('rq-lead-consent').checked) return showError('Please tick the box so we can send you your results.');
+
+                const ranked = rankDomains();
+                submitBtn.disabled = true;
+                submitBtn.querySelector('.btn-content').textContent = 'UNLOCKING...';
+                try {
+                    const res = await fetch(LEAD_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            first_name: firstName,
+                            email,
+                            phone,
+                            consent: true,
+                            role: DOMAINS[ranked[0].id].name,
+                            match_pct: ranked[0].pct,
+                            runner_up: DOMAINS[ranked[1].id].name,
+                            website: document.getElementById('rq-lead-website').value,
+                        }),
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!res.ok) {
+                        showError(data.error || 'Something went wrong. Please try again.');
+                        return;
+                    }
+                    leadCaptured = true;
+                    try { sessionStorage.setItem('hh_role_quiz_lead', '1'); } catch { /* storage blocked */ }
+                    trackEvent('role_quiz_lead_submitted', { matched_role: ranked[0].id });
+                    renderResults();
+                } catch {
+                    showError("We couldn't reach the server. Check your connection and try again.");
+                } finally {
+                    submitBtn.disabled = false;
+                    const label = submitBtn.querySelector('.btn-content');
+                    if (label) label.textContent = 'SHOW MY RESULT';
+                }
+            });
+        }
+
+        function renderResults() {
+            const ranked = rankDomains();
 
             const top = ranked[0];
             const topDomain = DOMAINS[top.id];
