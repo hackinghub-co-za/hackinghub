@@ -452,3 +452,53 @@ async function initIntakeSpots() {
         console.error('Could not load intake spots:', err);
     }
 }
+
+
+// ===== PAID 30-MINUTE CONSULTATION =====
+// Pay first, then book: the consultation-checkout function (admin dashboard
+// repo) returns a signed PayFast link for the fixed R200 price; after paying,
+// PayFast sends the visitor to the Cal.com booking page with their details
+// filled in.
+(function setupConsultation() {
+    const dialog = document.getElementById('consult-dialog');
+    const form = document.getElementById('consult-form');
+    if (!dialog || !form) return;
+    const errorEl = document.getElementById('consult-error');
+    const submit = document.getElementById('consult-submit');
+
+    const showError = (msg) => { errorEl.textContent = msg; errorEl.hidden = !msg; };
+
+    document.querySelectorAll('[data-consult-open]').forEach((btn) => btn.addEventListener('click', () => {
+        showError('');
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
+        document.getElementById('consult-name').focus();
+    }));
+    dialog.querySelectorAll('[data-consult-close]').forEach((btn) => btn.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        if (name.length < 2) return showError('Please enter your name.');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showError('Please enter a valid email address.');
+        showError('');
+        submit.disabled = true;
+        submit.textContent = 'TAKING_YOU_TO_PAYFAST...';
+        try {
+            const res = await fetch(`${SUPABASE_URL}/functions/v1/consultation-checkout`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email }),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.checkoutUrl) throw new Error(data.error || 'Could not start the payment.');
+            window.location.href = data.checkoutUrl;
+        } catch (err) {
+            showError(`${err.message} Please try again, or book a free call instead.`);
+            submit.disabled = false;
+            submit.textContent = 'PAY_R200_AND_BOOK()';
+        }
+    });
+})();

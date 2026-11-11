@@ -38,7 +38,7 @@
     <meta name="twitter:title" content="Get Into Cybersecurity in South Africa | Hacking Hub">
     <meta name="twitter:description" content="A South African cybersecurity career accelerator — coach-built roadmaps, real salary data, hands-on prep, and a community, to help you land your first role in security.">
     <meta name="twitter:image" content="https://hackinghub.co.za/images/hacking-hub-logo.png">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google AdSense -->
@@ -943,6 +943,43 @@
 
             </div>
 
+            <!-- One-off 30-minute consultation: the low-cost way in for people who
+                 don't want a programme. Paid when booking on Cal.com. -->
+            <div class="consult-card">
+                <div class="consult-main">
+                    <div class="pricing-tier-label text-cyan" style="margin-bottom: 10px;">ONE_OFF_CONSULTATION</div>
+                    <h3 class="consult-title">Just want to talk it through? Book 30 minutes with Siya.</h3>
+                    <p class="consult-desc">Not ready for a programme? Get a 30-minute one-on-one call about anything on your cyber journey: where to start, which certification to do next, your CV, switching careers, or your next job move. No membership needed.</p>
+                    <ul class="consult-points">
+                        <li><i class="fa-solid fa-check text-cyan"></i> 30 minutes, one-on-one with the founder</li>
+                        <li><i class="fa-solid fa-check text-cyan"></i> Any cyber career question</li>
+                        <li><i class="fa-solid fa-check text-cyan"></i> Pay once when you book</li>
+                    </ul>
+                </div>
+                <div class="consult-side">
+                    <div class="consult-price"><span class="price-amount text-cyan">R200</span><span class="price-period">/ 30 minutes, once-off</span></div>
+                    <button type="button" class="btn btn-cyan-solid pricing-btn" data-consult-open>BOOK_CONSULTATION()</button>
+                </div>
+            </div>
+
+            <!-- Pay first (PayFast), then pick a time (Cal.com). script.js asks the
+                 consultation-checkout function for a signed PayFast link. -->
+            <dialog id="consult-dialog" class="consult-dialog" aria-labelledby="consult-dialog-title">
+                <form id="consult-form" novalidate>
+                    <button type="button" class="consult-close" data-consult-close aria-label="Close">&times;</button>
+                    <div class="pricing-tier-label text-cyan" style="margin-bottom: 8px;">ONE_OFF_CONSULTATION &middot; R200</div>
+                    <h3 id="consult-dialog-title" class="consult-title">Book 30 minutes with Siya</h3>
+                    <p class="consult-desc">Pay R200 securely with PayFast, then pick a time that suits you.</p>
+                    <label for="consult-name">Your name</label>
+                    <input id="consult-name" name="name" type="text" autocomplete="name" required maxlength="100">
+                    <label for="consult-email">Your email</label>
+                    <input id="consult-email" name="email" type="email" autocomplete="email" required maxlength="200">
+                    <p class="consult-error" id="consult-error" role="alert" hidden></p>
+                    <button type="submit" class="btn btn-cyan-solid pricing-btn" id="consult-submit">PAY_R200_AND_BOOK()</button>
+                    <p class="consult-fine">You’ll be taken to PayFast to pay, then straight to the booking calendar.</p>
+                </form>
+            </dialog>
+
             <p style="text-align: center; color: var(--text-tertiary); font-family: 'Fira Code', monospace; font-size: 0.8rem; margin-top: 50px;">
                 // PRICING SUBJECT TO CHANGE — LOCK IN EARLY FOR BEST RATES
             </p>
@@ -1326,7 +1363,7 @@
     </a>
 
     <script src="nav.js"></script>
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 </body>
 
 </html>
